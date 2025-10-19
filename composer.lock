@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d8177be0354e3c93f6ca7a484095c52a",
+    "content-hash": "bc63ef39db19aa42f7affbd3d3893df7",
     "packages": [
         {
             "name": "adam-rms/mysqli-database-class",
