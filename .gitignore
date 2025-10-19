@@ -11,6 +11,8 @@ vendor/
 .idea/
 
 /s3files/
+/storage/
+/node_modules/
 
 **/.idea
 .qodo

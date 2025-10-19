@@ -11,6 +11,12 @@ if [[ ! -v DB_HOSTNAME ]] || [[ ! -v DB_DATABASE ]] || [[ ! -v DB_USERNAME ]] ||
     exit 1
 fi
 
+# Wait for the database to become available
+if [ -x ./scripts/wait-for-db.sh ]; then
+    echo "AdamRMS - Waiting for database availability"
+    ./scripts/wait-for-db.sh
+fi
+
 # Database migration & seed
 echo "AdamRMS - Starting Migration Script"
 
