@@ -21,6 +21,10 @@ foreach ($_GET as $key=>$item) {
 //POST is now the authoritarian copy
 
 
+if (!defined('APP_IS_API')) {
+    define('APP_IS_API', true);
+}
+
 require_once __DIR__ . '/../common/head.php';
 require_once __DIR__ . '/notifications/main.php';
 //To prevent errors showing on the json output

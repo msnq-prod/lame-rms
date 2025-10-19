@@ -319,6 +319,27 @@ $configStructureArray = [
     "default" => "Enabled",
     "envFallback" => "CONFIG_SIGNUP_ENABLED",
   ],
+  "SETUP_COMPLETED" => [
+    "form" => [
+      "type" => "text",
+      "default" => function () {
+        return '0';
+      },
+      "name" => "Initial setup complete",
+      "group" => "Security & Login",
+      "description" => "Internal flag that disables the initial setup wizard once an administrator account has been created.",
+      "required" => false,
+      "maxlength" => 1,
+      "minlength" => 1,
+      "options" => [],
+      "verifyMatch" => function ($value, $options) {
+        return ["valid" => in_array($value, ['0', '1'], true), "value" => $value, "error" => in_array($value, ['0', '1'], true) ? '' : "Invalid value"];
+      }
+    ],
+    "specialRequest" => false,
+    "default" => '0',
+    "envFallback" => false,
+  ],
   "AUTH_JWTKey" => [
     "form" => [
       "type" => "secret",
