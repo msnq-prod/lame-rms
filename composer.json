@@ -1,4 +1,7 @@
 {
+  "name": "adam-rms/adam-rms",
+  "description": "AdamRMS resource management system",
+  "type": "project",
   "repositories": [
     {
       "type": "vcs",
