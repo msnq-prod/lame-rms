@@ -9,7 +9,7 @@
  * - Global functions ("bCMS" class)
  * - Config Variables 
  */
-require_once(__DIR__ . '/../../vendor/autoload.php'); //Composer
+require_once __DIR__ . '/../../bootstrap.php';
 require_once __DIR__ . '/libs/Config/Config.php';
 
 use Aws\S3\S3Client;
@@ -20,7 +20,8 @@ use Twig\Extra\String\StringExtension;
 
 //TWIG
 $TWIGLOADER = new \Twig\Loader\FilesystemLoader([__DIR__ . '/../']);
-if (getenv('DEV_MODE') == "true") {
+$devMode = env('DEV_MODE', 'false') === 'true';
+if ($devMode) {
     $TWIG = new \Twig\Environment($TWIGLOADER, array(
         'debug' => true,
         'auto_reload' => true,
@@ -37,7 +38,7 @@ if (getenv('DEV_MODE') == "true") {
 }
 $TWIG->addExtension(new StringExtension());
 
-if (getenv('DEV_MODE') == "true") {
+if ($devMode) {
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ERROR | E_PARSE);
@@ -49,24 +50,28 @@ if (getenv('DEV_MODE') == "true") {
 
 /* DATBASE CONNECTION */
 try {
-    $DBLIB = new MysqliDb([
-        'host' => getenv('DB_HOSTNAME'),
-        'username' => getenv('DB_USERNAME'), //CREATE INSERT SELECT UPDATE DELETE
-        'password' => getenv('DB_PASSWORD'),
-        'db' => getenv('DB_DATABASE'),
-        'port' => getenv('DB_PORT') ?: 3306,
-        //'prefix' => 'adamrms_',
-        'charset' => 'utf8'
-    ]);
-} catch (Exception $e) {
-    // TODO use twig for this
-    if (getenv('DEV_MODE') == "true") {
-        echo "Could not connect to database: " . $e->getMessage() . "\n\n\nPlease doulbe check you have setup environment variables correctly for the database connection.";
-        exit;
-    } else {
-        echo "Could not connect to database";
-        exit;
+    $dbPort = env('DB_PORT', 3306);
+    if (!is_numeric($dbPort)) {
+        throw new RuntimeException('Environment variable DB_PORT must be numeric.');
     }
+
+    $DBLIB = new MysqliDb([
+        'host' => require_env('DB_HOSTNAME'),
+        'username' => require_env('DB_USERNAME'), //CREATE INSERT SELECT UPDATE DELETE
+        'password' => require_env('DB_PASSWORD'),
+        'db' => require_env('DB_DATABASE'),
+        'port' => (int) $dbPort,
+        //'prefix' => 'adamrms_',
+        'charset' => 'utf8mb4'
+    ]);
+} catch (Throwable $e) {
+    // TODO use twig for this
+    $message = "Could not connect to database";
+    if ($devMode) {
+        $message .= ': ' . $e->getMessage() . "\n\n\nPlease double check you have setup environment variables correctly for the database connection.";
+    }
+    echo $message;
+    exit;
 }
 
 $CONFIGCLASS = new Config;
@@ -90,7 +95,7 @@ date_default_timezone_set($CONFIG['TIMEZONE']);
 require_once __DIR__ . '/libs/bCMS/bCMS.php';
 $GLOBALS['bCMS'] = new bCMS;
 
-if (getenv('DEV_MODE') != "true" and $CONFIG['ERRORS_PROVIDERS_SENTRY'] and strlen($CONFIG['ERRORS_PROVIDERS_SENTRY']) > 0) {
+if (!$devMode && $CONFIG['ERRORS_PROVIDERS_SENTRY'] && strlen($CONFIG['ERRORS_PROVIDERS_SENTRY']) > 0) {
     Sentry\init([
         'dsn' => $CONFIG['ERRORS_PROVIDERS_SENTRY'],
         'release' => $bCMS->getVersionNumber(),

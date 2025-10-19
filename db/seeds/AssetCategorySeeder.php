@@ -1,9 +1,8 @@
 <?php
 
+require_once __DIR__ . '/BaseSeeder.php';
 
-use Phinx\Seed\AbstractSeed;
-
-class AssetCategorySeeder extends AbstractSeed
+class AssetCategorySeeder extends BaseSeeder
 {
     /**
      * Run Method.
@@ -362,20 +361,7 @@ class AssetCategorySeeder extends AbstractSeed
             ]
         ];
 
-        $count = $this->fetchRow('SELECT COUNT(*) AS count FROM assetCategoriesGroups');
-        if ($count['count'] > 0) {
-            return;
-        }
-        $count = $this->fetchRow('SELECT COUNT(*) AS count FROM assetCategories');
-        if ($count['count'] > 0) {
-            return;
-        }
-
-        $table = $this->table('assetCategoriesGroups');
-        $table->insert($categoryGroupData)
-            ->saveData();
-        $table = $this->table('assetCategories');
-        $table->insert($categoryData)
-            ->saveData();
+        $this->upsert('assetCategoriesGroups', $categoryGroupData, ['assetCategoriesGroups_id']);
+        $this->upsert('assetCategories', $categoryData, ['assetCategories_id']);
     }
 }
