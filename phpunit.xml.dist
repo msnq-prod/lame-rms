@@ -2,12 +2,16 @@
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd"
          bootstrap="vendor/autoload.php"
+         cacheResultFile=".phpunit.result.cache"
          colors="true">
     <testsuites>
         <testsuite name="Application Test Suite">
-            <directory>tests</directory>
+            <directory suffix="Test.php">tests</directory>
         </testsuite>
     </testsuites>
+    <php>
+        <ini name="error_reporting" value="-1"/>
+    </php>
     <source>
         <include>
             <directory>src/App</directory>

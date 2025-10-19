@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Smoke;
 
+use App\Http\Exception\NotFoundHttpException;
+use App\Http\Request;
 use App\Routing\LegacyDispatcher;
 use App\Routing\LegacyResolution;
 use PHPUnit\Framework\TestCase;
@@ -12,12 +14,21 @@ use ReflectionClass;
 final class LegacyDispatcherSmokeTest extends TestCase
 {
     private LegacyDispatcher $dispatcher;
+    /** @var array<string, mixed> */
+    private array $serverBackup = [];
 
     protected function setUp(): void
     {
         parent::setUp();
+        $this->serverBackup = $_SERVER;
         $srcDirectory = realpath(__DIR__ . '/../../src');
         $this->dispatcher = new LegacyDispatcher($srcDirectory !== false ? $srcDirectory : __DIR__ . '/../../src');
+    }
+
+    protected function tearDown(): void
+    {
+        $_SERVER = $this->serverBackup;
+        parent::tearDown();
     }
 
     public function testRootPageResolvesToIndexScript(): void
@@ -28,6 +39,18 @@ final class LegacyDispatcherSmokeTest extends TestCase
 
         $expected = realpath(__DIR__ . '/../../src/index.php');
         $this->assertSame($expected, $resolution->getScriptPath());
+    }
+
+    public function testDirectoryTraversalIsRejected(): void
+    {
+        $_SERVER['REQUEST_METHOD'] = 'GET';
+        $_SERVER['REQUEST_URI'] = '/../etc/passwd';
+        $_SERVER['QUERY_STRING'] = '';
+
+        $request = Request::fromGlobals();
+
+        $this->expectException(NotFoundHttpException::class);
+        $this->dispatcher->dispatch($request);
     }
 
     public function testLoginDirectoryTriggersRedirect(): void

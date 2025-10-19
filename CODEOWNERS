@@ -1,9 +1,13 @@
 # Default owners for the repository
 * @adam-rms/maintainers
 
-# CI workflows
+# CI workflows and infrastructure
 .github/workflows/ @adam-rms/devops
+Dockerfile @adam-rms/devops
 
 # Core application code
 src/App/ @adam-rms/maintainers
+
+# Automated tests
+tests/ @adam-rms/qa
 

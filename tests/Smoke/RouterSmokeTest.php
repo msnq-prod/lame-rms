@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Smoke;
 
+use App\Http\Exception\MethodNotAllowedHttpException;
 use App\Http\Request;
 use App\Http\Response;
 use App\Routing\LegacyDispatcher;
@@ -12,6 +13,21 @@ use PHPUnit\Framework\TestCase;
 
 final class RouterSmokeTest extends TestCase
 {
+    /** @var array<string, mixed> */
+    private array $serverBackup = [];
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->serverBackup = $_SERVER;
+    }
+
+    protected function tearDown(): void
+    {
+        $_SERVER = $this->serverBackup;
+        parent::tearDown();
+    }
+
     public function testOptionsRequestDoesNotInvokeLegacyLayer(): void
     {
         $legacyDispatcher = $this->createMock(LegacyDispatcher::class);
@@ -41,6 +57,17 @@ final class RouterSmokeTest extends TestCase
         $request = $this->createRequest('GET', '/login');
 
         $this->assertNull($router->dispatch($request));
+    }
+
+    public function testUnsupportedMethodThrowsMethodNotAllowed(): void
+    {
+        $legacyDispatcher = $this->createMock(LegacyDispatcher::class);
+
+        $router = new Router($legacyDispatcher);
+        $request = $this->createRequest('DELETE', '/login');
+
+        $this->expectException(MethodNotAllowedHttpException::class);
+        $router->dispatch($request);
     }
 
     private function createRequest(string $method, string $uri): Request
