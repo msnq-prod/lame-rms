@@ -3,6 +3,13 @@
   "dockerComposeFile": "docker-compose.yml",
   "service": "app",
   "workspaceFolder": "/workspace",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+
+  "features": {
+    "ghcr.io/devcontainers/features/php:1": {},
+    "ghcr.io/devcontainers/features/composer:1": {},
+    "ghcr.io/devcontainers/features/mysql-client:1": {}
+  },
 
   // Configure tool-specific properties.
   "customizations": {
@@ -43,13 +50,13 @@
 
   "forwardPorts": [
     8080,
-    "db:3306",
-    "s3filestore:8081",
-    "phpmyadmin:8082",
-    "mailpit:8083"
+    8081,
+    8025,
+    9000,
+    9001
   ],
 
-  "postCreateCommand": "composer install",
+  "postCreateCommand": "make setup",
 
   "postStartCommand": "php vendor/bin/phinx migrate && php vendor/bin/phinx seed:run",
 
@@ -61,18 +68,20 @@
       "protocol": "http"
     },
     "8081": {
-      "label": "S3 Emulator (s3mock)"
+      "label": "S3 Emulator (s3mock)",
+      "protocol": "http"
     },
-    "8082": {
-      "label": "phpMyAdmin",
-      "protocol": "https"
-    },
-    "8083": {
+    "8025": {
       "label": "Mailpit (Emails)",
       "protocol": "http"
     },
-    "3306": {
-      "label": "MySQL"
+    "9000": {
+      "label": "MinIO S3 API",
+      "protocol": "http"
+    },
+    "9001": {
+      "label": "MinIO Console",
+      "protocol": "http"
     }
   }
 }
