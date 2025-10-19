@@ -99,6 +99,7 @@ RUN set -eux; \
 
 # Copy application files
 COPY --from=builder --chown=app:app /app/vendor ./vendor
+COPY --chown=app:app public ./public
 COPY --chown=app:app src ./src
 COPY --chown=app:app db ./db
 COPY --chown=app:app scripts ./scripts
