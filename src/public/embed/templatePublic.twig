@@ -2,13 +2,81 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<meta
-		name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+                <meta
+                name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+                <meta name="csrf-token" content="{{ csrf_token }}">
 
 		<!-- JS Scripts/Plugins-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 		<!-- Bootstrap 3.3.5 -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha256-OUFW7hFO0/r5aEGTQOz9F/aXQOt+TwqI1Z4fbVvww04=" crossorigin="anonymous"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha256-OUFW7hFO0/r5aEGTQOz9F/aXQOt+TwqI1Z4fbVvww04=" crossorigin="anonymous"></script>
+                <script>
+                        (function () {
+                                if (window.__APP_CSRF_INITIALIZED__) {
+                                        return;
+                                }
+                                window.__APP_CSRF_INITIALIZED__ = true;
+                                var token = '{{ csrf_token|e('js') }}';
+
+                                document.addEventListener('DOMContentLoaded', function () {
+                                        document.querySelectorAll('form').forEach(function (form) {
+                                                if (!form.method || form.method.toLowerCase() !== 'post') {
+                                                        return;
+                                                }
+                                                if (form.hasAttribute('data-skip-csrf')) {
+                                                        return;
+                                                }
+                                                if (form.getAttribute('data-csrf') === 'false') {
+                                                        return;
+                                                }
+                                                if (form.querySelector('input[name="_csrf_token"]')) {
+                                                        return;
+                                                }
+                                                var input = document.createElement('input');
+                                                input.type = 'hidden';
+                                                input.name = '_csrf_token';
+                                                input.value = token;
+                                                form.appendChild(input);
+                                        });
+                                });
+
+                                if (window.jQuery && window.jQuery.ajaxSetup) {
+                                        window.jQuery.ajaxSetup({
+                                                headers: {'X-CSRF-Token': token}
+                                        });
+                                }
+
+                                if (typeof window.fetch === 'function') {
+                                        var originalFetch = window.fetch;
+                                        window.fetch = function (input, init) {
+                                                init = init || {};
+                                                init.headers = init.headers || {};
+
+                                                if (typeof Headers !== 'undefined' && init.headers instanceof Headers) {
+                                                        if (!init.headers.has('X-CSRF-Token')) {
+                                                                init.headers.set('X-CSRF-Token', token);
+                                                        }
+                                                } else if (Array.isArray(init.headers)) {
+                                                        var hasHeader = init.headers.some(function (pair) {
+                                                                return pair && pair[0] && pair[0].toString().toLowerCase() === 'x-csrf-token';
+                                                        });
+                                                        if (!hasHeader) {
+                                                                init.headers.push(['X-CSRF-Token', token]);
+                                                        }
+                                                } else {
+                                                        var headerKey = Object.keys(init.headers).find(function (key) {
+                                                                return key.toLowerCase() === 'x-csrf-token';
+                                                        });
+                                                        if (!headerKey) {
+                                                                init.headers['X-CSRF-Token'] = token;
+                                                        }
+                                                }
+
+                                                return originalFetch(input, init);
+                                        };
+                                }
+                        })();
+                </script>
 		<link
 		rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha512-znmTf4HNoF9U6mfB6KlhAShbRvbt4CvCaHoNV0gyssfToNQ/9A0eNdUbvsSwOIUoJdMjFG2ndSvr0Lo3ZpsTqQ==" crossorigin="anonymous"/>
 		<!--Bootbox -->

@@ -6,7 +6,8 @@
 		<title>{{ (pageConfig.TITLE != null ? pageConfig.TITLE  ~  " | " : "")  }}{{ CONFIG.PROJECT_NAME }}
 		</title>
 
-		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+                <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+                <meta name="csrf-token" content="{{ csrf_token }}">
 
 		<!-- CSS SECTION-->
 		<!--Include fonts-->
@@ -77,7 +78,74 @@ ignoreURLs: ['searchUser.php'] // Ignore user searches
 		<!--Fastclick - increases speed of response-->
 		{#<script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js" integrity="sha256-t6SrqvTQmKoGgi5LOl0AUy+lBRtIvEJ+++pLAsfAjWs=" crossorigin="anonymous"></script>#}
 
-		<!-- AdminLTE App --><script src="{{ CONFIG.ROOTURL }}/static-assets/js/adminlte.js"> </script>
+                <!-- AdminLTE App --><script src="{{ CONFIG.ROOTURL }}/static-assets/js/adminlte.js"> </script>
+                <script>
+                        (function () {
+                                if (window.__APP_CSRF_INITIALIZED__) {
+                                        return;
+                                }
+                                window.__APP_CSRF_INITIALIZED__ = true;
+                                var token = '{{ csrf_token|e('js') }}';
+
+                                document.addEventListener('DOMContentLoaded', function () {
+                                        document.querySelectorAll('form').forEach(function (form) {
+                                                if (!form.method || form.method.toLowerCase() !== 'post') {
+                                                        return;
+                                                }
+                                                if (form.hasAttribute('data-skip-csrf')) {
+                                                        return;
+                                                }
+                                                if (form.getAttribute('data-csrf') === 'false') {
+                                                        return;
+                                                }
+                                                if (form.querySelector('input[name="_csrf_token"]')) {
+                                                        return;
+                                                }
+                                                var input = document.createElement('input');
+                                                input.type = 'hidden';
+                                                input.name = '_csrf_token';
+                                                input.value = token;
+                                                form.appendChild(input);
+                                        });
+                                });
+
+                                if (window.jQuery && window.jQuery.ajaxSetup) {
+                                        window.jQuery.ajaxSetup({
+                                                headers: {'X-CSRF-Token': token}
+                                        });
+                                }
+
+                                if (typeof window.fetch === 'function') {
+                                        var originalFetch = window.fetch;
+                                        window.fetch = function (input, init) {
+                                                init = init || {};
+                                                init.headers = init.headers || {};
+
+                                                if (typeof Headers !== 'undefined' && init.headers instanceof Headers) {
+                                                        if (!init.headers.has('X-CSRF-Token')) {
+                                                                init.headers.set('X-CSRF-Token', token);
+                                                        }
+                                                } else if (Array.isArray(init.headers)) {
+                                                        var hasHeader = init.headers.some(function (pair) {
+                                                                return pair && pair[0] && pair[0].toString().toLowerCase() === 'x-csrf-token';
+                                                        });
+                                                        if (!hasHeader) {
+                                                                init.headers.push(['X-CSRF-Token', token]);
+                                                        }
+                                                } else {
+                                                        var headerKey = Object.keys(init.headers).find(function (key) {
+                                                                return key.toLowerCase() === 'x-csrf-token';
+                                                        });
+                                                        if (!headerKey) {
+                                                                init.headers['X-CSRF-Token'] = token;
+                                                        }
+                                                }
+
+                                                return originalFetch(input, init);
+                                        };
+                                }
+                        })();
+                </script>
 
 		<!-- parse-ignore-start -->
 		<script>

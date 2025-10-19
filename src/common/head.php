@@ -241,15 +241,17 @@ try {
     $cookieSecure = isset($cookieComponents['scheme']) && strtolower($cookieComponents['scheme']) === 'https';
     $cookieSameSite = $cookieSecure ? 'Lax' : 'Strict';
 
-    session_set_cookie_params([
-        'lifetime' => $sessionLifetime,
-        'path' => $cookiePath,
-        'domain' => $cookieDomain ?: '',
-        'secure' => $cookieSecure,
-        'httponly' => true,
-        'samesite' => $cookieSameSite,
-    ]);
-    session_start(); //Open up the session
+    if (session_status() !== PHP_SESSION_ACTIVE) {
+        session_set_cookie_params([
+            'lifetime' => $sessionLifetime,
+            'path' => $cookiePath,
+            'domain' => $cookieDomain ?: '',
+            'secure' => $cookieSecure,
+            'httponly' => true,
+            'samesite' => $cookieSameSite,
+        ]);
+        session_start(); //Open up the session
+    }
 } catch (Exception $e) {
     //Do Nothing
 }
