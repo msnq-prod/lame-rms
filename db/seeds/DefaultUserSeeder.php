@@ -1,9 +1,8 @@
 <?php
 
+require_once __DIR__ . '/BaseSeeder.php';
 
-use Phinx\Seed\AbstractSeed;
-
-class DefaultUserSeeder extends AbstractSeed
+class DefaultUserSeeder extends BaseSeeder
 {
     /**
      * Run Method.
@@ -32,7 +31,7 @@ class DefaultUserSeeder extends AbstractSeed
                 "users_salty2" => "uOhfrOCW",
                 "users_hash" => "sha256",
                 "users_email" => "test@example.com",
-                "users_created" => date('Y-m-d H:i:s'),
+                "users_created" => '2020-01-01 00:00:00',
                 "users_changepass" => 0,
                 "users_suspended" => 0,
                 "users_deleted" => 0,
@@ -44,7 +43,7 @@ class DefaultUserSeeder extends AbstractSeed
             [
                 "userPositions_id" => 1,
                 "users_userid" => 1,
-                "userPositions_start" => date('Y-m-d H:i:s'),
+                "userPositions_start" => '2020-01-01 00:00:00',
                 "userPositions_end" => null,
                 "positions_id" => 1,
                 "userPositions_displayName" => null,
@@ -53,20 +52,12 @@ class DefaultUserSeeder extends AbstractSeed
             ]
         ];
 
-        $count = $this->fetchRow('SELECT COUNT(*) AS count FROM users');
-        if ($count['count'] > 0) {
-            return;
-        }
-        $count = $this->fetchRow('SELECT COUNT(*) AS count FROM userPositions');
-        if ($count['count'] > 0) {
-            return;
+        if (!$this->recordExists('users', ['users_userid' => 1])) {
+            $this->upsert('users', $data, ['users_userid']);
         }
 
-        $user = $this->table('users');
-        $user->insert($data)
-            ->saveData();
-        $assignTable = $this->table('userPositions');
-        $assignTable->insert($assign)
-            ->saveData();
+        if (!$this->recordExists('userPositions', ['userPositions_id' => 1])) {
+            $this->upsert('userPositions', $assign, ['userPositions_id']);
+        }
     }
 }

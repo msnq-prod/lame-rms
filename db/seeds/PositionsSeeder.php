@@ -1,8 +1,8 @@
 <?php
 
-use Phinx\Seed\AbstractSeed;
+require_once __DIR__ . '/BaseSeeder.php';
 
-class PositionsSeeder extends AbstractSeed
+class PositionsSeeder extends BaseSeeder
 {
     /**
      * Run Method.
@@ -32,26 +32,7 @@ class PositionsSeeder extends AbstractSeed
             ]
         ];
 
-        $count = $this->fetchRow('SELECT COUNT(*) AS count FROM positions');
-        if ($count['count'] > 0) {
-            return;
-        }
-        $count = $this->fetchRow('SELECT COUNT(*) AS count FROM positionsGroups');
-        if ($count['count'] > 0) {
-            return;
-        }
-        $count = $this->fetchRow('SELECT COUNT(*) AS count FROM instances');
-        if ($count['count'] > 0) {
-            return;
-        }
-
-
-        $positionsTable = $this->table('positions');
-        $positionsGroupsTable = $this->table('positionsGroups');
-
-        $positionsGroupsTable->insert($positionGroups)
-            ->saveData();
-        $positionsTable->insert($positions)
-            ->saveData();
+        $this->upsert('positionsGroups', $positionGroups, ['positionsGroups_id']);
+        $this->upsert('positions', $positions, ['positions_id']);
     }
 }

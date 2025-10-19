@@ -1,9 +1,8 @@
 <?php
 
+require_once __DIR__ . '/BaseSeeder.php';
 
-use Phinx\Seed\AbstractSeed;
-
-class MaintenanceJobsStatusesSeeder extends AbstractSeed
+class MaintenanceJobsStatusesSeeder extends BaseSeeder
 {
     /**
      * Run Method.
@@ -34,13 +33,6 @@ class MaintenanceJobsStatusesSeeder extends AbstractSeed
             ]
         ];
 
-        $count = $this->fetchRow('SELECT COUNT(*) AS count FROM maintenanceJobsStatuses');
-        if ($count['count'] > 0) {
-            return;
-        }
-
-        $table = $this->table('maintenanceJobsStatuses');
-        $table->insert($data)
-            ->saveData();
+        $this->upsert('maintenanceJobsStatuses', $data, ['maintenanceJobsStatuses_id']);
     }
 }

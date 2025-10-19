@@ -1,9 +1,8 @@
 <?php
 
+require_once __DIR__ . '/BaseSeeder.php';
 
-use Phinx\Seed\AbstractSeed;
-
-class ManufacturersSeeder extends AbstractSeed
+class ManufacturersSeeder extends BaseSeeder
 {
     /**
      * Run Method.
@@ -3634,13 +3633,6 @@ class ManufacturersSeeder extends AbstractSeed
             ]
         ];
 
-        $count = $this->fetchRow('SELECT COUNT(*) AS count FROM manufacturers');
-        if ($count['count'] > 0) {
-            return;
-        }
-        
-        $table = $this->table('manufacturers');
-        $table->insert($data)
-            ->saveData();
+        $this->upsert('manufacturers', $data, ['manufacturers_id']);
     }
 }
