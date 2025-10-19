@@ -7,7 +7,7 @@ include $(ENV_FILE)
 export $(shell sed -n 's/^[[:space:]]*\([A-Za-z_][A-Za-z0-9_]*\)=.*/\1/p' $(ENV_FILE))
 endif
 
-.PHONY: setup up down logs sh migrate seed
+.PHONY: setup up down logs sh migrate seed xdebug:on xdebug:off
 
 setup:
 	@cp -n .env.example .env 2>/dev/null || true
@@ -33,3 +33,11 @@ migrate:
 
 seed:
 	vendor/bin/phinx seed:run -e $(PHINX_ENV)
+
+xdebug:on:
+	$(DOCKER_COMPOSE) exec web sh -lc 'cp docker/php/conf.d/xdebug.ini /usr/local/etc/php/conf.d/zz-xdebug.ini'
+	$(DOCKER_COMPOSE) restart web
+
+xdebug:off:
+	$(DOCKER_COMPOSE) exec web sh -lc 'rm -f /usr/local/etc/php/conf.d/zz-xdebug.ini'
+	$(DOCKER_COMPOSE) restart web
