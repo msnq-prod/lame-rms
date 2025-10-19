@@ -17,6 +17,31 @@ It is available as a hosted solution or to be self-hosted as a docker container.
 
 Check out who is using AdamRMS: [stats](https://telemetry.bithell.studio/projects/adam-rms).
 
+See [DEVELOPMENT.md](DEVELOPMENT.md) for a local setup quick start.
+
+## Architecture Overview
+
+```mermaid
+flowchart LR
+    subgraph Browser
+        UI[AdamRMS Web UI]
+    end
+    subgraph Docker
+        PHP[PHP-FPM / Nginx]
+        DB[(MariaDB)]
+        Storage[(MinIO)]
+        Mail[Mailhog]
+        Adminer
+    end
+
+    UI <--> PHP
+    PHP --> DB
+    PHP --> Storage
+    PHP --> Mail
+    UI -.-> Adminer
+    Adminer --> DB
+```
+
 ## Docker Images
 
 A maintained docker image is provided - hosted on GitHub Packages as [adam-rms/adam-rms](https://github.com/orgs/adam-rms/packages?repo_name=adam-rms). Due to Docker Hub's pricing changes, the Docker Hub images are no longer maintained, but were identical to the GitHub Packages images which are still available to use.
