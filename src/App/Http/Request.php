@@ -10,8 +10,12 @@ class Request
     private string $uri;
     private string $path;
     private string $queryString;
+    /** @var array<string, mixed> */
     private array $server;
 
+    /**
+     * @param array<string, mixed> $server
+     */
     private function __construct(string $method, string $uri, string $path, string $queryString, array $server)
     {
         $this->method = strtoupper($method);
@@ -51,12 +55,15 @@ class Request
         return $this->queryString;
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function getServerParams(): array
     {
         return $this->server;
     }
 
-    public function withServerParam(string $key, $value): void
+    public function withServerParam(string $key, mixed $value): void
     {
         $this->server[$key] = $value;
         $_SERVER[$key] = $value;

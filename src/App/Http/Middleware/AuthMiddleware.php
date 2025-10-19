@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Middleware;
 
 use App\Http\Request;
+use App\Http\Response;
 use App\Security\CsrfTokenManager;
 use Twig\Markup;
 use Twig\TwigFunction;
@@ -27,7 +28,7 @@ class AuthMiddleware implements MiddlewareInterface
         $this->csrfTokenManager = $csrfTokenManager;
     }
 
-    public function process(Request $request, callable $next)
+    public function process(Request $request, callable $next): ?Response
     {
         $this->bootstrapEnvironment();
 

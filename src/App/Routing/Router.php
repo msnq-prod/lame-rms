@@ -10,6 +10,7 @@ use App\Http\Request;
 use App\Http\Response;
 use FastRoute\Dispatcher;
 use FastRoute\RouteCollector;
+
 use function FastRoute\simpleDispatcher;
 
 class Router

@@ -12,5 +12,5 @@ interface MiddlewareInterface
     /**
      * @param callable(Request): (Response|null) $next
      */
-    public function process(Request $request, callable $next);
+    public function process(Request $request, callable $next): ?Response;
 }
