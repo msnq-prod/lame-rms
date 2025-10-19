@@ -1,87 +1,233 @@
 <?php
 require_once 'loginAjaxHead.php';
+
 use \Firebase\JWT\JWT;
-if (isset($_POST['formInput']) and isset($_POST['password'])) {
-	$input = trim(strtolower($GLOBALS['bCMS']->sanitizeString($_POST['formInput'])));
-    $password = $GLOBALS['bCMS']->sanitizeString($_POST['password']);
-	if ($input == "" || $password == "") finish(false, ["code" => null, "message" => "No data specified"]);
-	else {
-        if (filter_var($input, FILTER_VALIDATE_EMAIL)) $DBLIB->where ("users_email", $input);
-        else $DBLIB->where ("users_username", $input);
-        $DBLIB->where("users_password", NULL, "IS NOT"); //To cover oauth users
-        $user = $DBLIB->getOne("users",["users.users_salty1", "users.users_suspended", "users.users_salty2", "users.users_password", "users.users_userid", "users.users_hash"]);
-        if (!$user) $successful = false;
-        elseif ($user['users_password'] != hash($user['users_hash'], $user['users_salty1'] . $password . $user['users_salty2'])) $successful = false;
-        else $successful = true;
 
-        $DBLIB->where ("loginAttempts_timestamp >= '" . date('Y-m-d G:i:s', strtotime('-5 minutes')) . "'");
-        $DBLIB->where ("loginAttempts_successful",0);
-        $DBLIB->where ("loginAttempts_textEntered", $input);
-        $previousattempts = $DBLIB->getValue("loginAttempts", "count(*)");
-        if ($previousattempts > 6) $bruteforceattempt = true; //Only log it as a brute force if they get it wrong
-        else $bruteforceattempt = false;
+const LOGIN_RATE_LIMIT_WINDOW_SECONDS = 900; // 15 minutes
+const LOGIN_RATE_LIMIT_BLOCK_SECONDS = 900;  // 15 minutes
+const LOGIN_RATE_LIMIT_MAX_ATTEMPTS = 5;
 
-        if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) $ipAddress = $_SERVER["HTTP_CF_CONNECTING_IP"];
-        elseif(isset($_SERVER["HTTP_X_FORWARDED_FOR"])) $ipAddress = array_shift(explode(",", $_SERVER["HTTP_X_FORWARDED_FOR"]));
-        else $ipAddress = $_SERVER["REMOTE_ADDR"];
+const DEFAULT_CREDENTIAL_USERNAME = 'username';
+const DEFAULT_CREDENTIAL_SALT_ONE = '8smqAFD9';
+const DEFAULT_CREDENTIAL_SALT_TWO = 'uOhfrOCW';
+const DEFAULT_CREDENTIAL_HASH = 'sha256';
+const DEFAULT_CREDENTIAL_PASSWORD_HASH = 'fa5a51baef12914c7f2e0e1176a030bf086d26edae298c25d5f84c90bc72ecd7';
 
-        //Record this login attempt
-        $DBLIB->insert ('loginAttempts', [
-            "loginAttempts_ip" => $ipAddress,
-            "loginAttempts_textEntered" => $input,
-            "loginAttempts_timestamp" => date('Y-m-d G:i:s'),
-            "loginAttempts_blocked" => ($bruteforceattempt ? '1' : '0'),
-            "loginAttempts_successful" => ($successful ? '1' : '0')
-        ]);
+function loginGetClientIp(): string
+{
+    if (!empty($_SERVER['HTTP_CF_CONNECTING_IP'])) {
+        return $_SERVER['HTTP_CF_CONNECTING_IP'];
+    }
+    if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        $forwarded = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
+        return trim($forwarded[0]);
+    }
+    return $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
+}
 
-        if ($bruteforceattempt) finish(false, ["code" => null, "message" => "Sorry - you've tried too many times to login - please try again in 5 minutes"]);
-        elseif (!$successful) finish(false, ["code" => null, "message" => "Username, email or password incorrect"]);
-        elseif ($user['users_suspended'] != '0') finish(false, ["code" => null, "message" => "User account is suspended"]);
-        else {
-            if (!$_SESSION['return'] and isset($_SESSION['app-oauth'])) {
-                $token = $GLOBALS['AUTH']->generateToken($user['users_userid'], false, "App OAuth", "app-v1");
-                $jwt = $GLOBALS['AUTH']->issueJWT($token, $user['users_userid'], "app-v1");
-                finish(true,null,["redirect" => $_SESSION['app-oauth'] . "oauth_callback?token=" . $jwt]);
-            } else {
-                $GLOBALS['AUTH']->generateToken($user['users_userid'], false, "Web", "web-session");
-                finish(true,null,["redirect" => (isset($_SESSION['return']) ? $_SESSION['return'] : $CONFIG['ROOTURL'])]);
+function loginRateLimitKey(string $value): string
+{
+    return hash('sha256', $value);
+}
+
+function loginRateLimitGet(string $type, string $hash): ?array
+{
+    global $DBLIB;
+    $DBLIB->where('loginRateLimits_type', $type);
+    $DBLIB->where('loginRateLimits_key', $hash);
+    $record = $DBLIB->getOne('loginRateLimits', [
+        'loginRateLimits_id',
+        'loginRateLimits_attempts',
+        'loginRateLimits_lastAttempt',
+        'loginRateLimits_blockedUntil',
+    ]);
+    return $record ?: null;
+}
+
+function loginRateLimitFetchStates(array $descriptors, int $now): array
+{
+    $states = [];
+    $blocked = null;
+    foreach ($descriptors as $descriptor) {
+        $record = loginRateLimitGet($descriptor['type'], $descriptor['hash']);
+        $state = [
+            'type' => $descriptor['type'],
+            'hash' => $descriptor['hash'],
+            'record' => $record,
+        ];
+        $states[] = $state;
+        if ($record && !empty($record['loginRateLimits_blockedUntil'])) {
+            $blockedUntilTs = strtotime($record['loginRateLimits_blockedUntil']);
+            if ($blockedUntilTs !== false && $blockedUntilTs > $now) {
+                if ($blocked === null || $blockedUntilTs > $blocked['until']) {
+                    $blocked = [
+                        'state' => $state,
+                        'until' => $blockedUntilTs,
+                    ];
+                }
             }
         }
-	}
-} else finish(false, ["code" => null, "message" => "Unknown error"]);
+    }
+    return ['states' => $states, 'blocked' => $blocked];
+}
 
-/**
- *  @OA\Post(
- *      path="/login/login.php",
- *      summary="Login",
- *      description="User Login",
- *      operationId="login",
- *      tags={"authentication"},
- *      @OA\Response(
- *          response="200",
- *          description="Success",
- *          @OA\MediaType(
- *             mediaType="application/json", 
- *             @OA\Schema(ref="#/components/schemas/SimpleResponse"),
- *         ),
- *      ),
- *      @OA\Parameter(
- *          name="formInput",
- *          in="query",
- *          description="Email Address of user",
- *          required="true",
- *          @OA\Schema(
- *              type="string",
- *          ),
- *      ),
- *      @OA\Parameter(
- *          name="password",
- *          in="query",
- *          description="Password of user",
- *          required="true",
- *          @OA\Schema(
- *              type="string",
- *          ),
- *      ),
- *  )
- */
+function loginRateLimitRegisterFailure(array $state, int $now): void
+{
+    global $DBLIB;
+    $attempts = 1;
+    $blockUntil = null;
+    $nowSql = date('Y-m-d H:i:s', $now);
+
+    if ($state['record']) {
+        $lastAttemptTs = $state['record']['loginRateLimits_lastAttempt'] ? strtotime($state['record']['loginRateLimits_lastAttempt']) : null;
+        if ($lastAttemptTs && ($now - $lastAttemptTs) <= LOGIN_RATE_LIMIT_WINDOW_SECONDS) {
+            $attempts = (int) $state['record']['loginRateLimits_attempts'] + 1;
+        }
+        $existingBlock = $state['record']['loginRateLimits_blockedUntil'] ? strtotime($state['record']['loginRateLimits_blockedUntil']) : null;
+        if ($existingBlock && $existingBlock > $now) {
+            $blockUntil = date('Y-m-d H:i:s', $existingBlock);
+            $attempts = max($attempts, (int) $state['record']['loginRateLimits_attempts']);
+        }
+    }
+
+    if ($blockUntil === null && $attempts >= LOGIN_RATE_LIMIT_MAX_ATTEMPTS) {
+        $blockUntil = date('Y-m-d H:i:s', $now + LOGIN_RATE_LIMIT_BLOCK_SECONDS);
+    }
+
+    if ($state['record']) {
+        $DBLIB->where('loginRateLimits_id', $state['record']['loginRateLimits_id']);
+        $DBLIB->update('loginRateLimits', [
+            'loginRateLimits_attempts' => min($attempts, LOGIN_RATE_LIMIT_MAX_ATTEMPTS),
+            'loginRateLimits_lastAttempt' => $nowSql,
+            'loginRateLimits_blockedUntil' => $blockUntil,
+        ]);
+    } else {
+        $DBLIB->insert('loginRateLimits', [
+            'loginRateLimits_type' => $state['type'],
+            'loginRateLimits_key' => $state['hash'],
+            'loginRateLimits_attempts' => min($attempts, LOGIN_RATE_LIMIT_MAX_ATTEMPTS),
+            'loginRateLimits_lastAttempt' => $nowSql,
+            'loginRateLimits_blockedUntil' => $blockUntil,
+        ]);
+    }
+}
+
+function loginRateLimitRegisterSuccess(array $state, int $now): void
+{
+    global $DBLIB;
+    if (!$state['record']) {
+        return;
+    }
+    $DBLIB->where('loginRateLimits_id', $state['record']['loginRateLimits_id']);
+    $DBLIB->update('loginRateLimits', [
+        'loginRateLimits_attempts' => 0,
+        'loginRateLimits_lastAttempt' => date('Y-m-d H:i:s', $now),
+        'loginRateLimits_blockedUntil' => null,
+    ]);
+}
+
+function loginRecordAttempt(string $input, string $ipAddress, bool $blocked, bool $successful): void
+{
+    global $DBLIB;
+    $DBLIB->insert('loginAttempts', [
+        'loginAttempts_ip' => $ipAddress,
+        'loginAttempts_textEntered' => $input,
+        'loginAttempts_timestamp' => date('Y-m-d H:i:s'),
+        'loginAttempts_blocked' => $blocked ? '1' : '0',
+        'loginAttempts_successful' => $successful ? '1' : '0',
+    ]);
+}
+
+function loginIsDefaultCredentialUser(array $user): bool
+{
+    return $user['users_username'] === DEFAULT_CREDENTIAL_USERNAME
+        && $user['users_salty1'] === DEFAULT_CREDENTIAL_SALT_ONE
+        && $user['users_salty2'] === DEFAULT_CREDENTIAL_SALT_TWO
+        && $user['users_hash'] === DEFAULT_CREDENTIAL_HASH
+        && $user['users_password'] === DEFAULT_CREDENTIAL_PASSWORD_HASH;
+}
+
+if (isset($_POST['formInput']) && isset($_POST['password'])) {
+    $input = trim(strtolower($GLOBALS['bCMS']->sanitizeString($_POST['formInput'])));
+    $password = $GLOBALS['bCMS']->sanitizeString($_POST['password']);
+    if ($input === '' || $password === '') {
+        finish(false, ['code' => null, 'message' => 'No data specified']);
+    }
+
+    $ipAddress = loginGetClientIp();
+    $now = time();
+    $rateLimitDescriptors = [
+        ['type' => 'identifier', 'hash' => loginRateLimitKey($input)],
+        ['type' => 'ip', 'hash' => loginRateLimitKey($ipAddress)],
+    ];
+    $rateLimitState = loginRateLimitFetchStates($rateLimitDescriptors, $now);
+
+    if ($rateLimitState['blocked'] !== null) {
+        loginRecordAttempt($input, $ipAddress, true, false);
+        $secondsRemaining = max(0, $rateLimitState['blocked']['until'] - $now);
+        $minutesRemaining = max(1, (int) ceil($secondsRemaining / 60));
+        finish(false, ['code' => null, 'message' => 'Too many failed login attempts. Please try again in ' . $minutesRemaining . ' minute' . ($minutesRemaining === 1 ? '' : 's') . '.']);
+    }
+
+    if (filter_var($input, FILTER_VALIDATE_EMAIL)) {
+        $DBLIB->where('users_email', $input);
+    } else {
+        $DBLIB->where('users_username', $input);
+    }
+    $DBLIB->where('users_deleted', 0);
+    $DBLIB->where('users_password', null, 'IS NOT');
+    $user = $DBLIB->getOne('users', [
+        'users.users_salty1',
+        'users.users_salty2',
+        'users.users_password',
+        'users.users_hash',
+        'users.users_userid',
+        'users.users_suspended',
+        'users.users_username',
+        'users.users_email',
+    ]);
+
+    $successful = false;
+    if ($user) {
+        $expectedHash = hash($user['users_hash'], $user['users_salty1'] . $password . $user['users_salty2']);
+        $successful = hash_equals($user['users_password'], $expectedHash);
+    }
+
+    if (!$successful) {
+        foreach ($rateLimitState['states'] as $state) {
+            loginRateLimitRegisterFailure($state, $now);
+        }
+        loginRecordAttempt($input, $ipAddress, false, false);
+        finish(false, ['code' => null, 'message' => 'Username, email or password incorrect']);
+    }
+
+    if (!$CONFIG['DEV'] && loginIsDefaultCredentialUser($user)) {
+        foreach ($rateLimitState['states'] as $state) {
+            loginRateLimitRegisterFailure($state, $now);
+        }
+        loginRecordAttempt($input, $ipAddress, false, false);
+        finish(false, ['code' => null, 'message' => 'Default administrator credentials are disabled.']);
+    }
+
+    if ($user['users_suspended'] != '0') {
+        loginRecordAttempt($input, $ipAddress, false, false);
+        finish(false, ['code' => null, 'message' => 'User account is suspended']);
+    }
+
+    foreach ($rateLimitState['states'] as $state) {
+        loginRateLimitRegisterSuccess($state, $now);
+    }
+
+    loginRecordAttempt($input, $ipAddress, false, true);
+
+    if ((!isset($_SESSION['return']) || !$_SESSION['return']) && isset($_SESSION['app-oauth'])) {
+        $token = $GLOBALS['AUTH']->generateToken($user['users_userid'], false, 'App OAuth', 'app-v1');
+        $jwt = $GLOBALS['AUTH']->issueJWT($token, $user['users_userid'], 'app-v1');
+        finish(true, null, ['redirect' => $_SESSION['app-oauth'] . 'oauth_callback?token=' . $jwt]);
+    }
+
+    $GLOBALS['AUTH']->generateToken($user['users_userid'], false, 'Web', 'web-session');
+    finish(true, null, ['redirect' => (isset($_SESSION['return']) && $_SESSION['return']) ? $_SESSION['return'] : $CONFIG['ROOTURL']]);
+}
+
+finish(false, ['code' => null, 'message' => 'Unknown error']);

@@ -88,6 +88,50 @@ if (count($CONFIGCLASS->CONFIG_MISSING_VALUES) > 0) {
     }
 }
 
+$setupWizardActive = false;
+try {
+    $setupCompleted = $CONFIGCLASS->get('SETUP_COMPLETED');
+} catch (Throwable $exception) {
+    $setupCompleted = '0';
+}
+if ($setupCompleted !== '1') {
+    try {
+        $DBLIB->where('users_deleted', 0);
+        $usersCount = (int) $DBLIB->getValue('users', 'COUNT(*)');
+    } catch (Throwable $exception) {
+        $usersCount = 0;
+    }
+    if ($usersCount === 0) {
+        $setupWizardActive = true;
+        if (!defined('SETUP_WIZARD_URL')) {
+            $setupRoot = $CONFIG['ROOTURL'] ?? (env('APP_URL') ?? '/');
+            $setupRoot = rtrim($setupRoot, '/');
+            define('SETUP_WIZARD_URL', $setupRoot . '/setup/');
+        }
+        if (!defined('SETUP_WIZARD_REQUIRED')) {
+            define('SETUP_WIZARD_REQUIRED', true);
+        }
+        $scriptName = $_SERVER['SCRIPT_NAME'] ?? '';
+        $requestUri = $_SERVER['REQUEST_URI'] ?? '';
+        $isSetupRoute = (strpos($scriptName, '/setup/') !== false) || (strpos($requestUri, '/setup') === 0);
+        if (!$isSetupRoute) {
+            if (defined('APP_IS_API') && APP_IS_API === true) {
+                http_response_code(503);
+                echo json_encode([
+                    'result' => false,
+                    'error' => [
+                        'code' => 'SETUP_REQUIRED',
+                        'message' => 'Initial administrator account required before using the API.'
+                    ],
+                ]);
+                exit;
+            }
+            header('Location: ' . SETUP_WIZARD_URL);
+            die('<meta http-equiv="refresh" content="0; url=' . SETUP_WIZARD_URL . '" />');
+        }
+    }
+}
+
 // Set the timezone
 date_default_timezone_set($CONFIG['TIMEZONE']);
 
@@ -162,6 +206,8 @@ function assetLatestScan($assetid)
 
 // Setup the "PAGEDATA" array which is used by Twig
 $PAGEDATA = array('CONFIG' => $CONFIG, 'VERSION' => $bCMS->getVersionNumber());
+$PAGEDATA['SETUP_WIZARD_REQUIRED'] = $setupWizardActive;
+$PAGEDATA['SETUP_WIZARD_URL'] = defined('SETUP_WIZARD_URL') ? SETUP_WIZARD_URL : null;
 
 // Setup the "MAINTENANCEJOBPRIORITIES" array which is used by Twig
 $GLOBALS['MAINTENANCEJOBPRIORITIES'] = [
@@ -184,7 +230,25 @@ require_once __DIR__ . '/libs/twigExtensions.php';
 
 // Try to open up a session cookie
 try {
-    session_set_cookie_params(43200); //12hours
+    $sessionLifetime = 43200; //12 hours
+    $cookieReferenceUrl = env('APP_URL', $CONFIG['ROOTURL'] ?? null);
+    $cookieComponents = $cookieReferenceUrl ? parse_url($cookieReferenceUrl) : [];
+    $cookieDomain = $cookieComponents['host'] ?? '';
+    $cookiePath = $cookieComponents['path'] ?? '/';
+    if (!$cookiePath) {
+        $cookiePath = '/';
+    }
+    $cookieSecure = isset($cookieComponents['scheme']) && strtolower($cookieComponents['scheme']) === 'https';
+    $cookieSameSite = $cookieSecure ? 'Lax' : 'Strict';
+
+    session_set_cookie_params([
+        'lifetime' => $sessionLifetime,
+        'path' => $cookiePath,
+        'domain' => $cookieDomain ?: '',
+        'secure' => $cookieSecure,
+        'httponly' => true,
+        'samesite' => $cookieSameSite,
+    ]);
     session_start(); //Open up the session
 } catch (Exception $e) {
     //Do Nothing
