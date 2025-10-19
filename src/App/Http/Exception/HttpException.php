@@ -12,6 +12,9 @@ class HttpException extends RuntimeException
     /** @var array<string, string> */
     private array $headers;
 
+    /**
+     * @param array<string, string> $headers
+     */
     public function __construct(int $statusCode, string $message = '', array $headers = [], ?\Throwable $previous = null)
     {
         parent::__construct($message, 0, $previous);

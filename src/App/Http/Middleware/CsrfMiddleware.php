@@ -17,7 +17,7 @@ class CsrfMiddleware implements MiddlewareInterface
         $this->tokenManager = $tokenManager;
     }
 
-    public function process(Request $request, callable $next)
+    public function process(Request $request, callable $next): ?Response
     {
         $this->tokenManager->ensureToken();
 

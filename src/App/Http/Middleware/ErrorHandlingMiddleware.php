@@ -12,7 +12,7 @@ use App\Http\Response;
 
 class ErrorHandlingMiddleware implements MiddlewareInterface
 {
-    public function process(Request $request, callable $next)
+    public function process(Request $request, callable $next): ?Response
     {
         try {
             $response = $next($request);
@@ -51,6 +51,9 @@ class ErrorHandlingMiddleware implements MiddlewareInterface
         }
     }
 
+    /**
+     * @param array<string, string> $headers
+     */
     private function renderSimplePage(int $status, string $title, string $message, array $headers = []): Response
     {
         $body = <<<HTML

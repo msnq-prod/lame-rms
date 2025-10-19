@@ -1,6 +1,9 @@
-/* @jbithell
-/.github @jbithell
-/.devcontainer @jbithell
-/.vscode @jbithell
-/db/ @jbithell
-/src/ @jbithell
+# Default owners for the repository
+* @adam-rms/maintainers
+
+# CI workflows
+.github/workflows/ @adam-rms/devops
+
+# Core application code
+src/App/ @adam-rms/maintainers
+
