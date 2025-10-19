@@ -41,9 +41,10 @@ LABEL org.opencontainers.image.licenses=AGPL-3.0
 
 # Install PHP extensions
 RUN apt-get update && apt-get install -y \
-    libicu-dev \ 
+    libicu-dev \
     libzip-dev \
     libpng-dev \
+    default-mysql-client \
     && rm -rf /var/lib/apt/lists/* \
     && docker-php-ext-install -j$(nproc) gd pdo pdo_mysql mysqli intl zip
 
@@ -67,7 +68,9 @@ COPY ./src /var/www/html/src
 COPY ./db /var/www/html/db
 COPY ./phinx.php /var/www/html
 COPY ./migrate.sh /var/www/html
+COPY ./scripts /var/www/html/scripts
 RUN chmod +x /var/www/html/migrate.sh
+RUN chmod +x /var/www/html/scripts/wait-for-db.sh
 
 # Switch to the base image non-privileged user that the app will run under.
 USER www-data
