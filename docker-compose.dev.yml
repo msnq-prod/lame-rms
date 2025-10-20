@@ -5,6 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    command: ["php", "-S", "0.0.0.0:80", "-t", "public"]
     ports:
       - "8080:80"
     depends_on:
