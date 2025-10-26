@@ -31,3 +31,26 @@ Thanks for your interest in developing and improving AdamRMS!
 Contributions are very welcome - please see [the website](https://adam-rms.com/contributing) for a guide and for more info about this repo.
 
 This repo has a configured devcontainer for use with GitHub Codespaces or VSCode. If you have a GitHub Codespaces subscription (paid), you can use this to get started with the project in the web, or if you have access to VSCode on your computer (free) you can get started by cloning the repo and opening it in VSCode, then [opening the project in a devcontainer](https://code.visualstudio.com/docs/devcontainers/tutorial).
+
+## Как запускать миграцию
+
+Перед выполнением автоматизированных этапов из плана миграции убедитесь, что локальная среда соответствует базовым требованиям:
+
+- Docker Engine 24+ и Docker Compose v2.
+- Node.js 18 LTS и npm (рекомендуется управлять версиями через `asdf`).
+- Python 3.11+ с возможностью создавать виртуальные окружения (`python3 -m venv`).
+- Установленные `make`, `git`, а также доступ к интернету для скачивания инструментов.
+
+Далее выполните bootstrap-скрипт, который подготовит внешние зависимости и зафиксирует предупреждения:
+
+```bash
+# общий прогон перед началом этапов
+automation/bin/ensure_tools.sh
+
+# для записи статуса конкретного этапа
+STATUS_FILE=automation/stage01/status.json automation/bin/ensure_tools.sh
+```
+
+Скрипт проверяет наличие `act`, `k6`, Playwright, Terraform, Helm и других инструментов. Если автоматическая установка (через `asdf`, `npm` или виртуальные окружения) невозможна, в `status.json` добавляется запись с уровнем `warning`, а дальнейшие скрипты должны пропускать соответствующие проверки без аварийного завершения.
+
+После подготовки окружения запускайте команды `make stageXX`, `make stageXX-verify` и `make stageXX-report` согласно [плану миграции](docs/migration_plan.md).
