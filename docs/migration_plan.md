@@ -62,7 +62,7 @@
 
 **Автоматизированная задача для Codex5**
 - Заполнить `automation/stage01/run.sh`, который:
-  1. Создаёт ветку/тег `legacy/php-monolith` и перемещает монолит в `legacy/`.
+  1. Генерирует сценарий `automation/stage01/prepare_legacy.sh` с инструкциями по переносу монолита в `legacy/`.
   2. Генерирует каталоги `backend/`, `frontend/`, `infrastructure/`, `docs/` и `.gitkeep`.
   3. Обновляет `.gitignore`, `Makefile`, `README.md`, `.env.example` (backend/frontend), `scripts/bootstrap_dev.sh`.
   4. Создаёт CI заглушки (`.github/workflows/backend.yml`, `frontend.yml`).
@@ -72,6 +72,7 @@
 
 **Самопроверка Codex5 (`automation/stage01/self_check.sh`)**
 - Проверяет структуру каталогов и наличие ключевых файлов (через `test`/`find`).
+- При наличии маркера (`--apply` флаг запуска или файл-подтверждение) убеждается, что перенос в `legacy/` выполнен.
 - Запускает `pre-commit run --all-files` и `make bootstrap-dev` из `scripts/bootstrap_dev.sh`.
 - Сверяет, что `docs/checklists/stage01.md` отмечен полностью (встроенный YAML/Markdown парсер).
 - Валидирует CI workflows через `act --dryrun` (или предоставляет заглушку, если `act` недоступен, но фиксирует предупреждение).
@@ -82,7 +83,7 @@
 - Дополнительные артефакты: чек-лист, README-обновления, скрипт запуска окружения.
 
 **Команда оператора**
-- `make stage01 && make stage01-verify && make stage01-report`.
+- `make stage01`, затем после ревью вручную запустить `automation/stage01/prepare_legacy.sh`, после чего `make stage01-verify && make stage01-report`.
 
 ---
 
