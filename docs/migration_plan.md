@@ -20,7 +20,8 @@
    принимает параметр `stage` и последовательно выполняет `make stage${stage}` и `make stage${stage}-verify`.
 4. Общий README раздел «Как запускать миграцию»: ссылка на таблицу этапов и команды.
 5. Шаблон `automation/templates/report.md` с блоками: *Summary*, *Artifacts*, *Checks*, *Next Gate*.
-6. Контракт статуса `automation/status.schema.json`, задающий структуру `status.json` и список обязательных ключей
+6. Bootstrap-скрипт `automation/bin/ensure_tools.sh`, который проверяет наличие ключевых утилит (`act`, `k6`, Playwright, Terraform, Helm и др.), пытается установить их через `asdf`, `npm` или виртуальные окружения и фиксирует предупреждения в `status.json`, если автоматическая установка невозможна.
+7. Контракт статуса `automation/status.schema.json`, задающий структуру `status.json` и список обязательных ключей
    (`state`, `checks`, `artifacts`, `last_run`, `warnings`, `notes`, `extra`).
 
 **Критерий готовности этапа 0** — все команды `make stageXX` для ещё не реализованных этапов завершаются сообщением
@@ -73,6 +74,7 @@
 - Скрипт обязан быть идемпотентным: при повторном запуске не ломать существующие файлы, а обновлять их.
 
 **Самопроверка Codex5 (`automation/stage01/self_check.sh`)**
+- Перед основными проверками запускает `STATUS_FILE=automation/stage01/status.json automation/bin/ensure_tools.sh`; если инструмент недоступен и не может быть установлен автоматически, записывает `warning` и пропускает соответствующий шаг без падения.
 - Проверяет структуру каталогов и наличие ключевых файлов (через `test`/`find`).
 - При наличии маркера (`--apply` флаг запуска или файл-подтверждение) убеждается, что перенос в `legacy/` выполнен.
 - Запускает `pre-commit run --all-files` и `make bootstrap-dev` из `scripts/bootstrap_dev.sh`.
@@ -101,6 +103,7 @@
   5. Формирует экспорт API (OpenAPI или Postman) в `docs/inventory/api/`.
 
 **Самопроверка Codex5 (`automation/stage02/self_check.sh`)**
+- Запускает `STATUS_FILE=automation/stage02/status.json automation/bin/ensure_tools.sh` и обрабатывает отсутствие инструментов как `warning` с graceful skip конкретных проверок.
 - Убеждается, что количество файлов в отчёте соответствует фактическому (`find legacy -type f`).
 - Валидирует YAML backlog (через `yamllint`) и JSON/CSV схемы.
 - Проверяет наличие диаграмм (существование файлов `.mmd`/`.puml`).
@@ -128,6 +131,7 @@
   6. Обновляет документацию `docs/data/migration_plan.md` и план отката.
 
 **Самопроверка Codex5**
+- Выполняет `STATUS_FILE=automation/stage03/status.json automation/bin/ensure_tools.sh` и переводит отсутствующие зависимости в `warning`, корректно пропуская соответствующие проверки.
 - `pytest backend/tests/etl -q`.
 - `alembic upgrade head` против временной БД (использовать docker-compose service `postgres-test`).
 - Проверка foreign keys и сравнение количества строк до/после ETL.
@@ -153,6 +157,7 @@
 - Скрипт `run.sh` разворачивает каркас, выполняет миграции, запускает линтеры.
 
 **Самопроверка Codex5**
+- Перед запуском линтеров вызывает `STATUS_FILE=automation/stage04/status.json automation/bin/ensure_tools.sh` и, если инструмент недоступен, фиксирует `warning` и пропускает конкретный шаг.
 - `ruff check backend`, `mypy backend`, `pytest backend/tests/api -q`.
 - Проверка, что OpenAPI сгенерирован (`backend/openapi.json`).
 - Smoke запуск `uvicorn app.main:app --dry-run` (или `--app-dir`).
@@ -175,6 +180,7 @@
 - Скрипт `run.sh` переносит выбранные домены (assets, projects, finance и т.д.) на основании YAML backlog.
 
 **Самопроверка Codex5**
+- Запускает `STATUS_FILE=automation/stage05/status.json automation/bin/ensure_tools.sh` и переводит недоступные инструменты (`k6`, `schemathesis` и т.д.) в `warning`, аккуратно пропуская их проверки.
 - `pytest backend/tests/integration -q` + генерация Allure/HTML отчёта.
 - Нагрузочный тест (`k6 run backend/loadtests/main.js`) с метриками в `automation/stage05/metrics.json`.
 - Сравнение контрактов (`schemathesis` или `pytest --schemathesis`) против legacy OpenAPI.
@@ -197,6 +203,7 @@
 - Скрипт `run.sh` запускает миграции, применяет конфиги ролей, обновляет документацию безопасности.
 
 **Самопроверка Codex5**
+- Перед тестами вызывает `STATUS_FILE=automation/stage06/status.json automation/bin/ensure_tools.sh`, недостающие зависимости (Playwright, bandit и др.) отражает как `warning` и пропускает соответствующие проверки.
 - Юнит-тесты на auth-флоу, e2e сценарии в Playwright (`frontend/tests/auth.spec.ts`).
 - Static анализ (`bandit`, `npm run lint`).
 - Проверка алертов (эмуляция события, убедиться, что alert записан в лог/метрику).
@@ -219,6 +226,7 @@
 - Обновить фронтенд для отображения прогресса асинхронных операций.
 
 **Самопроверка Codex5**
+- Перед запуском интеграционных тестов выполняет `STATUS_FILE=automation/stage07/status.json automation/bin/ensure_tools.sh`, а недостающие утилиты фиксирует как `warning` с graceful skip.
 - Контрактные тесты адаптеров (`pytest backend/tests/integrations`).
 - Запуск воркера и тестового задания с проверкой отчёта (`celery -A app.worker inspect ping`).
 - Проверка мониторинга (Prometheus exporter, графики).
@@ -241,6 +249,7 @@
 - Генерировать типы из OpenAPI (`npm run openapi`), обновлять клиент.
 
 **Самопроверка Codex5**
+- Перед фронтенд-проверками запускает `STATUS_FILE=automation/stage08/status.json automation/bin/ensure_tools.sh` и, если зависимость отсутствует (Storybook, Playwright, Lighthouse), оформляет `warning` и пропускает шаг.
 - `npm run lint`, `npm run test`, `npm run storybook:check`.
 - Визуальная регрессия (Chromatic/Playwright) с сохранением скриншотов в `automation/stage08/screenshots/`.
 - Lighthouse audit (`npm run lighthouse -- --output-path automation/stage08/lighthouse.json`).
@@ -262,6 +271,7 @@
 - Обновить e2e тесты для критичных сценариев (`frontend/tests/e2e/`).
 
 **Самопроверка Codex5**
+- Использует `STATUS_FILE=automation/stage09/status.json automation/bin/ensure_tools.sh` перед запуском e2e и метрик; отсутствующие зависимости помечаются `warning`, а проверки пропускаются без фейла.
 - `npm run test:e2e` (Playwright), `npm run web-vitals` (с сохранением в `automation/stage09/metrics.json`).
 - Проверка feature flags переключением окружения (`npm run toggle-flags -- --target legacy`/`new`).
 - Генерация accessibility отчёта (axe/pa11y) → `automation/stage09/a11y.html`.
@@ -283,6 +293,7 @@
 - Настроить генерацию QA-дашбордов (например, выводом в `automation/stage10/dashboard.json`).
 
 **Самопроверка Codex5**
+- Перед запуском QA-команд выполняет `STATUS_FILE=automation/stage10/status.json automation/bin/ensure_tools.sh`, переводя недоступные утилиты (`act`, SAST и др.) в `warning` и пропуская проверки без падения.
 - Запуск всех тестов (`make test`, `make lint`), сбор coverage отчётов.
 - Валидация конфигураций CI через `act`/`ci-sim`.
 - Проверка, что отчёты загружаются в артефакты (например, имитация upload).
@@ -304,6 +315,7 @@
 - Добавить мониторинг, резервное копирование, планы DR.
 
 **Самопроверка Codex5**
+- Делает `STATUS_FILE=automation/stage11/status.json automation/bin/ensure_tools.sh` перед инфраструктурными проверками; отсутствие Terraform/Helm/Docker фиксируется `warning` с graceful skip соответствующих шагов.
 - Локальный прогон `docker-compose up` в режиме CI (можно headless).
 - Проверка Terraform/Helm (`terraform validate`, `helm lint`).
 - Имитация деплоя (dry-run) и запуск smoke-тестов.
@@ -326,6 +338,7 @@
 - Подготовить коммуникационные шаблоны для пользователей и службы поддержки.
 
 **Самопроверка Codex5**
+- Перед эмуляцией переключения вызывает `STATUS_FILE=automation/stage12/status.json automation/bin/ensure_tools.sh`, отсутствие зависимостей отмечает `warning` и пропускает шаги без аварийного завершения.
 - Эмуляция переключения (`make blue-green-simulate`), проверка latency/ошибок.
 - Smoke-тесты новых сервисов после отключения legacy.
 - Валидация полного чек-листа (все пункты `done=true`).
