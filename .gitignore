@@ -19,6 +19,7 @@ pnpm-lock.yaml
 # Environment
 .env
 .env.*
+!.env.example
 
 # Alembic
 backend/alembic/versions/*.pyc
