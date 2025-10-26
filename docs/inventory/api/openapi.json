@@ -1,0 +1,2938 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Legacy API Inventory",
+    "version": "0.1.0",
+    "description": "Auto-generated inventory for stage 02"
+  },
+  "servers": [
+    {
+      "url": "https://legacy.example.com"
+    }
+  ],
+  "paths": {
+    "/api/account/acceptTOS": {
+      "get": {
+        "summary": "acceptTOS (GET)",
+        "description": "Auto-generated from src/api/account/acceptTOS.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/account/basicDetails": {
+      "post": {
+        "summary": "basicDetails (POST)",
+        "description": "Auto-generated from src/api/account/basicDetails.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/account/calendar-export": {
+      "post": {
+        "summary": "calendar-export (POST)",
+        "description": "Auto-generated from src/api/account/calendar-export.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/account/changePass": {
+      "post": {
+        "summary": "changePass (POST)",
+        "description": "Auto-generated from src/api/account/changePass.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/account/destroyTokens": {
+      "post": {
+        "summary": "destroyTokens (POST)",
+        "description": "Auto-generated from src/api/account/destroyTokens.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/account/disconnectOAuth": {
+      "post": {
+        "summary": "disconnectOAuth (POST)",
+        "description": "Auto-generated from src/api/account/disconnectOAuth.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/account/emailViewer": {
+      "post": {
+        "summary": "emailViewer (POST)",
+        "description": "Auto-generated from src/api/account/emailViewer.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/account/forcePasswordChange": {
+      "post": {
+        "summary": "forcePasswordChange (POST)",
+        "description": "Auto-generated from src/api/account/forcePasswordChange.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/account/isDefaultAccountEnabled": {
+      "get": {
+        "summary": "isDefaultAccountEnabled (GET)",
+        "description": "Auto-generated from src/api/account/isDefaultAccountEnabled.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/account/notifications": {
+      "post": {
+        "summary": "notifications (POST)",
+        "description": "Auto-generated from src/api/account/notifications.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/account/oauth-link/google": {
+      "get": {
+        "summary": "google (GET)",
+        "description": "Auto-generated from src/api/account/oauth-link/google.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/account/oauth-link/microsoft": {
+      "get": {
+        "summary": "microsoft (GET)",
+        "description": "Auto-generated from src/api/account/oauth-link/microsoft.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/account/passwordReset": {
+      "post": {
+        "summary": "passwordReset (POST)",
+        "description": "Auto-generated from src/api/account/passwordReset.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/account/permissions": {
+      "post": {
+        "summary": "permissions (POST)",
+        "description": "Auto-generated from src/api/account/permissions.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/account/reSendVerificationEmail": {
+      "get": {
+        "summary": "reSendVerificationEmail (GET)",
+        "description": "Auto-generated from src/api/account/reSendVerificationEmail.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/account/softDelete": {
+      "post": {
+        "summary": "softDelete (POST)",
+        "description": "Auto-generated from src/api/account/softDelete.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/account/suspend": {
+      "post": {
+        "summary": "suspend (POST)",
+        "description": "Auto-generated from src/api/account/suspend.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/account/theme": {
+      "post": {
+        "summary": "theme (POST)",
+        "description": "Auto-generated from src/api/account/theme.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/account/thumbnail": {
+      "post": {
+        "summary": "thumbnail (POST)",
+        "description": "Auto-generated from src/api/account/thumbnail.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/account/verifyEmail": {
+      "post": {
+        "summary": "verifyEmail (POST)",
+        "description": "Auto-generated from src/api/account/verifyEmail.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/account/viewSiteAs": {
+      "post": {
+        "summary": "viewSiteAs (POST)",
+        "description": "Auto-generated from src/api/account/viewSiteAs.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/account/viewSiteAs_terminate": {
+      "get": {
+        "summary": "viewSiteAs_terminate (GET)",
+        "description": "Auto-generated from src/api/account/viewSiteAs_terminate.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/account/widgetToggle": {
+      "post": {
+        "summary": "widgetToggle (POST)",
+        "description": "Auto-generated from src/api/account/widgetToggle.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/apiHead": {
+      "get": {
+        "summary": "apiHead (GET)",
+        "description": "Auto-generated from src/api/apiHead.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      },
+      "post": {
+        "summary": "apiHead (POST)",
+        "description": "Auto-generated from src/api/apiHead.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/apiHeadSecure": {
+      "post": {
+        "summary": "apiHeadSecure (POST)",
+        "description": "Auto-generated from src/api/apiHeadSecure.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/assets/archive": {
+      "post": {
+        "summary": "archive (POST)",
+        "description": "Auto-generated from src/api/assets/archive.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/assets/barcodes/assign": {
+      "post": {
+        "summary": "assign (POST)",
+        "description": "Auto-generated from src/api/assets/barcodes/assign.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/assets/barcodes/delete": {
+      "post": {
+        "summary": "delete (POST)",
+        "description": "Auto-generated from src/api/assets/barcodes/delete.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/assets/barcodes/index": {
+      "post": {
+        "summary": "index (POST)",
+        "description": "Auto-generated from src/api/assets/barcodes/index.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/assets/barcodes/search": {
+      "post": {
+        "summary": "search (POST)",
+        "description": "Auto-generated from src/api/assets/barcodes/search.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/assets/delete": {
+      "post": {
+        "summary": "delete (POST)",
+        "description": "Auto-generated from src/api/assets/delete.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/assets/editAsset": {
+      "post": {
+        "summary": "editAsset (POST)",
+        "description": "Auto-generated from src/api/assets/editAsset.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/assets/editAssetType": {
+      "post": {
+        "summary": "editAssetType (POST)",
+        "description": "Auto-generated from src/api/assets/editAssetType.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/assets/editAssetTypeDefinableFields": {
+      "post": {
+        "summary": "editAssetTypeDefinableFields (POST)",
+        "description": "Auto-generated from src/api/assets/editAssetTypeDefinableFields.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/assets/export": {
+      "post": {
+        "summary": "export (POST)",
+        "description": "Auto-generated from src/api/assets/export.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/assets/getAssetTypeData": {
+      "post": {
+        "summary": "getAssetTypeData (POST)",
+        "description": "Auto-generated from src/api/assets/getAssetTypeData.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/assets/list": {
+      "post": {
+        "summary": "list (POST)",
+        "description": "Auto-generated from src/api/assets/list.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/assets/newAssetFromType": {
+      "post": {
+        "summary": "newAssetFromType (POST)",
+        "description": "Auto-generated from src/api/assets/newAssetFromType.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/assets/newAssetType": {
+      "post": {
+        "summary": "newAssetType (POST)",
+        "description": "Auto-generated from src/api/assets/newAssetType.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/assets/searchAssets": {
+      "post": {
+        "summary": "searchAssets (POST)",
+        "description": "Auto-generated from src/api/assets/searchAssets.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/assets/searchAssetsBarcode": {
+      "get": {
+        "summary": "searchAssetsBarcode (GET)",
+        "description": "Auto-generated from src/api/assets/searchAssetsBarcode.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/assets/searchType": {
+      "post": {
+        "summary": "searchType (POST)",
+        "description": "Auto-generated from src/api/assets/searchType.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/assets/substitutions": {
+      "post": {
+        "summary": "substitutions (POST)",
+        "description": "Auto-generated from src/api/assets/substitutions.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/assets/transfer": {
+      "post": {
+        "summary": "transfer (POST)",
+        "description": "Auto-generated from src/api/assets/transfer.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/barcodes/searchAsset": {
+      "post": {
+        "summary": "searchAsset (POST)",
+        "description": "Auto-generated from src/api/barcodes/searchAsset.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/categories/edit": {
+      "post": {
+        "summary": "edit (POST)",
+        "description": "Auto-generated from src/api/categories/edit.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/categories/groups/edit": {
+      "post": {
+        "summary": "edit (POST)",
+        "description": "Auto-generated from src/api/categories/groups/edit.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/categories/groups/new": {
+      "post": {
+        "summary": "new (POST)",
+        "description": "Auto-generated from src/api/categories/groups/new.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/categories/new": {
+      "post": {
+        "summary": "new (POST)",
+        "description": "Auto-generated from src/api/categories/new.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/categories/search": {
+      "post": {
+        "summary": "search (POST)",
+        "description": "Auto-generated from src/api/categories/search.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/clients/archive": {
+      "post": {
+        "summary": "archive (POST)",
+        "description": "Auto-generated from src/api/clients/archive.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/clients/edit": {
+      "post": {
+        "summary": "edit (POST)",
+        "description": "Auto-generated from src/api/clients/edit.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/clients/new": {
+      "post": {
+        "summary": "new (POST)",
+        "description": "Auto-generated from src/api/clients/new.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/clients/unarchive": {
+      "post": {
+        "summary": "unarchive (POST)",
+        "description": "Auto-generated from src/api/clients/unarchive.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/cms/editPageConfig": {
+      "post": {
+        "summary": "editPageConfig (POST)",
+        "description": "Auto-generated from src/api/cms/editPageConfig.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/cms/editPageContent": {
+      "post": {
+        "summary": "editPageContent (POST)",
+        "description": "Auto-generated from src/api/cms/editPageContent.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/cms/editPageContent-rollback": {
+      "post": {
+        "summary": "editPageContent-rollback (POST)",
+        "description": "Auto-generated from src/api/cms/editPageContent-rollback.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/cms/editPageRank": {
+      "post": {
+        "summary": "editPageRank (POST)",
+        "description": "Auto-generated from src/api/cms/editPageRank.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/cms/get": {
+      "post": {
+        "summary": "get (POST)",
+        "description": "Auto-generated from src/api/cms/get.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/cms/list": {
+      "get": {
+        "summary": "list (GET)",
+        "description": "Auto-generated from src/api/cms/list.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/cms/setCustomDashboard": {
+      "post": {
+        "summary": "setCustomDashboard (POST)",
+        "description": "Auto-generated from src/api/cms/setCustomDashboard.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/file/avatarGen": {
+      "get": {
+        "summary": "avatarGen (GET)",
+        "description": "Auto-generated from src/api/file/avatarGen.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/file/delete": {
+      "post": {
+        "summary": "delete (POST)",
+        "description": "Auto-generated from src/api/file/delete.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/file/index": {
+      "post": {
+        "summary": "index (POST)",
+        "description": "Auto-generated from src/api/file/index.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/file/removeShare": {
+      "post": {
+        "summary": "removeShare (POST)",
+        "description": "Auto-generated from src/api/file/removeShare.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/file/rename": {
+      "post": {
+        "summary": "rename (POST)",
+        "description": "Auto-generated from src/api/file/rename.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/file/share": {
+      "post": {
+        "summary": "share (POST)",
+        "description": "Auto-generated from src/api/file/share.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/groups/addAsset": {
+      "post": {
+        "summary": "addAsset (POST)",
+        "description": "Auto-generated from src/api/groups/addAsset.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/groups/edit": {
+      "post": {
+        "summary": "edit (POST)",
+        "description": "Auto-generated from src/api/groups/edit.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/groups/new": {
+      "post": {
+        "summary": "new (POST)",
+        "description": "Auto-generated from src/api/groups/new.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/groups/removeAsset": {
+      "post": {
+        "summary": "removeAsset (POST)",
+        "description": "Auto-generated from src/api/groups/removeAsset.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/groups/search": {
+      "post": {
+        "summary": "search (POST)",
+        "description": "Auto-generated from src/api/groups/search.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/groups/watch": {
+      "post": {
+        "summary": "watch (POST)",
+        "description": "Auto-generated from src/api/groups/watch.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/icons/getIcons": {
+      "post": {
+        "summary": "getIcons (POST)",
+        "description": "Auto-generated from src/api/icons/getIcons.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/instances/addUser": {
+      "post": {
+        "summary": "addUser (POST)",
+        "description": "Auto-generated from src/api/instances/addUser.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/instances/addUserFromCode": {
+      "post": {
+        "summary": "addUserFromCode (POST)",
+        "description": "Auto-generated from src/api/instances/addUserFromCode.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/instances/addUserFromTrustedDomain": {
+      "post": {
+        "summary": "addUserFromTrustedDomain (POST)",
+        "description": "Auto-generated from src/api/instances/addUserFromTrustedDomain.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/instances/archiveUser": {
+      "post": {
+        "summary": "archiveUser (POST)",
+        "description": "Auto-generated from src/api/instances/archiveUser.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/instances/assetAssignmentStatus/delete": {
+      "post": {
+        "summary": "delete (POST)",
+        "description": "Auto-generated from src/api/instances/assetAssignmentStatus/delete.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/instances/assetAssignmentStatus/edit": {
+      "post": {
+        "summary": "edit (POST)",
+        "description": "Auto-generated from src/api/instances/assetAssignmentStatus/edit.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/instances/assetAssignmentStatus/new": {
+      "post": {
+        "summary": "new (POST)",
+        "description": "Auto-generated from src/api/instances/assetAssignmentStatus/new.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/instances/assetAssignmentStatus/reorder": {
+      "post": {
+        "summary": "reorder (POST)",
+        "description": "Auto-generated from src/api/instances/assetAssignmentStatus/reorder.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/instances/billing/billingPortal": {
+      "get": {
+        "summary": "billingPortal (GET)",
+        "description": "Auto-generated from src/api/instances/billing/billingPortal.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/instances/billing/getPrices": {
+      "get": {
+        "summary": "getPrices (GET)",
+        "description": "Auto-generated from src/api/instances/billing/getPrices.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/instances/billing/postSubscribeDelay": {
+      "get": {
+        "summary": "postSubscribeDelay (GET)",
+        "description": "Auto-generated from src/api/instances/billing/postSubscribeDelay.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/instances/billing/subscribe": {
+      "post": {
+        "summary": "subscribe (POST)",
+        "description": "Auto-generated from src/api/instances/billing/subscribe.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/instances/billing/webhooks": {
+      "get": {
+        "summary": "webhooks (GET)",
+        "description": "Auto-generated from src/api/instances/billing/webhooks.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/instances/calendar-export": {
+      "post": {
+        "summary": "calendar-export (POST)",
+        "description": "Auto-generated from src/api/instances/calendar-export.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/instances/delete": {
+      "post": {
+        "summary": "delete (POST)",
+        "description": "Auto-generated from src/api/instances/delete.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/instances/editCalendarSettings": {
+      "post": {
+        "summary": "editCalendarSettings (POST)",
+        "description": "Auto-generated from src/api/instances/editCalendarSettings.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/instances/editInstance": {
+      "post": {
+        "summary": "editInstance (POST)",
+        "description": "Auto-generated from src/api/instances/editInstance.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/instances/editInstancePublicSite": {
+      "post": {
+        "summary": "editInstancePublicSite (POST)",
+        "description": "Auto-generated from src/api/instances/editInstancePublicSite.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/instances/editInstanceServerAdmin": {
+      "post": {
+        "summary": "editInstanceServerAdmin (POST)",
+        "description": "Auto-generated from src/api/instances/editInstanceServerAdmin.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/instances/editInstanceTrustedDomains": {
+      "post": {
+        "summary": "editInstanceTrustedDomains (POST)",
+        "description": "Auto-generated from src/api/instances/editInstanceTrustedDomains.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/instances/editUser": {
+      "post": {
+        "summary": "editUser (POST)",
+        "description": "Auto-generated from src/api/instances/editUser.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/instances/list": {
+      "get": {
+        "summary": "list (GET)",
+        "description": "Auto-generated from src/api/instances/list.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/instances/new": {
+      "post": {
+        "summary": "new (POST)",
+        "description": "Auto-generated from src/api/instances/new.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/instances/permanentlyDelete": {
+      "post": {
+        "summary": "permanentlyDelete (POST)",
+        "description": "Auto-generated from src/api/instances/permanentlyDelete.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/instances/projectStatus/edit": {
+      "post": {
+        "summary": "edit (POST)",
+        "description": "Auto-generated from src/api/instances/projectStatus/edit.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/instances/projectStatus/editPageRank": {
+      "post": {
+        "summary": "editPageRank (POST)",
+        "description": "Auto-generated from src/api/instances/projectStatus/editPageRank.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/instances/projectStatus/new": {
+      "post": {
+        "summary": "new (POST)",
+        "description": "Auto-generated from src/api/instances/projectStatus/new.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/instances/projectTypes/edit": {
+      "post": {
+        "summary": "edit (POST)",
+        "description": "Auto-generated from src/api/instances/projectTypes/edit.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/instances/projectTypes/new": {
+      "post": {
+        "summary": "new (POST)",
+        "description": "Auto-generated from src/api/instances/projectTypes/new.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/instances/removeUser": {
+      "post": {
+        "summary": "removeUser (POST)",
+        "description": "Auto-generated from src/api/instances/removeUser.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/instances/searchUser": {
+      "post": {
+        "summary": "searchUser (POST)",
+        "description": "Auto-generated from src/api/instances/searchUser.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/instances/signupCodes/edit": {
+      "post": {
+        "summary": "edit (POST)",
+        "description": "Auto-generated from src/api/instances/signupCodes/edit.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/instances/signupCodes/new": {
+      "post": {
+        "summary": "new (POST)",
+        "description": "Auto-generated from src/api/instances/signupCodes/new.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/instances/signupCodes/taken": {
+      "get": {
+        "summary": "taken (GET)",
+        "description": "Auto-generated from src/api/instances/signupCodes/taken.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/instances/switch": {
+      "post": {
+        "summary": "switch (POST)",
+        "description": "Auto-generated from src/api/instances/switch.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/instances/unDelete": {
+      "post": {
+        "summary": "unDelete (POST)",
+        "description": "Auto-generated from src/api/instances/unDelete.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/instances/users": {
+      "get": {
+        "summary": "users (GET)",
+        "description": "Auto-generated from src/api/instances/users.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/locations/archive": {
+      "post": {
+        "summary": "archive (POST)",
+        "description": "Auto-generated from src/api/locations/archive.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/locations/edit": {
+      "post": {
+        "summary": "edit (POST)",
+        "description": "Auto-generated from src/api/locations/edit.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/locations/new": {
+      "post": {
+        "summary": "new (POST)",
+        "description": "Auto-generated from src/api/locations/new.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/locations/unarchive": {
+      "post": {
+        "summary": "unarchive (POST)",
+        "description": "Auto-generated from src/api/locations/unarchive.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/login/forgotPassword": {
+      "post": {
+        "summary": "forgotPassword (POST)",
+        "description": "Auto-generated from src/api/login/forgotPassword.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/login/login": {
+      "post": {
+        "summary": "login (POST)",
+        "description": "Auto-generated from src/api/login/login.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/login/loginAjaxHead": {
+      "get": {
+        "summary": "loginAjaxHead (GET)",
+        "description": "Auto-generated from src/api/login/loginAjaxHead.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/login/magicLogin": {
+      "post": {
+        "summary": "magicLogin (POST)",
+        "description": "Auto-generated from src/api/login/magicLogin.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/login/signup": {
+      "post": {
+        "summary": "signup (POST)",
+        "description": "Auto-generated from src/api/login/signup.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/maintenance/job/addAsset": {
+      "post": {
+        "summary": "addAsset (POST)",
+        "description": "Auto-generated from src/api/maintenance/job/addAsset.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/maintenance/job/changeBlock": {
+      "post": {
+        "summary": "changeBlock (POST)",
+        "description": "Auto-generated from src/api/maintenance/job/changeBlock.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/maintenance/job/changeDueDate": {
+      "post": {
+        "summary": "changeDueDate (POST)",
+        "description": "Auto-generated from src/api/maintenance/job/changeDueDate.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/maintenance/job/changeFlag": {
+      "post": {
+        "summary": "changeFlag (POST)",
+        "description": "Auto-generated from src/api/maintenance/job/changeFlag.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/maintenance/job/changeJobAssigned": {
+      "post": {
+        "summary": "changeJobAssigned (POST)",
+        "description": "Auto-generated from src/api/maintenance/job/changeJobAssigned.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/maintenance/job/changeJobStatus": {
+      "post": {
+        "summary": "changeJobStatus (POST)",
+        "description": "Auto-generated from src/api/maintenance/job/changeJobStatus.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/maintenance/job/changeName": {
+      "post": {
+        "summary": "changeName (POST)",
+        "description": "Auto-generated from src/api/maintenance/job/changeName.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/maintenance/job/changePriority": {
+      "post": {
+        "summary": "changePriority (POST)",
+        "description": "Auto-generated from src/api/maintenance/job/changePriority.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/maintenance/job/deleteJob": {
+      "post": {
+        "summary": "deleteJob (POST)",
+        "description": "Auto-generated from src/api/maintenance/job/deleteJob.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/maintenance/job/removeAsset": {
+      "post": {
+        "summary": "removeAsset (POST)",
+        "description": "Auto-generated from src/api/maintenance/job/removeAsset.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/maintenance/job/sendMessage": {
+      "post": {
+        "summary": "sendMessage (POST)",
+        "description": "Auto-generated from src/api/maintenance/job/sendMessage.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/maintenance/job/tagUser": {
+      "post": {
+        "summary": "tagUser (POST)",
+        "description": "Auto-generated from src/api/maintenance/job/tagUser.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/maintenance/job/unTagUser": {
+      "post": {
+        "summary": "unTagUser (POST)",
+        "description": "Auto-generated from src/api/maintenance/job/unTagUser.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/maintenance/newJob": {
+      "post": {
+        "summary": "newJob (POST)",
+        "description": "Auto-generated from src/api/maintenance/newJob.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/maintenance/searchAsset": {
+      "post": {
+        "summary": "searchAsset (POST)",
+        "description": "Auto-generated from src/api/maintenance/searchAsset.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/maintenance/searchUser": {
+      "post": {
+        "summary": "searchUser (POST)",
+        "description": "Auto-generated from src/api/maintenance/searchUser.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/manufacturer/new": {
+      "post": {
+        "summary": "new (POST)",
+        "description": "Auto-generated from src/api/manufacturer/new.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/manufacturer/search": {
+      "post": {
+        "summary": "search (POST)",
+        "description": "Auto-generated from src/api/manufacturer/search.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/modules/edit": {
+      "post": {
+        "summary": "edit (POST)",
+        "description": "Auto-generated from src/api/modules/edit.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/modules/new": {
+      "post": {
+        "summary": "new (POST)",
+        "description": "Auto-generated from src/api/modules/new.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/modules/steps/edit": {
+      "post": {
+        "summary": "edit (POST)",
+        "description": "Auto-generated from src/api/modules/steps/edit.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/modules/steps/new": {
+      "post": {
+        "summary": "new (POST)",
+        "description": "Auto-generated from src/api/modules/steps/new.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/modules/steps/sortRank": {
+      "post": {
+        "summary": "sortRank (POST)",
+        "description": "Auto-generated from src/api/modules/steps/sortRank.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/notifications/email/email": {
+      "get": {
+        "summary": "email (GET)",
+        "description": "Auto-generated from src/api/notifications/email/email.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/notifications/main": {
+      "get": {
+        "summary": "main (GET)",
+        "description": "Auto-generated from src/api/notifications/main.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/notifications/notificationTypes": {
+      "get": {
+        "summary": "notificationTypes (GET)",
+        "description": "Auto-generated from src/api/notifications/notificationTypes.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/onlineCheck": {
+      "get": {
+        "summary": "onlineCheck (GET)",
+        "description": "Auto-generated from src/api/onlineCheck.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/openApiYAMLHeaders": {
+      "get": {
+        "summary": "openApiYAMLHeaders (GET)",
+        "description": "Auto-generated from src/api/openApiYAMLHeaders.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/permissions/instancePermissionsEditor": {
+      "post": {
+        "summary": "instancePermissionsEditor (POST)",
+        "description": "Auto-generated from src/api/permissions/instancePermissionsEditor.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/permissions/newInstancePosition": {
+      "post": {
+        "summary": "newInstancePosition (POST)",
+        "description": "Auto-generated from src/api/permissions/newInstancePosition.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/permissions/permissionsEditor": {
+      "post": {
+        "summary": "permissionsEditor (POST)",
+        "description": "Auto-generated from src/api/permissions/permissionsEditor.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/archive": {
+      "post": {
+        "summary": "archive (POST)",
+        "description": "Auto-generated from src/api/projects/archive.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/assets/assign": {
+      "post": {
+        "summary": "assign (POST)",
+        "description": "Auto-generated from src/api/projects/assets/assign.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/assets/setComment": {
+      "post": {
+        "summary": "setComment (POST)",
+        "description": "Auto-generated from src/api/projects/assets/setComment.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/assets/setDiscount": {
+      "post": {
+        "summary": "setDiscount (POST)",
+        "description": "Auto-generated from src/api/projects/assets/setDiscount.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/assets/setPrice": {
+      "post": {
+        "summary": "setPrice (POST)",
+        "description": "Auto-generated from src/api/projects/assets/setPrice.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/assets/setStatus": {
+      "post": {
+        "summary": "setStatus (POST)",
+        "description": "Auto-generated from src/api/projects/assets/setStatus.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/assets/setStatusBarcode": {
+      "post": {
+        "summary": "setStatusBarcode (POST)",
+        "description": "Auto-generated from src/api/projects/assets/setStatusBarcode.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/assets/setStatusByTag": {
+      "post": {
+        "summary": "setStatusByTag (POST)",
+        "description": "Auto-generated from src/api/projects/assets/setStatusByTag.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/assets/statusList": {
+      "post": {
+        "summary": "statusList (POST)",
+        "description": "Auto-generated from src/api/projects/assets/statusList.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/assets/swap": {
+      "post": {
+        "summary": "swap (POST)",
+        "description": "Auto-generated from src/api/projects/assets/swap.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/assets/unassign": {
+      "post": {
+        "summary": "unassign (POST)",
+        "description": "Auto-generated from src/api/projects/assets/unassign.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/changeClient": {
+      "post": {
+        "summary": "changeClient (POST)",
+        "description": "Auto-generated from src/api/projects/changeClient.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/changeDeliveryNotes": {
+      "post": {
+        "summary": "changeDeliveryNotes (POST)",
+        "description": "Auto-generated from src/api/projects/changeDeliveryNotes.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/changeDescription": {
+      "post": {
+        "summary": "changeDescription (POST)",
+        "description": "Auto-generated from src/api/projects/changeDescription.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/changeInvoiceNotes": {
+      "post": {
+        "summary": "changeInvoiceNotes (POST)",
+        "description": "Auto-generated from src/api/projects/changeInvoiceNotes.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/changeName": {
+      "post": {
+        "summary": "changeName (POST)",
+        "description": "Auto-generated from src/api/projects/changeName.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/changeProjectDates": {
+      "post": {
+        "summary": "changeProjectDates (POST)",
+        "description": "Auto-generated from src/api/projects/changeProjectDates.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/changeProjectDeliverDates": {
+      "post": {
+        "summary": "changeProjectDeliverDates (POST)",
+        "description": "Auto-generated from src/api/projects/changeProjectDeliverDates.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/changeProjectFinanceDurationMaths": {
+      "post": {
+        "summary": "changeProjectFinanceDurationMaths (POST)",
+        "description": "Auto-generated from src/api/projects/changeProjectFinanceDurationMaths.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/changeProjectManager": {
+      "post": {
+        "summary": "changeProjectManager (POST)",
+        "description": "Auto-generated from src/api/projects/changeProjectManager.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/changeProjectType": {
+      "post": {
+        "summary": "changeProjectType (POST)",
+        "description": "Auto-generated from src/api/projects/changeProjectType.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/changeStatus": {
+      "post": {
+        "summary": "changeStatus (POST)",
+        "description": "Auto-generated from src/api/projects/changeStatus.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/changeSubProject": {
+      "post": {
+        "summary": "changeSubProject (POST)",
+        "description": "Auto-generated from src/api/projects/changeSubProject.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/changeVenue": {
+      "post": {
+        "summary": "changeVenue (POST)",
+        "description": "Auto-generated from src/api/projects/changeVenue.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/crew/assign": {
+      "post": {
+        "summary": "assign (POST)",
+        "description": "Auto-generated from src/api/projects/crew/assign.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/crew/crewRoles/accept": {
+      "post": {
+        "summary": "accept (POST)",
+        "description": "Auto-generated from src/api/projects/crew/crewRoles/accept.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/crew/crewRoles/applicationList": {
+      "post": {
+        "summary": "applicationList (POST)",
+        "description": "Auto-generated from src/api/projects/crew/crewRoles/applicationList.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/crew/crewRoles/apply": {
+      "post": {
+        "summary": "apply (POST)",
+        "description": "Auto-generated from src/api/projects/crew/crewRoles/apply.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/crew/crewRoles/edit": {
+      "post": {
+        "summary": "edit (POST)",
+        "description": "Auto-generated from src/api/projects/crew/crewRoles/edit.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/crew/crewRoles/list": {
+      "post": {
+        "summary": "list (POST)",
+        "description": "Auto-generated from src/api/projects/crew/crewRoles/list.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/crew/crewRoles/reject": {
+      "post": {
+        "summary": "reject (POST)",
+        "description": "Auto-generated from src/api/projects/crew/crewRoles/reject.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/crew/edit": {
+      "post": {
+        "summary": "edit (POST)",
+        "description": "Auto-generated from src/api/projects/crew/edit.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/crew/searchUser": {
+      "post": {
+        "summary": "searchUser (POST)",
+        "description": "Auto-generated from src/api/projects/crew/searchUser.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/crew/sortRank": {
+      "post": {
+        "summary": "sortRank (POST)",
+        "description": "Auto-generated from src/api/projects/crew/sortRank.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/crew/unassign": {
+      "post": {
+        "summary": "unassign (POST)",
+        "description": "Auto-generated from src/api/projects/crew/unassign.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/data": {
+      "get": {
+        "summary": "data (GET)",
+        "description": "Auto-generated from src/api/projects/data.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      },
+      "post": {
+        "summary": "data (POST)",
+        "description": "Auto-generated from src/api/projects/data.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/delete": {
+      "post": {
+        "summary": "delete (POST)",
+        "description": "Auto-generated from src/api/projects/delete.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/deletePayment": {
+      "post": {
+        "summary": "deletePayment (POST)",
+        "description": "Auto-generated from src/api/projects/deletePayment.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/editNote": {
+      "post": {
+        "summary": "editNote (POST)",
+        "description": "Auto-generated from src/api/projects/editNote.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/followParentStatus": {
+      "post": {
+        "summary": "followParentStatus (POST)",
+        "description": "Auto-generated from src/api/projects/followParentStatus.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/getComments": {
+      "post": {
+        "summary": "getComments (POST)",
+        "description": "Auto-generated from src/api/projects/getComments.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/list": {
+      "post": {
+        "summary": "list (POST)",
+        "description": "Auto-generated from src/api/projects/list.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/new": {
+      "post": {
+        "summary": "new (POST)",
+        "description": "Auto-generated from src/api/projects/new.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/newNote": {
+      "post": {
+        "summary": "newNote (POST)",
+        "description": "Auto-generated from src/api/projects/newNote.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/newPayment": {
+      "post": {
+        "summary": "newPayment (POST)",
+        "description": "Auto-generated from src/api/projects/newPayment.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/newQuickComment": {
+      "post": {
+        "summary": "newQuickComment (POST)",
+        "description": "Auto-generated from src/api/projects/newQuickComment.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/projects/unArchive": {
+      "post": {
+        "summary": "unArchive (POST)",
+        "description": "Auto-generated from src/api/projects/unArchive.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/s3files/appUploader": {
+      "post": {
+        "summary": "appUploader (POST)",
+        "description": "Auto-generated from src/api/s3files/appUploader.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/s3files/generateSignatureUppy": {
+      "post": {
+        "summary": "generateSignatureUppy (POST)",
+        "description": "Auto-generated from src/api/s3files/generateSignatureUppy.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/s3files/uploadProjectInvoice": {
+      "post": {
+        "summary": "uploadProjectInvoice (POST)",
+        "description": "Auto-generated from src/api/s3files/uploadProjectInvoice.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/s3files/uploadSuccess": {
+      "post": {
+        "summary": "uploadSuccess (POST)",
+        "description": "Auto-generated from src/api/s3files/uploadSuccess.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/search/search": {
+      "get": {
+        "summary": "search (GET)",
+        "description": "Auto-generated from src/api/search/search.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/server/assetImport": {
+      "post": {
+        "summary": "assetImport (POST)",
+        "description": "Auto-generated from src/api/server/assetImport.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/training/certify": {
+      "post": {
+        "summary": "certify (POST)",
+        "description": "Auto-generated from src/api/training/certify.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/training/completeStep": {
+      "post": {
+        "summary": "completeStep (POST)",
+        "description": "Auto-generated from src/api/training/completeStep.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/training/revokeAll": {
+      "post": {
+        "summary": "revokeAll (POST)",
+        "description": "Auto-generated from src/api/training/revokeAll.php",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    }
+  },
+  "x-generated-at": "2025-10-26T16:18:42.025204+00:00"
+}

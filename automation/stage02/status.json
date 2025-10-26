@@ -1,0 +1,122 @@
+{
+  "state": "ready",
+  "checks": {
+    "tooling": {
+      "status": "warn",
+      "details": "act=warning, k6=warning, playwright=warning, terraform=warning, helm=warning"
+    },
+    "file_inventory": {
+      "status": "pass",
+      "details": "Inventory covers 504 files"
+    },
+    "inventory_csv": {
+      "status": "pass",
+      "details": "CSV rows match JSON entries (504)"
+    },
+    "openapi_export": {
+      "status": "pass",
+      "details": "OpenAPI exports 207 paths"
+    },
+    "backlog_yaml": {
+      "status": "warn",
+      "details": "yamllint not available; syntax not linted"
+    },
+    "risk_severity": {
+      "status": "pass",
+      "details": "All 4 backlog items include severity"
+    },
+    "diagrams": {
+      "status": "pass",
+      "details": "Mermaid diagrams present"
+    },
+    "cron_report": {
+      "status": "pass",
+      "details": "Cron report available"
+    }
+  },
+  "artifacts": [
+    {
+      "type": "inventory",
+      "path": "docs/inventory/files.json",
+      "description": "File catalogue"
+    },
+    {
+      "type": "inventory",
+      "path": "docs/inventory/files.csv",
+      "description": "File catalogue CSV"
+    },
+    {
+      "type": "metrics",
+      "path": "docs/inventory/metrics.md",
+      "description": "Metrics summary"
+    },
+    {
+      "type": "cron",
+      "path": "docs/inventory/cron.md",
+      "description": "Cron and schedule review"
+    },
+    {
+      "type": "api",
+      "path": "docs/inventory/api/openapi.json",
+      "description": "API export"
+    },
+    {
+      "type": "backlog",
+      "path": "docs/backlog/migration_backlog.yaml",
+      "description": "Migration backlog"
+    },
+    {
+      "type": "report",
+      "path": "automation/stage02/report.md",
+      "description": "Stage report"
+    }
+  ],
+  "last_run": "2025-10-26T16:19:15.936234+00:00",
+  "warnings": [
+    "Some optional tools are unavailable: act=warning, k6=warning, playwright=warning, terraform=warning, helm=warning",
+    "yamllint not installed; backlog lint skipped"
+  ],
+  "notes": [],
+  "extra": {
+    "diff_summary": [
+      " M automation/stage02/report.md",
+      "?? docs/backlog/",
+      "?? docs/inventory/"
+    ],
+    "tool_inventory": [
+      {
+        "name": "act",
+        "status": "warning",
+        "message": "asdf not available",
+        "path": ""
+      },
+      {
+        "name": "k6",
+        "status": "warning",
+        "message": "asdf not available",
+        "path": ""
+      },
+      {
+        "name": "playwright",
+        "status": "warning",
+        "message": "npm install -g playwright failed",
+        "path": ""
+      },
+      {
+        "name": "terraform",
+        "status": "warning",
+        "message": "asdf not available",
+        "path": ""
+      },
+      {
+        "name": "helm",
+        "status": "warning",
+        "message": "asdf not available",
+        "path": ""
+      }
+    ],
+    "file_count_reported": 504,
+    "api_endpoints": 207,
+    "cron_candidates": 0
+  }
+}

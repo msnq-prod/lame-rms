@@ -1,0 +1,5126 @@
+{
+  "generated_at": "2025-10-26T16:18:42.025204+00:00",
+  "sources": [
+    {
+      "label": "src",
+      "path": "src"
+    }
+  ],
+  "files": [
+    {
+      "root": "src",
+      "relative_path": ".htaccess",
+      "path": "src/.htaccess",
+      "extension": "",
+      "category": "other",
+      "size_bytes": 26,
+      "line_count": 1,
+      "modified_at": "2025-10-26T15:30:41.171948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "401.twig",
+      "path": "src/401.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 518,
+      "line_count": 15,
+      "modified_at": "2025-10-26T15:30:41.171948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "404.php",
+      "path": "src/404.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 187,
+      "line_count": 7,
+      "modified_at": "2025-10-26T15:30:41.171948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "404.twig",
+      "path": "src/404.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 1251,
+      "line_count": 29,
+      "modified_at": "2025-10-26T15:30:41.171948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/account/acceptTOS.php",
+      "path": "src/api/account/acceptTOS.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 846,
+      "line_count": 25,
+      "modified_at": "2025-10-26T15:30:41.171948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/account/basicDetails.php",
+      "path": "src/api/account/basicDetails.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 5016,
+      "line_count": 128,
+      "modified_at": "2025-10-26T15:30:41.171948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/account/calendar-export.php",
+      "path": "src/api/account/calendar-export.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 4413,
+      "line_count": 96,
+      "modified_at": "2025-10-26T15:30:41.171948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/account/changePass.php",
+      "path": "src/api/account/changePass.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1596,
+      "line_count": 45,
+      "modified_at": "2025-10-26T15:30:41.171948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/account/destroyTokens.php",
+      "path": "src/api/account/destroyTokens.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 809,
+      "line_count": 29,
+      "modified_at": "2025-10-26T15:30:41.171948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/account/disconnectOAuth.php",
+      "path": "src/api/account/disconnectOAuth.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1336,
+      "line_count": 44,
+      "modified_at": "2025-10-26T15:30:41.171948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/account/emailViewer.php",
+      "path": "src/api/account/emailViewer.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2386,
+      "line_count": 75,
+      "modified_at": "2025-10-26T15:30:41.171948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/account/forcePasswordChange.php",
+      "path": "src/api/account/forcePasswordChange.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1806,
+      "line_count": 57,
+      "modified_at": "2025-10-26T15:30:41.171948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/account/isDefaultAccountEnabled.php",
+      "path": "src/api/account/isDefaultAccountEnabled.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2255,
+      "line_count": 60,
+      "modified_at": "2025-10-26T15:30:41.171948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/account/notifications.php",
+      "path": "src/api/account/notifications.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1467,
+      "line_count": 43,
+      "modified_at": "2025-10-26T15:30:41.171948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/account/oauth-link/google.php",
+      "path": "src/api/account/oauth-link/google.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2696,
+      "line_count": 63,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/account/oauth-link/microsoft.php",
+      "path": "src/api/account/oauth-link/microsoft.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1909,
+      "line_count": 51,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/account/passwordReset.php",
+      "path": "src/api/account/passwordReset.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2414,
+      "line_count": 62,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/account/permissions.php",
+      "path": "src/api/account/permissions.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3741,
+      "line_count": 78,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/account/reSendVerificationEmail.php",
+      "path": "src/api/account/reSendVerificationEmail.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 800,
+      "line_count": 24,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/account/softDelete.php",
+      "path": "src/api/account/softDelete.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2476,
+      "line_count": 70,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/account/suspend.php",
+      "path": "src/api/account/suspend.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1600,
+      "line_count": 50,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/account/theme.php",
+      "path": "src/api/account/theme.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 882,
+      "line_count": 32,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/account/thumbnail.php",
+      "path": "src/api/account/thumbnail.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1433,
+      "line_count": 45,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/account/verifyEmail.php",
+      "path": "src/api/account/verifyEmail.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2696,
+      "line_count": 65,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/account/viewSiteAs.php",
+      "path": "src/api/account/viewSiteAs.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1340,
+      "line_count": 44,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/account/viewSiteAs_terminate.php",
+      "path": "src/api/account/viewSiteAs_terminate.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1047,
+      "line_count": 39,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/account/widgetToggle.php",
+      "path": "src/api/account/widgetToggle.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1397,
+      "line_count": 42,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/apiHead.php",
+      "path": "src/api/apiHead.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 4448,
+      "line_count": 97,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/apiHeadSecure.php",
+      "path": "src/api/apiHeadSecure.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1531,
+      "line_count": 29,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/assets/archive.php",
+      "path": "src/api/assets/archive.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2320,
+      "line_count": 69,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/assets/barcodes/assign.php",
+      "path": "src/api/assets/barcodes/assign.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2677,
+      "line_count": 77,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/assets/barcodes/delete.php",
+      "path": "src/api/assets/barcodes/delete.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1497,
+      "line_count": 41,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/assets/barcodes/index.php",
+      "path": "src/api/assets/barcodes/index.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3921,
+      "line_count": 158,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/assets/barcodes/search.php",
+      "path": "src/api/assets/barcodes/search.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 6433,
+      "line_count": 130,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/assets/delete.php",
+      "path": "src/api/assets/delete.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 5353,
+      "line_count": 104,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/assets/editAsset.php",
+      "path": "src/api/assets/editAsset.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 12512,
+      "line_count": 248,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/assets/editAssetType.php",
+      "path": "src/api/assets/editAssetType.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 10644,
+      "line_count": 203,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/assets/editAssetTypeDefinableFields.php",
+      "path": "src/api/assets/editAssetTypeDefinableFields.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 5953,
+      "line_count": 149,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/assets/export.php",
+      "path": "src/api/assets/export.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 8896,
+      "line_count": 196,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/assets/getAssetTypeData.php",
+      "path": "src/api/assets/getAssetTypeData.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 5349,
+      "line_count": 131,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/assets/list.php",
+      "path": "src/api/assets/list.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 7590,
+      "line_count": 174,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/assets/newAssetFromType.php",
+      "path": "src/api/assets/newAssetFromType.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 8043,
+      "line_count": 201,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/assets/newAssetType.php",
+      "path": "src/api/assets/newAssetType.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 8822,
+      "line_count": 205,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/assets/searchAssets.php",
+      "path": "src/api/assets/searchAssets.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 4092,
+      "line_count": 101,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/assets/searchAssetsBarcode.php",
+      "path": "src/api/assets/searchAssetsBarcode.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 391,
+      "line_count": 15,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/assets/searchType.php",
+      "path": "src/api/assets/searchType.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 4231,
+      "line_count": 98,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/assets/substitutions.php",
+      "path": "src/api/assets/substitutions.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 5142,
+      "line_count": 118,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/assets/transfer.php",
+      "path": "src/api/assets/transfer.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 7950,
+      "line_count": 170,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/barcodes/searchAsset.php",
+      "path": "src/api/barcodes/searchAsset.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2898,
+      "line_count": 78,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/categories/edit.php",
+      "path": "src/api/categories/edit.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3325,
+      "line_count": 98,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/categories/groups/edit.php",
+      "path": "src/api/categories/groups/edit.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3242,
+      "line_count": 92,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/categories/groups/new.php",
+      "path": "src/api/categories/groups/new.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2902,
+      "line_count": 84,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/categories/new.php",
+      "path": "src/api/categories/new.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3023,
+      "line_count": 89,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/categories/search.php",
+      "path": "src/api/categories/search.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 4158,
+      "line_count": 97,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/clients/archive.php",
+      "path": "src/api/clients/archive.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1467,
+      "line_count": 55,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/clients/edit.php",
+      "path": "src/api/clients/edit.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3789,
+      "line_count": 113,
+      "modified_at": "2025-10-26T15:30:41.175948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/clients/new.php",
+      "path": "src/api/clients/new.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2268,
+      "line_count": 70,
+      "modified_at": "2025-10-26T15:30:41.179948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/clients/unarchive.php",
+      "path": "src/api/clients/unarchive.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1480,
+      "line_count": 55,
+      "modified_at": "2025-10-26T15:30:41.179948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/cms/editPageConfig.php",
+      "path": "src/api/cms/editPageConfig.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3810,
+      "line_count": 107,
+      "modified_at": "2025-10-26T15:30:41.179948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/cms/editPageContent-rollback.php",
+      "path": "src/api/cms/editPageContent-rollback.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3725,
+      "line_count": 107,
+      "modified_at": "2025-10-26T15:30:41.179948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/cms/editPageContent.php",
+      "path": "src/api/cms/editPageContent.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3560,
+      "line_count": 109,
+      "modified_at": "2025-10-26T15:30:41.179948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/cms/editPageRank.php",
+      "path": "src/api/cms/editPageRank.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2473,
+      "line_count": 76,
+      "modified_at": "2025-10-26T15:30:41.179948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/cms/get.php",
+      "path": "src/api/cms/get.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3516,
+      "line_count": 97,
+      "modified_at": "2025-10-26T15:30:41.179948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/cms/list.php",
+      "path": "src/api/cms/list.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2430,
+      "line_count": 55,
+      "modified_at": "2025-10-26T15:30:41.179948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/cms/setCustomDashboard.php",
+      "path": "src/api/cms/setCustomDashboard.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2922,
+      "line_count": 84,
+      "modified_at": "2025-10-26T15:30:41.179948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/file/avatarGen.php",
+      "path": "src/api/file/avatarGen.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1474,
+      "line_count": 43,
+      "modified_at": "2025-10-26T15:30:41.179948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/file/delete.php",
+      "path": "src/api/file/delete.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2486,
+      "line_count": 75,
+      "modified_at": "2025-10-26T15:30:41.179948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/file/index.php",
+      "path": "src/api/file/index.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3432,
+      "line_count": 94,
+      "modified_at": "2025-10-26T15:30:41.179948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/file/removeShare.php",
+      "path": "src/api/file/removeShare.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2463,
+      "line_count": 76,
+      "modified_at": "2025-10-26T15:30:41.179948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/file/rename.php",
+      "path": "src/api/file/rename.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2656,
+      "line_count": 83,
+      "modified_at": "2025-10-26T15:30:41.179948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/file/share.php",
+      "path": "src/api/file/share.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1399,
+      "line_count": 42,
+      "modified_at": "2025-10-26T15:30:41.179948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/groups/addAsset.php",
+      "path": "src/api/groups/addAsset.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3966,
+      "line_count": 101,
+      "modified_at": "2025-10-26T15:30:41.179948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/groups/edit.php",
+      "path": "src/api/groups/edit.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3522,
+      "line_count": 104,
+      "modified_at": "2025-10-26T15:30:41.179948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/groups/new.php",
+      "path": "src/api/groups/new.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3119,
+      "line_count": 96,
+      "modified_at": "2025-10-26T15:30:41.179948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/groups/removeAsset.php",
+      "path": "src/api/groups/removeAsset.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 4012,
+      "line_count": 100,
+      "modified_at": "2025-10-26T15:30:41.179948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/groups/search.php",
+      "path": "src/api/groups/search.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2497,
+      "line_count": 76,
+      "modified_at": "2025-10-26T15:30:41.179948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/groups/watch.php",
+      "path": "src/api/groups/watch.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2438,
+      "line_count": 74,
+      "modified_at": "2025-10-26T15:30:41.179948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/icons/getIcons.php",
+      "path": "src/api/icons/getIcons.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1053,
+      "line_count": 41,
+      "modified_at": "2025-10-26T15:30:41.179948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/icons/icons.json",
+      "path": "src/api/icons/icons.json",
+      "extension": ".json",
+      "category": "json",
+      "size_bytes": 176508,
+      "line_count": 11532,
+      "modified_at": "2025-10-26T15:30:41.179948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/addUser-EmailTemplate.twig",
+      "path": "src/api/instances/addUser-EmailTemplate.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 1700,
+      "line_count": 28,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/addUser.php",
+      "path": "src/api/instances/addUser.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3641,
+      "line_count": 92,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/addUserFromCode.php",
+      "path": "src/api/instances/addUserFromCode.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 4332,
+      "line_count": 98,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/addUserFromTrustedDomain.php",
+      "path": "src/api/instances/addUserFromTrustedDomain.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 4939,
+      "line_count": 98,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/archiveUser.php",
+      "path": "src/api/instances/archiveUser.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3046,
+      "line_count": 75,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/assetAssignmentStatus/delete.php",
+      "path": "src/api/instances/assetAssignmentStatus/delete.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2352,
+      "line_count": 65,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/assetAssignmentStatus/edit.php",
+      "path": "src/api/instances/assetAssignmentStatus/edit.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2543,
+      "line_count": 74,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/assetAssignmentStatus/new.php",
+      "path": "src/api/instances/assetAssignmentStatus/new.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2517,
+      "line_count": 75,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/assetAssignmentStatus/reorder.php",
+      "path": "src/api/instances/assetAssignmentStatus/reorder.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2385,
+      "line_count": 68,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/billing/billingPortal.php",
+      "path": "src/api/instances/billing/billingPortal.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 570,
+      "line_count": 14,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/billing/getPrices.php",
+      "path": "src/api/instances/billing/getPrices.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1943,
+      "line_count": 50,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/billing/postSubscribeDelay.php",
+      "path": "src/api/instances/billing/postSubscribeDelay.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 359,
+      "line_count": 7,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/billing/subscribe.php",
+      "path": "src/api/instances/billing/subscribe.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1689,
+      "line_count": 46,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/billing/webhooks.php",
+      "path": "src/api/instances/billing/webhooks.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 4645,
+      "line_count": 94,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/calendar-export.php",
+      "path": "src/api/instances/calendar-export.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3762,
+      "line_count": 85,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/delete.php",
+      "path": "src/api/instances/delete.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1276,
+      "line_count": 39,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/editCalendarSettings.php",
+      "path": "src/api/instances/editCalendarSettings.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1758,
+      "line_count": 47,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/editInstance.php",
+      "path": "src/api/instances/editInstance.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 5427,
+      "line_count": 142,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/editInstancePublicSite.php",
+      "path": "src/api/instances/editInstancePublicSite.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2636,
+      "line_count": 76,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/editInstanceServerAdmin.php",
+      "path": "src/api/instances/editInstanceServerAdmin.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2971,
+      "line_count": 86,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/editInstanceTrustedDomains.php",
+      "path": "src/api/instances/editInstanceTrustedDomains.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2740,
+      "line_count": 78,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/editUser.php",
+      "path": "src/api/instances/editUser.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2745,
+      "line_count": 79,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/list.php",
+      "path": "src/api/instances/list.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1329,
+      "line_count": 40,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/new.php",
+      "path": "src/api/instances/new.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 9315,
+      "line_count": 238,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/permanentlyDelete.php",
+      "path": "src/api/instances/permanentlyDelete.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1453,
+      "line_count": 43,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/projectStatus/edit.php",
+      "path": "src/api/instances/projectStatus/edit.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1779,
+      "line_count": 51,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/projectStatus/editPageRank.php",
+      "path": "src/api/instances/projectStatus/editPageRank.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1327,
+      "line_count": 40,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/projectStatus/new.php",
+      "path": "src/api/instances/projectStatus/new.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1505,
+      "line_count": 47,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/projectTypes/edit.php",
+      "path": "src/api/instances/projectTypes/edit.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 4177,
+      "line_count": 118,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/projectTypes/new.php",
+      "path": "src/api/instances/projectTypes/new.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3882,
+      "line_count": 111,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/removeUser.php",
+      "path": "src/api/instances/removeUser.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2462,
+      "line_count": 66,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/searchUser.php",
+      "path": "src/api/instances/searchUser.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2428,
+      "line_count": 55,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/signupCodes/edit.php",
+      "path": "src/api/instances/signupCodes/edit.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3531,
+      "line_count": 103,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/signupCodes/new.php",
+      "path": "src/api/instances/signupCodes/new.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3221,
+      "line_count": 95,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/signupCodes/taken.php",
+      "path": "src/api/instances/signupCodes/taken.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1660,
+      "line_count": 52,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/switch.php",
+      "path": "src/api/instances/switch.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1838,
+      "line_count": 61,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/unDelete.php",
+      "path": "src/api/instances/unDelete.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1278,
+      "line_count": 39,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/instances/users.php",
+      "path": "src/api/instances/users.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3805,
+      "line_count": 93,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/locations/archive.php",
+      "path": "src/api/locations/archive.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1504,
+      "line_count": 55,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/locations/edit.php",
+      "path": "src/api/locations/edit.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3544,
+      "line_count": 109,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/locations/new.php",
+      "path": "src/api/locations/new.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3597,
+      "line_count": 111,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/locations/unarchive.php",
+      "path": "src/api/locations/unarchive.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1516,
+      "line_count": 55,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/login/forgotPassword.php",
+      "path": "src/api/login/forgotPassword.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2254,
+      "line_count": 65,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/login/login.php",
+      "path": "src/api/login/login.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 4197,
+      "line_count": 87,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/login/loginAjaxHead.php",
+      "path": "src/api/login/loginAjaxHead.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 133,
+      "line_count": 8,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/login/magicLogin.php",
+      "path": "src/api/login/magicLogin.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1274,
+      "line_count": 43,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/login/signup.php",
+      "path": "src/api/login/signup.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3801,
+      "line_count": 107,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/maintenance/createJob-EmailTemplate.twig",
+      "path": "src/api/maintenance/createJob-EmailTemplate.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 1829,
+      "line_count": 29,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/maintenance/job/addAsset.php",
+      "path": "src/api/maintenance/job/addAsset.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2932,
+      "line_count": 81,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/maintenance/job/changeBlock.php",
+      "path": "src/api/maintenance/job/changeBlock.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2989,
+      "line_count": 80,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/maintenance/job/changeDueDate.php",
+      "path": "src/api/maintenance/job/changeDueDate.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2557,
+      "line_count": 70,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/maintenance/job/changeFlag.php",
+      "path": "src/api/maintenance/job/changeFlag.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2978,
+      "line_count": 80,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/maintenance/job/changeJobAssigned-EmailTemplate.twig",
+      "path": "src/api/maintenance/job/changeJobAssigned-EmailTemplate.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 1707,
+      "line_count": 28,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/maintenance/job/changeJobAssigned.php",
+      "path": "src/api/maintenance/job/changeJobAssigned.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3452,
+      "line_count": 80,
+      "modified_at": "2025-10-26T15:30:41.183948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/maintenance/job/changeJobStatus-EmailTemplate.twig",
+      "path": "src/api/maintenance/job/changeJobStatus-EmailTemplate.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 1774,
+      "line_count": 33,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/maintenance/job/changeJobStatus.php",
+      "path": "src/api/maintenance/job/changeJobStatus.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 4847,
+      "line_count": 109,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/maintenance/job/changeName.php",
+      "path": "src/api/maintenance/job/changeName.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2414,
+      "line_count": 70,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/maintenance/job/changePriority.php",
+      "path": "src/api/maintenance/job/changePriority.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2682,
+      "line_count": 76,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/maintenance/job/deleteJob.php",
+      "path": "src/api/maintenance/job/deleteJob.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2079,
+      "line_count": 62,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/maintenance/job/messageJob-EmailTemplate.twig",
+      "path": "src/api/maintenance/job/messageJob-EmailTemplate.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 1977,
+      "line_count": 33,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/maintenance/job/removeAsset.php",
+      "path": "src/api/maintenance/job/removeAsset.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2924,
+      "line_count": 80,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/maintenance/job/sendMessage.php",
+      "path": "src/api/maintenance/job/sendMessage.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 4259,
+      "line_count": 102,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/maintenance/job/tagUser.php",
+      "path": "src/api/maintenance/job/tagUser.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3168,
+      "line_count": 85,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/maintenance/job/unTagUser.php",
+      "path": "src/api/maintenance/job/unTagUser.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3236,
+      "line_count": 84,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/maintenance/newJob.php",
+      "path": "src/api/maintenance/newJob.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 6787,
+      "line_count": 156,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/maintenance/searchAsset.php",
+      "path": "src/api/maintenance/searchAsset.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3364,
+      "line_count": 89,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/maintenance/searchUser.php",
+      "path": "src/api/maintenance/searchUser.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2952,
+      "line_count": 78,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/manufacturer/new.php",
+      "path": "src/api/manufacturer/new.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2053,
+      "line_count": 62,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/manufacturer/search.php",
+      "path": "src/api/manufacturer/search.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3722,
+      "line_count": 92,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/modules/edit.php",
+      "path": "src/api/modules/edit.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3800,
+      "line_count": 113,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/modules/new.php",
+      "path": "src/api/modules/new.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3856,
+      "line_count": 112,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/modules/steps/edit.php",
+      "path": "src/api/modules/steps/edit.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3855,
+      "line_count": 114,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/modules/steps/new.php",
+      "path": "src/api/modules/steps/new.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3454,
+      "line_count": 104,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/modules/steps/sortRank.php",
+      "path": "src/api/modules/steps/sortRank.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2174,
+      "line_count": 68,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/notifications/email/email.php",
+      "path": "src/api/notifications/email/email.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2801,
+      "line_count": 50,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/notifications/email/email_template.twig",
+      "path": "src/api/notifications/email/email_template.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 12909,
+      "line_count": 296,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/notifications/main.php",
+      "path": "src/api/notifications/main.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1415,
+      "line_count": 39,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/notifications/notificationTypes.php",
+      "path": "src/api/notifications/notificationTypes.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3630,
+      "line_count": 157,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/onlineCheck.php",
+      "path": "src/api/onlineCheck.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 853,
+      "line_count": 40,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/openApiYAMLHeaders.php",
+      "path": "src/api/openApiYAMLHeaders.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3582,
+      "line_count": 86,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/permissions/instancePermissionsEditor.php",
+      "path": "src/api/permissions/instancePermissionsEditor.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2475,
+      "line_count": 71,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/permissions/newInstancePosition.php",
+      "path": "src/api/permissions/newInstancePosition.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1973,
+      "line_count": 60,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/permissions/permissionsEditor.php",
+      "path": "src/api/permissions/permissionsEditor.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2412,
+      "line_count": 71,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/archive.php",
+      "path": "src/api/projects/archive.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1730,
+      "line_count": 52,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/assets/assign.php",
+      "path": "src/api/projects/assets/assign.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 11007,
+      "line_count": 180,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/assets/setComment.php",
+      "path": "src/api/projects/assets/setComment.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2261,
+      "line_count": 62,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/assets/setDiscount.php",
+      "path": "src/api/projects/assets/setDiscount.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 4469,
+      "line_count": 93,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/assets/setPrice.php",
+      "path": "src/api/projects/assets/setPrice.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 5889,
+      "line_count": 109,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/assets/setStatus.php",
+      "path": "src/api/projects/assets/setStatus.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2797,
+      "line_count": 79,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/assets/setStatusBarcode.php",
+      "path": "src/api/projects/assets/setStatusBarcode.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3979,
+      "line_count": 100,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/assets/setStatusByTag.php",
+      "path": "src/api/projects/assets/setStatusByTag.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3345,
+      "line_count": 64,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/assets/statusList.php",
+      "path": "src/api/projects/assets/statusList.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3431,
+      "line_count": 80,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/assets/swap.php",
+      "path": "src/api/projects/assets/swap.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 4474,
+      "line_count": 100,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/assets/unassign.php",
+      "path": "src/api/projects/assets/unassign.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 7272,
+      "line_count": 134,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/changeClient.php",
+      "path": "src/api/projects/changeClient.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2121,
+      "line_count": 65,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/changeDeliveryNotes.php",
+      "path": "src/api/projects/changeDeliveryNotes.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2015,
+      "line_count": 59,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/changeDescription.php",
+      "path": "src/api/projects/changeDescription.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2022,
+      "line_count": 59,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/changeInvoiceNotes.php",
+      "path": "src/api/projects/changeInvoiceNotes.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1999,
+      "line_count": 59,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/changeName.php",
+      "path": "src/api/projects/changeName.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1897,
+      "line_count": 59,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/changeProjectDates.php",
+      "path": "src/api/projects/changeProjectDates.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2490,
+      "line_count": 67,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/changeProjectDeliverDates.php",
+      "path": "src/api/projects/changeProjectDeliverDates.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 8808,
+      "line_count": 141,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/changeProjectFinanceDurationMaths.php",
+      "path": "src/api/projects/changeProjectFinanceDurationMaths.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 6776,
+      "line_count": 121,
+      "modified_at": "2025-10-26T15:30:41.187948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/changeProjectManager.php",
+      "path": "src/api/projects/changeProjectManager.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2134,
+      "line_count": 63,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/changeProjectType.php",
+      "path": "src/api/projects/changeProjectType.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2255,
+      "line_count": 66,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/changeStatus.php",
+      "path": "src/api/projects/changeStatus.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 6035,
+      "line_count": 123,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/changeSubProject.php",
+      "path": "src/api/projects/changeSubProject.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2422,
+      "line_count": 70,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/changeVenue.php",
+      "path": "src/api/projects/changeVenue.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2347,
+      "line_count": 69,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/crew/assign-EmailTemplate.twig",
+      "path": "src/api/projects/crew/assign-EmailTemplate.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 4194,
+      "line_count": 63,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/crew/assign.php",
+      "path": "src/api/projects/crew/assign.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 6304,
+      "line_count": 129,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/crew/crewRoles/accept.php",
+      "path": "src/api/projects/crew/crewRoles/accept.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3877,
+      "line_count": 73,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/crew/crewRoles/applicationList.php",
+      "path": "src/api/projects/crew/crewRoles/applicationList.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3708,
+      "line_count": 77,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/crew/crewRoles/apply.php",
+      "path": "src/api/projects/crew/crewRoles/apply.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 7040,
+      "line_count": 107,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/crew/crewRoles/edit.php",
+      "path": "src/api/projects/crew/crewRoles/edit.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 4685,
+      "line_count": 109,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/crew/crewRoles/list.php",
+      "path": "src/api/projects/crew/crewRoles/list.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3540,
+      "line_count": 78,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/crew/crewRoles/reject.php",
+      "path": "src/api/projects/crew/crewRoles/reject.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3091,
+      "line_count": 60,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/crew/edit.php",
+      "path": "src/api/projects/crew/edit.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3634,
+      "line_count": 74,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/crew/searchUser.php",
+      "path": "src/api/projects/crew/searchUser.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 4965,
+      "line_count": 100,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/crew/sortRank.php",
+      "path": "src/api/projects/crew/sortRank.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2163,
+      "line_count": 64,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/crew/unassign.php",
+      "path": "src/api/projects/crew/unassign.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2508,
+      "line_count": 59,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/data.php",
+      "path": "src/api/projects/data.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 25132,
+      "line_count": 350,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/delete.php",
+      "path": "src/api/projects/delete.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1699,
+      "line_count": 51,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/deletePayment.php",
+      "path": "src/api/projects/deletePayment.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2522,
+      "line_count": 66,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/editNote.php",
+      "path": "src/api/projects/editNote.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2622,
+      "line_count": 77,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/followParentStatus.php",
+      "path": "src/api/projects/followParentStatus.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3332,
+      "line_count": 95,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/getComments.php",
+      "path": "src/api/projects/getComments.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2115,
+      "line_count": 67,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/list.php",
+      "path": "src/api/projects/list.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3360,
+      "line_count": 83,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/new.php",
+      "path": "src/api/projects/new.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 4198,
+      "line_count": 108,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/newNote.php",
+      "path": "src/api/projects/newNote.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2053,
+      "line_count": 62,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/newPayment.php",
+      "path": "src/api/projects/newPayment.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3800,
+      "line_count": 104,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/newQuickComment.php",
+      "path": "src/api/projects/newQuickComment.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1896,
+      "line_count": 60,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/projects/unArchive.php",
+      "path": "src/api/projects/unArchive.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1733,
+      "line_count": 52,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/s3files/appUploader.php",
+      "path": "src/api/s3files/appUploader.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 4255,
+      "line_count": 110,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/s3files/generateSignatureUppy.php",
+      "path": "src/api/s3files/generateSignatureUppy.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3389,
+      "line_count": 103,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/s3files/uploadProjectInvoice.php",
+      "path": "src/api/s3files/uploadProjectInvoice.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 4456,
+      "line_count": 123,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/s3files/uploadSuccess.php",
+      "path": "src/api/s3files/uploadSuccess.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3265,
+      "line_count": 95,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/search/search.php",
+      "path": "src/api/search/search.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1943,
+      "line_count": 74,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/server/assetImport.php",
+      "path": "src/api/server/assetImport.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 10407,
+      "line_count": 228,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/training/certify.php",
+      "path": "src/api/training/certify.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2018,
+      "line_count": 64,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/training/completeStep.php",
+      "path": "src/api/training/completeStep.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2686,
+      "line_count": 67,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "api/training/revokeAll.php",
+      "path": "src/api/training/revokeAll.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1879,
+      "line_count": 55,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "asset.php",
+      "path": "src/asset.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 14230,
+      "line_count": 217,
+      "modified_at": "2025-10-26T15:30:41.191948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "asset.twig",
+      "path": "src/asset.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 162385,
+      "line_count": 2224,
+      "modified_at": "2025-10-26T15:30:41.195948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "assets.php",
+      "path": "src/assets.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 14461,
+      "line_count": 283,
+      "modified_at": "2025-10-26T15:30:41.195948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "assets.twig",
+      "path": "src/assets.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 50137,
+      "line_count": 673,
+      "modified_at": "2025-10-26T15:30:41.195948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "assets/template.twig",
+      "path": "src/assets/template.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 40327,
+      "line_count": 895,
+      "modified_at": "2025-10-26T15:30:41.199948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "assets/templates/asset-import-template.csv",
+      "path": "src/assets/templates/asset-import-template.csv",
+      "extension": ".csv",
+      "category": "data",
+      "size_bytes": 837,
+      "line_count": 1,
+      "modified_at": "2025-10-26T15:30:41.199948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "assets/templates/changePassword.twig",
+      "path": "src/assets/templates/changePassword.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 2148,
+      "line_count": 41,
+      "modified_at": "2025-10-26T15:30:41.199948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "assets/templates/cmsPage.twig",
+      "path": "src/assets/templates/cmsPage.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 668,
+      "line_count": 16,
+      "modified_at": "2025-10-26T15:30:41.199948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "assets/templates/cmsPageContent.twig",
+      "path": "src/assets/templates/cmsPageContent.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 608,
+      "line_count": 17,
+      "modified_at": "2025-10-26T15:30:41.199948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "assets/templates/fileBox.twig",
+      "path": "src/assets/templates/fileBox.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 3215,
+      "line_count": 48,
+      "modified_at": "2025-10-26T15:30:41.199948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "assets/templates/fileBoxJS.twig",
+      "path": "src/assets/templates/fileBoxJS.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 6449,
+      "line_count": 141,
+      "modified_at": "2025-10-26T15:30:41.199948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "assets/templates/joinInstance.twig",
+      "path": "src/assets/templates/joinInstance.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 1987,
+      "line_count": 53,
+      "modified_at": "2025-10-26T15:30:41.199948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "assets/templates/newInstance.twig",
+      "path": "src/assets/templates/newInstance.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 15899,
+      "line_count": 239,
+      "modified_at": "2025-10-26T15:30:41.199948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "assets/templates/uppy.twig",
+      "path": "src/assets/templates/uppy.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 8066,
+      "line_count": 188,
+      "modified_at": "2025-10-26T15:30:41.199948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "assets/widgets/calendar.twig",
+      "path": "src/assets/widgets/calendar.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 6760,
+      "line_count": 106,
+      "modified_at": "2025-10-26T15:30:41.203948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "assets/widgets/inventoryTotal.twig",
+      "path": "src/assets/widgets/inventoryTotal.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 2063,
+      "line_count": 43,
+      "modified_at": "2025-10-26T15:30:41.203948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "assets/widgets/inventoryValueGraph.twig",
+      "path": "src/assets/widgets/inventoryValueGraph.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 6297,
+      "line_count": 140,
+      "modified_at": "2025-10-26T15:30:41.203948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "assets/widgets/maintenanceOutstanding.twig",
+      "path": "src/assets/widgets/maintenanceOutstanding.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 2168,
+      "line_count": 48,
+      "modified_at": "2025-10-26T15:30:41.203948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "assets/widgets/myCalendar.twig",
+      "path": "src/assets/widgets/myCalendar.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 321,
+      "line_count": 7,
+      "modified_at": "2025-10-26T15:30:41.203948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "assets/widgets/myMaintenance.twig",
+      "path": "src/assets/widgets/myMaintenance.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 2286,
+      "line_count": 47,
+      "modified_at": "2025-10-26T15:30:41.203948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "assets/widgets/statsWidgets.php",
+      "path": "src/assets/widgets/statsWidgets.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 10992,
+      "line_count": 205,
+      "modified_at": "2025-10-26T15:30:41.203948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "assets/widgets/statsWidgetsJS.twig",
+      "path": "src/assets/widgets/statsWidgetsJS.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 1221,
+      "line_count": 30,
+      "modified_at": "2025-10-26T15:30:41.203948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "assets/widgets/storageUsage.twig",
+      "path": "src/assets/widgets/storageUsage.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 1338,
+      "line_count": 29,
+      "modified_at": "2025-10-26T15:30:41.203948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "assets/widgets/upcomingEventsCount.twig",
+      "path": "src/assets/widgets/upcomingEventsCount.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 0,
+      "line_count": 0,
+      "modified_at": "2025-10-26T15:30:41.203948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "assets/widgets/userCount.twig",
+      "path": "src/assets/widgets/userCount.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 1407,
+      "line_count": 32,
+      "modified_at": "2025-10-26T15:30:41.203948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "clients.php",
+      "path": "src/clients.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3635,
+      "line_count": 76,
+      "modified_at": "2025-10-26T15:30:41.203948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "clients.twig",
+      "path": "src/clients.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 16745,
+      "line_count": 258,
+      "modified_at": "2025-10-26T15:30:41.207948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "cms/cms_customDashboards.twig",
+      "path": "src/cms/cms_customDashboards.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 2681,
+      "line_count": 62,
+      "modified_at": "2025-10-26T15:30:41.207948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "cms/cms_edit.twig",
+      "path": "src/cms/cms_edit.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 25853,
+      "line_count": 496,
+      "modified_at": "2025-10-26T15:30:41.207948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "cms/cms_edit_card.twig",
+      "path": "src/cms/cms_edit_card.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 1343,
+      "line_count": 31,
+      "modified_at": "2025-10-26T15:30:41.207948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "cms/cms_index.twig",
+      "path": "src/cms/cms_index.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 1533,
+      "line_count": 42,
+      "modified_at": "2025-10-26T15:30:41.207948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "cms/cms_list.twig",
+      "path": "src/cms/cms_list.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 22514,
+      "line_count": 365,
+      "modified_at": "2025-10-26T15:30:41.207948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "cms/cms_log.twig",
+      "path": "src/cms/cms_log.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 3010,
+      "line_count": 57,
+      "modified_at": "2025-10-26T15:30:41.207948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "cms/cms_stats.twig",
+      "path": "src/cms/cms_stats.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 4363,
+      "line_count": 90,
+      "modified_at": "2025-10-26T15:30:41.207948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "cms/customDashboards.php",
+      "path": "src/cms/customDashboards.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 754,
+      "line_count": 20,
+      "modified_at": "2025-10-26T15:30:41.207948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "cms/edit.php",
+      "path": "src/cms/edit.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1478,
+      "line_count": 26,
+      "modified_at": "2025-10-26T15:30:41.207948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "cms/index.php",
+      "path": "src/cms/index.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1692,
+      "line_count": 32,
+      "modified_at": "2025-10-26T15:30:41.207948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "cms/list.php",
+      "path": "src/cms/list.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1978,
+      "line_count": 43,
+      "modified_at": "2025-10-26T15:30:41.207948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "cms/log.php",
+      "path": "src/cms/log.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1160,
+      "line_count": 23,
+      "modified_at": "2025-10-26T15:30:41.207948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "cms/stats.php",
+      "path": "src/cms/stats.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2880,
+      "line_count": 74,
+      "modified_at": "2025-10-26T15:30:41.207948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "common/head.php",
+      "path": "src/common/head.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 12035,
+      "line_count": 275,
+      "modified_at": "2025-10-26T15:30:41.207948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "common/headSecure.php",
+      "path": "src/common/headSecure.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 9252,
+      "line_count": 131,
+      "modified_at": "2025-10-26T15:30:41.207948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "common/libs/Auth/instanceActions.php",
+      "path": "src/common/libs/Auth/instanceActions.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 60808,
+      "line_count": 1758,
+      "modified_at": "2025-10-26T15:30:41.207948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "common/libs/Auth/main.php",
+      "path": "src/common/libs/Auth/main.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 20958,
+      "line_count": 404,
+      "modified_at": "2025-10-26T15:30:41.207948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "common/libs/Auth/serverActions.php",
+      "path": "src/common/libs/Auth/serverActions.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 8684,
+      "line_count": 289,
+      "modified_at": "2025-10-26T15:30:41.207948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "common/libs/Config/Config.php",
+      "path": "src/common/libs/Config/Config.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 5636,
+      "line_count": 158,
+      "modified_at": "2025-10-26T15:30:41.207948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "common/libs/Config/configForm.twig",
+      "path": "src/common/libs/Config/configForm.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 2281,
+      "line_count": 89,
+      "modified_at": "2025-10-26T15:30:41.207948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "common/libs/Config/configStructureArray.php",
+      "path": "src/common/libs/Config/configStructureArray.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 38774,
+      "line_count": 1063,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "common/libs/Email/EmailHandler.php",
+      "path": "src/common/libs/Email/EmailHandler.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1831,
+      "line_count": 57,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "common/libs/Email/MailgunHandler.php",
+      "path": "src/common/libs/Email/MailgunHandler.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1351,
+      "line_count": 37,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "common/libs/Email/PostmarkHandler.php",
+      "path": "src/common/libs/Email/PostmarkHandler.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1042,
+      "line_count": 40,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "common/libs/Email/SMTPHandler.php",
+      "path": "src/common/libs/Email/SMTPHandler.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2028,
+      "line_count": 64,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "common/libs/Email/SendgridHandler.php",
+      "path": "src/common/libs/Email/SendgridHandler.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1069,
+      "line_count": 30,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "common/libs/Search/BaseSearch.php",
+      "path": "src/common/libs/Search/BaseSearch.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 4541,
+      "line_count": 144,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "common/libs/Search/Search.php",
+      "path": "src/common/libs/Search/Search.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1042,
+      "line_count": 42,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "common/libs/Search/SearchCMS.php",
+      "path": "src/common/libs/Search/SearchCMS.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3461,
+      "line_count": 82,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "common/libs/Search/SearchClients.php",
+      "path": "src/common/libs/Search/SearchClients.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1452,
+      "line_count": 43,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "common/libs/Search/SearchLocations.php",
+      "path": "src/common/libs/Search/SearchLocations.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1609,
+      "line_count": 42,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "common/libs/Search/SearchProjects.php",
+      "path": "src/common/libs/Search/SearchProjects.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3540,
+      "line_count": 68,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "common/libs/Search/SearchUsers.php",
+      "path": "src/common/libs/Search/SearchUsers.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1887,
+      "line_count": 46,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "common/libs/Telemetry/Telemetry.php",
+      "path": "src/common/libs/Telemetry/Telemetry.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2912,
+      "line_count": 57,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "common/libs/bCMS/bCMS.php",
+      "path": "src/common/libs/bCMS/bCMS.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 14915,
+      "line_count": 330,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "common/libs/bCMS/projectFinance.php",
+      "path": "src/common/libs/bCMS/projectFinance.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 4992,
+      "line_count": 107,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "common/libs/twigExtensions.php",
+      "path": "src/common/libs/twigExtensions.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 7062,
+      "line_count": 231,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "dashboard-cmsPage.twig",
+      "path": "src/dashboard-cmsPage.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 443,
+      "line_count": 15,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "dashboard.twig",
+      "path": "src/dashboard.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 1105,
+      "line_count": 29,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "favicon.ico",
+      "path": "src/favicon.ico",
+      "extension": ".ico",
+      "category": "other",
+      "size_bytes": 1150,
+      "line_count": 5,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "index.php",
+      "path": "src/index.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2552,
+      "line_count": 50,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "index_acceptTerms.twig",
+      "path": "src/index_acceptTerms.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 956,
+      "line_count": 32,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "index_emailVerified.twig",
+      "path": "src/index_emailVerified.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 1458,
+      "line_count": 30,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "index_forceChangePassword.twig",
+      "path": "src/index_forceChangePassword.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 130,
+      "line_count": 5,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "index_instanceBillingIssue.twig",
+      "path": "src/index_instanceBillingIssue.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 5396,
+      "line_count": 101,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "index_noInstances.twig",
+      "path": "src/index_noInstances.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 1342,
+      "line_count": 27,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/billing.php",
+      "path": "src/instances/billing.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3052,
+      "line_count": 59,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/business_calendar.twig",
+      "path": "src/instances/business_calendar.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 2870,
+      "line_count": 60,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/calendar.php",
+      "path": "src/instances/calendar.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2362,
+      "line_count": 38,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/calendarSettings.php",
+      "path": "src/instances/calendarSettings.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 413,
+      "line_count": 10,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/configuration/asset-status.php",
+      "path": "src/instances/configuration/asset-status.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 653,
+      "line_count": 15,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/configuration/barcodes.php",
+      "path": "src/instances/configuration/barcodes.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 369,
+      "line_count": 9,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/configuration/instances_configuration_asset_status.twig",
+      "path": "src/instances/configuration/instances_configuration_asset_status.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 6169,
+      "line_count": 119,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/configuration/instances_configuration_barcodes.twig",
+      "path": "src/instances/configuration/instances_configuration_barcodes.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 5250,
+      "line_count": 106,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/configuration/instances_configuration_invoices.twig",
+      "path": "src/instances/configuration/instances_configuration_invoices.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 3543,
+      "line_count": 64,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/configuration/instances_configuration_logo.twig",
+      "path": "src/instances/configuration/instances_configuration_logo.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 4306,
+      "line_count": 91,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/configuration/invoices.php",
+      "path": "src/instances/configuration/invoices.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 370,
+      "line_count": 10,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/configuration/logo.php",
+      "path": "src/instances/configuration/logo.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 353,
+      "line_count": 9,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/customCategories.php",
+      "path": "src/instances/customCategories.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 990,
+      "line_count": 20,
+      "modified_at": "2025-10-26T15:30:41.211948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/customCategories.twig",
+      "path": "src/instances/customCategories.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 23857,
+      "line_count": 382,
+      "modified_at": "2025-10-26T15:30:41.215948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/groups.php",
+      "path": "src/instances/groups.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1604,
+      "line_count": 39,
+      "modified_at": "2025-10-26T15:30:41.215948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/groups.twig",
+      "path": "src/instances/groups.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 15124,
+      "line_count": 270,
+      "modified_at": "2025-10-26T15:30:41.215948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/instances_billing.twig",
+      "path": "src/instances/instances_billing.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 5948,
+      "line_count": 106,
+      "modified_at": "2025-10-26T15:30:41.215948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/instances_calendarSettings.twig",
+      "path": "src/instances/instances_calendarSettings.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 10053,
+      "line_count": 170,
+      "modified_at": "2025-10-26T15:30:41.215948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/instances_join.twig",
+      "path": "src/instances/instances_join.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 238,
+      "line_count": 9,
+      "modified_at": "2025-10-26T15:30:41.215948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/instances_navigation.twig",
+      "path": "src/instances/instances_navigation.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 10953,
+      "line_count": 242,
+      "modified_at": "2025-10-26T15:30:41.219948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/instances_new.twig",
+      "path": "src/instances/instances_new.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 237,
+      "line_count": 9,
+      "modified_at": "2025-10-26T15:30:41.219948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/instances_permissions.twig",
+      "path": "src/instances/instances_permissions.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 7541,
+      "line_count": 188,
+      "modified_at": "2025-10-26T15:30:41.219948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/instances_public.twig",
+      "path": "src/instances/instances_public.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 4654,
+      "line_count": 83,
+      "modified_at": "2025-10-26T15:30:41.219948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/instances_settings.twig",
+      "path": "src/instances/instances_settings.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 3969,
+      "line_count": 73,
+      "modified_at": "2025-10-26T15:30:41.219948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/instances_stats.twig",
+      "path": "src/instances/instances_stats.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 680,
+      "line_count": 20,
+      "modified_at": "2025-10-26T15:30:41.219948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/instances_users.twig",
+      "path": "src/instances/instances_users.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 17990,
+      "line_count": 311,
+      "modified_at": "2025-10-26T15:30:41.219948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/join.php",
+      "path": "src/instances/join.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 206,
+      "line_count": 7,
+      "modified_at": "2025-10-26T15:30:41.219948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/navigation.php",
+      "path": "src/instances/navigation.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 220,
+      "line_count": 5,
+      "modified_at": "2025-10-26T15:30:41.219948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/new.php",
+      "path": "src/instances/new.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 353,
+      "line_count": 9,
+      "modified_at": "2025-10-26T15:30:41.219948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/permissions.php",
+      "path": "src/instances/permissions.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1313,
+      "line_count": 30,
+      "modified_at": "2025-10-26T15:30:41.219948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/projectStatuses.php",
+      "path": "src/instances/projectStatuses.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1345,
+      "line_count": 29,
+      "modified_at": "2025-10-26T15:30:41.219948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/projectStatuses.twig",
+      "path": "src/instances/projectStatuses.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 21849,
+      "line_count": 340,
+      "modified_at": "2025-10-26T15:30:41.219948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/projectTypes.php",
+      "path": "src/instances/projectTypes.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1333,
+      "line_count": 33,
+      "modified_at": "2025-10-26T15:30:41.219948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/projectTypes.twig",
+      "path": "src/instances/projectTypes.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 7827,
+      "line_count": 163,
+      "modified_at": "2025-10-26T15:30:41.219948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/public.php",
+      "path": "src/instances/public.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 479,
+      "line_count": 13,
+      "modified_at": "2025-10-26T15:30:41.219948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/settings.php",
+      "path": "src/instances/settings.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 611,
+      "line_count": 15,
+      "modified_at": "2025-10-26T15:30:41.219948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/signupCodes.php",
+      "path": "src/instances/signupCodes.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1227,
+      "line_count": 28,
+      "modified_at": "2025-10-26T15:30:41.219948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/signupCodes.twig",
+      "path": "src/instances/signupCodes.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 15524,
+      "line_count": 294,
+      "modified_at": "2025-10-26T15:30:41.219948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/stats.php",
+      "path": "src/instances/stats.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 410,
+      "line_count": 11,
+      "modified_at": "2025-10-26T15:30:41.219948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/trustedDomains.php",
+      "path": "src/instances/trustedDomains.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 732,
+      "line_count": 17,
+      "modified_at": "2025-10-26T15:30:41.219948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/trustedDomains.twig",
+      "path": "src/instances/trustedDomains.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 3744,
+      "line_count": 71,
+      "modified_at": "2025-10-26T15:30:41.219948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "instances/users.php",
+      "path": "src/instances/users.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2553,
+      "line_count": 44,
+      "modified_at": "2025-10-26T15:30:41.219948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "ledger.php",
+      "path": "src/ledger.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1751,
+      "line_count": 38,
+      "modified_at": "2025-10-26T15:30:41.219948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "ledger.twig",
+      "path": "src/ledger.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 7025,
+      "line_count": 130,
+      "modified_at": "2025-10-26T15:30:41.219948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "location/barcode.php",
+      "path": "src/location/barcode.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 920,
+      "line_count": 19,
+      "modified_at": "2025-10-26T15:30:41.219948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "location/index.php",
+      "path": "src/location/index.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 4011,
+      "line_count": 89,
+      "modified_at": "2025-10-26T15:30:41.219948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "location/location_barcode.twig",
+      "path": "src/location/location_barcode.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 1006,
+      "line_count": 26,
+      "modified_at": "2025-10-26T15:30:41.219948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "location/location_files.twig",
+      "path": "src/location/location_files.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 1090,
+      "line_count": 33,
+      "modified_at": "2025-10-26T15:30:41.219948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "location/location_index.twig",
+      "path": "src/location/location_index.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 23173,
+      "line_count": 385,
+      "modified_at": "2025-10-26T15:30:41.219948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "login/error.twig",
+      "path": "src/login/error.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 154,
+      "line_count": 5,
+      "modified_at": "2025-10-26T15:30:41.219948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "login/index.php",
+      "path": "src/login/index.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2049,
+      "line_count": 44,
+      "modified_at": "2025-10-26T15:30:41.219948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "login/login.twig",
+      "path": "src/login/login.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 4911,
+      "line_count": 87,
+      "modified_at": "2025-10-26T15:30:41.219948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "login/login_template.twig",
+      "path": "src/login/login_template.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 6763,
+      "line_count": 185,
+      "modified_at": "2025-10-26T15:30:41.219948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "login/magicLink.twig",
+      "path": "src/login/magicLink.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 1774,
+      "line_count": 42,
+      "modified_at": "2025-10-26T15:30:41.223948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "login/oauth/google.php",
+      "path": "src/login/oauth/google.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 6116,
+      "line_count": 132,
+      "modified_at": "2025-10-26T15:30:41.223948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "login/oauth/microsoft.php",
+      "path": "src/login/oauth/microsoft.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 4643,
+      "line_count": 105,
+      "modified_at": "2025-10-26T15:30:41.223948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "login/signup.twig",
+      "path": "src/login/signup.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 5723,
+      "line_count": 96,
+      "modified_at": "2025-10-26T15:30:41.223948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "maintenance/barcode.php",
+      "path": "src/maintenance/barcode.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 315,
+      "line_count": 8,
+      "modified_at": "2025-10-26T15:30:41.223948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "maintenance/barcode.twig",
+      "path": "src/maintenance/barcode.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 28355,
+      "line_count": 542,
+      "modified_at": "2025-10-26T15:30:41.223948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "maintenance/barcodeGenerator.php",
+      "path": "src/maintenance/barcodeGenerator.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 4369,
+      "line_count": 70,
+      "modified_at": "2025-10-26T15:30:41.223948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "maintenance/barcodeGenerator.twig",
+      "path": "src/maintenance/barcodeGenerator.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 13514,
+      "line_count": 248,
+      "modified_at": "2025-10-26T15:30:41.223948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "maintenance/barcodePrint-table.twig",
+      "path": "src/maintenance/barcodePrint-table.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 1060,
+      "line_count": 37,
+      "modified_at": "2025-10-26T15:30:41.223948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "maintenance/barcodePrint.php",
+      "path": "src/maintenance/barcodePrint.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 4733,
+      "line_count": 94,
+      "modified_at": "2025-10-26T15:30:41.223948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "maintenance/barcodePrint.twig",
+      "path": "src/maintenance/barcodePrint.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 1071,
+      "line_count": 45,
+      "modified_at": "2025-10-26T15:30:41.223948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "maintenance/index.php",
+      "path": "src/maintenance/index.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2401,
+      "line_count": 30,
+      "modified_at": "2025-10-26T15:30:41.223948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "maintenance/individualBarcode.twig",
+      "path": "src/maintenance/individualBarcode.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 6017,
+      "line_count": 107,
+      "modified_at": "2025-10-26T15:30:41.223948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "maintenance/job.php",
+      "path": "src/maintenance/job.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 6934,
+      "line_count": 103,
+      "modified_at": "2025-10-26T15:30:41.223948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "maintenance/job.twig",
+      "path": "src/maintenance/job.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 39464,
+      "line_count": 695,
+      "modified_at": "2025-10-26T15:30:41.223948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "maintenance/maintenance_index.twig",
+      "path": "src/maintenance/maintenance_index.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 7247,
+      "line_count": 155,
+      "modified_at": "2025-10-26T15:30:41.223948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "maintenance/maintenance_newJob.twig",
+      "path": "src/maintenance/maintenance_newJob.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 4694,
+      "line_count": 97,
+      "modified_at": "2025-10-26T15:30:41.223948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "manufacturers.php",
+      "path": "src/manufacturers.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1857,
+      "line_count": 40,
+      "modified_at": "2025-10-26T15:30:41.223948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "manufacturers.twig",
+      "path": "src/manufacturers.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 3437,
+      "line_count": 68,
+      "modified_at": "2025-10-26T15:30:41.223948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "newAsset.php",
+      "path": "src/newAsset.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1854,
+      "line_count": 34,
+      "modified_at": "2025-10-26T15:30:41.223948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "newAsset.twig",
+      "path": "src/newAsset.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 20015,
+      "line_count": 371,
+      "modified_at": "2025-10-26T15:30:41.223948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "project/crew/applications.php",
+      "path": "src/project/crew/applications.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2928,
+      "line_count": 47,
+      "modified_at": "2025-10-26T15:30:41.223948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "project/crew/applications.twig",
+      "path": "src/project/crew/applications.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 8715,
+      "line_count": 159,
+      "modified_at": "2025-10-26T15:30:41.227948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "project/crew/vacancies.php",
+      "path": "src/project/crew/vacancies.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3079,
+      "line_count": 45,
+      "modified_at": "2025-10-26T15:30:41.227948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "project/crew/vacancies.twig",
+      "path": "src/project/crew/vacancies.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 7558,
+      "line_count": 163,
+      "modified_at": "2025-10-26T15:30:41.227948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "project/crew/vacancy.php",
+      "path": "src/project/crew/vacancy.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3436,
+      "line_count": 46,
+      "modified_at": "2025-10-26T15:30:41.227948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "project/crew/vacancy.twig",
+      "path": "src/project/crew/vacancy.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 13401,
+      "line_count": 247,
+      "modified_at": "2025-10-26T15:30:41.227948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "project/crew/vacantCrew.php",
+      "path": "src/project/crew/vacantCrew.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 3238,
+      "line_count": 55,
+      "modified_at": "2025-10-26T15:30:41.227948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "project/crew/vacantCrew.twig",
+      "path": "src/project/crew/vacantCrew.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 24450,
+      "line_count": 359,
+      "modified_at": "2025-10-26T15:30:41.227948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "project/export-note.twig",
+      "path": "src/project/export-note.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 989,
+      "line_count": 40,
+      "modified_at": "2025-10-26T15:30:41.227948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "project/index.php",
+      "path": "src/project/index.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 9291,
+      "line_count": 152,
+      "modified_at": "2025-10-26T15:30:41.227948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "project/list.php",
+      "path": "src/project/list.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 5736,
+      "line_count": 89,
+      "modified_at": "2025-10-26T15:30:41.227948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "project/new.php",
+      "path": "src/project/new.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1483,
+      "line_count": 27,
+      "modified_at": "2025-10-26T15:30:41.227948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "project/noteExport.php",
+      "path": "src/project/noteExport.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 726,
+      "line_count": 17,
+      "modified_at": "2025-10-26T15:30:41.227948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "project/pdf.twig",
+      "path": "src/project/pdf.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 33744,
+      "line_count": 568,
+      "modified_at": "2025-10-26T15:30:41.227948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "project/projectInvoice.php",
+      "path": "src/project/projectInvoice.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1458,
+      "line_count": 42,
+      "modified_at": "2025-10-26T15:30:41.227948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "project/project_assets.twig",
+      "path": "src/project/project_assets.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 21059,
+      "line_count": 371,
+      "modified_at": "2025-10-26T15:30:41.231948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "project/project_assetsBoard.twig",
+      "path": "src/project/project_assetsBoard.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 15521,
+      "line_count": 280,
+      "modified_at": "2025-10-26T15:30:41.231948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "project/project_assetsPage.twig",
+      "path": "src/project/project_assetsPage.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 131,
+      "line_count": 4,
+      "modified_at": "2025-10-26T15:30:41.231948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "project/project_crew.twig",
+      "path": "src/project/project_crew.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 7317,
+      "line_count": 121,
+      "modified_at": "2025-10-26T15:30:41.231948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "project/project_files.twig",
+      "path": "src/project/project_files.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 7432,
+      "line_count": 200,
+      "modified_at": "2025-10-26T15:30:41.231948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "project/project_finance.twig",
+      "path": "src/project/project_finance.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 12399,
+      "line_count": 341,
+      "modified_at": "2025-10-26T15:30:41.231948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "project/project_index.twig",
+      "path": "src/project/project_index.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 103343,
+      "line_count": 1697,
+      "modified_at": "2025-10-26T15:30:41.231948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "project/project_list.twig",
+      "path": "src/project/project_list.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 11086,
+      "line_count": 197,
+      "modified_at": "2025-10-26T15:30:41.231948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "project/project_log.twig",
+      "path": "src/project/project_log.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 3681,
+      "line_count": 58,
+      "modified_at": "2025-10-26T15:30:41.231948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "project/project_new.twig",
+      "path": "src/project/project_new.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 6546,
+      "line_count": 150,
+      "modified_at": "2025-10-26T15:30:41.231948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "project/twigIncludes/assetBoard/board.twig",
+      "path": "src/project/twigIncludes/assetBoard/board.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 1986,
+      "line_count": 26,
+      "modified_at": "2025-10-26T15:30:41.231948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "project/twigIncludes/assetList/table.twig",
+      "path": "src/project/twigIncludes/assetList/table.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 873,
+      "line_count": 30,
+      "modified_at": "2025-10-26T15:30:41.231948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "project/twigIncludes/assetList/tableItem.twig",
+      "path": "src/project/twigIncludes/assetList/tableItem.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 5387,
+      "line_count": 76,
+      "modified_at": "2025-10-26T15:30:41.231948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "project/twigIncludes/assetList/tableItemPDF.twig",
+      "path": "src/project/twigIncludes/assetList/tableItemPDF.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 3721,
+      "line_count": 59,
+      "modified_at": "2025-10-26T15:30:41.231948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "public/embed/head.php",
+      "path": "src/public/embed/head.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 647,
+      "line_count": 12,
+      "modified_at": "2025-10-26T15:30:41.231948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "public/embed/jobs.php",
+      "path": "src/public/embed/jobs.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2560,
+      "line_count": 41,
+      "modified_at": "2025-10-26T15:30:41.231948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "public/embed/jobsPublic.twig",
+      "path": "src/public/embed/jobsPublic.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 7314,
+      "line_count": 166,
+      "modified_at": "2025-10-26T15:30:41.231948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "public/embed/templatePublic.twig",
+      "path": "src/public/embed/templatePublic.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 5544,
+      "line_count": 77,
+      "modified_at": "2025-10-26T15:30:41.231948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "search.php",
+      "path": "src/search.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2230,
+      "line_count": 65,
+      "modified_at": "2025-10-26T15:30:41.231948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "search.twig",
+      "path": "src/search.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 6339,
+      "line_count": 116,
+      "modified_at": "2025-10-26T15:30:41.231948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "server/analytics/analytics_index.twig",
+      "path": "src/server/analytics/analytics_index.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 1565,
+      "line_count": 38,
+      "modified_at": "2025-10-26T15:30:41.231948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "server/analytics/index.php",
+      "path": "src/server/analytics/index.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 417,
+      "line_count": 14,
+      "modified_at": "2025-10-26T15:30:41.231948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "server/analytics/pageViews.php",
+      "path": "src/server/analytics/pageViews.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1902,
+      "line_count": 30,
+      "modified_at": "2025-10-26T15:30:41.231948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "server/analytics/pageViews.twig",
+      "path": "src/server/analytics/pageViews.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 4337,
+      "line_count": 201,
+      "modified_at": "2025-10-26T15:30:41.231948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "server/analytics/tables.php",
+      "path": "src/server/analytics/tables.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1393,
+      "line_count": 26,
+      "modified_at": "2025-10-26T15:30:41.231948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "server/analytics/tables.twig",
+      "path": "src/server/analytics/tables.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 1477,
+      "line_count": 36,
+      "modified_at": "2025-10-26T15:30:41.231948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "server/auditLog.php",
+      "path": "src/server/auditLog.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2145,
+      "line_count": 47,
+      "modified_at": "2025-10-26T15:30:41.231948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "server/auditLog.twig",
+      "path": "src/server/auditLog.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 5689,
+      "line_count": 103,
+      "modified_at": "2025-10-26T15:30:41.231948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "server/config.php",
+      "path": "src/server/config.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 617,
+      "line_count": 18,
+      "modified_at": "2025-10-26T15:30:41.235948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "server/config.twig",
+      "path": "src/server/config.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 4472,
+      "line_count": 80,
+      "modified_at": "2025-10-26T15:30:41.235948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "server/import.php",
+      "path": "src/server/import.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1136,
+      "line_count": 20,
+      "modified_at": "2025-10-26T15:30:41.235948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "server/import_asset.twig",
+      "path": "src/server/import_asset.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 7383,
+      "line_count": 160,
+      "modified_at": "2025-10-26T15:30:41.235948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "server/instances.php",
+      "path": "src/server/instances.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 5332,
+      "line_count": 98,
+      "modified_at": "2025-10-26T15:30:41.235948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "server/instances.twig",
+      "path": "src/server/instances.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 28137,
+      "line_count": 399,
+      "modified_at": "2025-10-26T15:30:41.235948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "server/permissions.php",
+      "path": "src/server/permissions.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 1066,
+      "line_count": 31,
+      "modified_at": "2025-10-26T15:30:41.235948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "server/permissions.twig",
+      "path": "src/server/permissions.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 3886,
+      "line_count": 122,
+      "modified_at": "2025-10-26T15:30:41.235948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "server/users.php",
+      "path": "src/server/users.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 2734,
+      "line_count": 51,
+      "modified_at": "2025-10-26T15:30:41.235948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "server/users.twig",
+      "path": "src/server/users.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 19198,
+      "line_count": 308,
+      "modified_at": "2025-10-26T15:30:41.235948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/css/adminlte.css",
+      "path": "src/static-assets/css/adminlte.css",
+      "extension": ".css",
+      "category": "stylesheet",
+      "size_bytes": 1545097,
+      "line_count": 52419,
+      "modified_at": "2025-10-26T15:30:41.251948+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/css/adminlte.css.map",
+      "path": "src/static-assets/css/adminlte.css.map",
+      "extension": ".map",
+      "category": "other",
+      "size_bytes": 2355822,
+      "line_count": null,
+      "modified_at": "2025-10-26T15:30:41.303947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/css/adminlte.min.css",
+      "path": "src/static-assets/css/adminlte.min.css",
+      "extension": ".css",
+      "category": "stylesheet",
+      "size_bytes": 1382975,
+      "line_count": 12,
+      "modified_at": "2025-10-26T15:30:41.311947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/css/adminlte.min.css.map",
+      "path": "src/static-assets/css/adminlte.min.css.map",
+      "extension": ".map",
+      "category": "other",
+      "size_bytes": 3783134,
+      "line_count": null,
+      "modified_at": "2025-10-26T15:30:41.347947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/css/alt/adminlte.components.css",
+      "path": "src/static-assets/css/alt/adminlte.components.css",
+      "extension": ".css",
+      "category": "stylesheet",
+      "size_bytes": 388093,
+      "line_count": 12084,
+      "modified_at": "2025-10-26T15:30:41.347947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/css/alt/adminlte.components.css.map",
+      "path": "src/static-assets/css/alt/adminlte.components.css.map",
+      "extension": ".map",
+      "category": "other",
+      "size_bytes": 590460,
+      "line_count": null,
+      "modified_at": "2025-10-26T15:30:41.351947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/css/alt/adminlte.components.min.css",
+      "path": "src/static-assets/css/alt/adminlte.components.min.css",
+      "extension": ".css",
+      "category": "stylesheet",
+      "size_bytes": 353559,
+      "line_count": 8,
+      "modified_at": "2025-10-26T15:30:41.351947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/css/alt/adminlte.components.min.css.map",
+      "path": "src/static-assets/css/alt/adminlte.components.min.css.map",
+      "extension": ".map",
+      "category": "other",
+      "size_bytes": 937244,
+      "line_count": null,
+      "modified_at": "2025-10-26T15:30:41.355947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/css/alt/adminlte.core.css",
+      "path": "src/static-assets/css/alt/adminlte.core.css",
+      "extension": ".css",
+      "category": "stylesheet",
+      "size_bytes": 804455,
+      "line_count": 29556,
+      "modified_at": "2025-10-26T15:30:41.367947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/css/alt/adminlte.core.css.map",
+      "path": "src/static-assets/css/alt/adminlte.core.css.map",
+      "extension": ".map",
+      "category": "other",
+      "size_bytes": 1319136,
+      "line_count": null,
+      "modified_at": "2025-10-26T15:30:41.395947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/css/alt/adminlte.core.min.css",
+      "path": "src/static-assets/css/alt/adminlte.core.min.css",
+      "extension": ".css",
+      "category": "stylesheet",
+      "size_bytes": 707477,
+      "line_count": 13,
+      "modified_at": "2025-10-26T15:30:41.403947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/css/alt/adminlte.core.min.css.map",
+      "path": "src/static-assets/css/alt/adminlte.core.min.css.map",
+      "extension": ".map",
+      "category": "other",
+      "size_bytes": 2002623,
+      "line_count": null,
+      "modified_at": "2025-10-26T15:30:41.419947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/css/alt/adminlte.extra-components.css",
+      "path": "src/static-assets/css/alt/adminlte.extra-components.css",
+      "extension": ".css",
+      "category": "stylesheet",
+      "size_bytes": 40642,
+      "line_count": 1763,
+      "modified_at": "2025-10-26T15:30:41.419947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/css/alt/adminlte.extra-components.css.map",
+      "path": "src/static-assets/css/alt/adminlte.extra-components.css.map",
+      "extension": ".map",
+      "category": "other",
+      "size_bytes": 136216,
+      "line_count": 1,
+      "modified_at": "2025-10-26T15:30:41.419947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/css/alt/adminlte.extra-components.min.css",
+      "path": "src/static-assets/css/alt/adminlte.extra-components.min.css",
+      "extension": ".css",
+      "category": "stylesheet",
+      "size_bytes": 34528,
+      "line_count": 8,
+      "modified_at": "2025-10-26T15:30:41.419947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/css/alt/adminlte.extra-components.min.css.map",
+      "path": "src/static-assets/css/alt/adminlte.extra-components.min.css.map",
+      "extension": ".map",
+      "category": "other",
+      "size_bytes": 89230,
+      "line_count": 1,
+      "modified_at": "2025-10-26T15:30:41.419947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/css/alt/adminlte.pages.css",
+      "path": "src/static-assets/css/alt/adminlte.pages.css",
+      "extension": ".css",
+      "category": "stylesheet",
+      "size_bytes": 20096,
+      "line_count": 968,
+      "modified_at": "2025-10-26T15:30:41.419947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/css/alt/adminlte.pages.css.map",
+      "path": "src/static-assets/css/alt/adminlte.pages.css.map",
+      "extension": ".map",
+      "category": "other",
+      "size_bytes": 102397,
+      "line_count": 1,
+      "modified_at": "2025-10-26T15:30:41.419947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/css/alt/adminlte.pages.min.css",
+      "path": "src/static-assets/css/alt/adminlte.pages.min.css",
+      "extension": ".css",
+      "category": "stylesheet",
+      "size_bytes": 16685,
+      "line_count": 8,
+      "modified_at": "2025-10-26T15:30:41.423947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/css/alt/adminlte.pages.min.css.map",
+      "path": "src/static-assets/css/alt/adminlte.pages.min.css.map",
+      "extension": ".map",
+      "category": "other",
+      "size_bytes": 59754,
+      "line_count": 1,
+      "modified_at": "2025-10-26T15:30:41.423947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/css/alt/adminlte.plugins.css",
+      "path": "src/static-assets/css/alt/adminlte.plugins.css",
+      "extension": ".css",
+      "category": "stylesheet",
+      "size_bytes": 315919,
+      "line_count": 9082,
+      "modified_at": "2025-10-26T15:30:41.423947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/css/alt/adminlte.plugins.css.map",
+      "path": "src/static-assets/css/alt/adminlte.plugins.css.map",
+      "extension": ".map",
+      "category": "other",
+      "size_bytes": 483754,
+      "line_count": 1,
+      "modified_at": "2025-10-26T15:30:41.427947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/css/alt/adminlte.plugins.min.css",
+      "path": "src/static-assets/css/alt/adminlte.plugins.min.css",
+      "extension": ".css",
+      "category": "stylesheet",
+      "size_bytes": 289450,
+      "line_count": 8,
+      "modified_at": "2025-10-26T15:30:41.427947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/css/alt/adminlte.plugins.min.css.map",
+      "path": "src/static-assets/css/alt/adminlte.plugins.min.css.map",
+      "extension": ".map",
+      "category": "other",
+      "size_bytes": 432156,
+      "line_count": 1,
+      "modified_at": "2025-10-26T15:30:41.431947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/img/emailHeader/logo-emailHeaderWhite.png",
+      "path": "src/static-assets/img/emailHeader/logo-emailHeaderWhite.png",
+      "extension": ".png",
+      "category": "other",
+      "size_bytes": 14189,
+      "line_count": 134,
+      "modified_at": "2025-10-26T15:30:41.431947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/img/icons/android-icon-144x144.png",
+      "path": "src/static-assets/img/icons/android-icon-144x144.png",
+      "extension": ".png",
+      "category": "other",
+      "size_bytes": 11834,
+      "line_count": 99,
+      "modified_at": "2025-10-26T15:30:41.431947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/img/icons/android-icon-192x192.png",
+      "path": "src/static-assets/img/icons/android-icon-192x192.png",
+      "extension": ".png",
+      "category": "other",
+      "size_bytes": 12014,
+      "line_count": 106,
+      "modified_at": "2025-10-26T15:30:41.431947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/img/icons/android-icon-36x36.png",
+      "path": "src/static-assets/img/icons/android-icon-36x36.png",
+      "extension": ".png",
+      "category": "other",
+      "size_bytes": 2949,
+      "line_count": 34,
+      "modified_at": "2025-10-26T15:30:41.431947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/img/icons/android-icon-48x48.png",
+      "path": "src/static-assets/img/icons/android-icon-48x48.png",
+      "extension": ".png",
+      "category": "other",
+      "size_bytes": 4186,
+      "line_count": 34,
+      "modified_at": "2025-10-26T15:30:41.431947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/img/icons/android-icon-72x72.png",
+      "path": "src/static-assets/img/icons/android-icon-72x72.png",
+      "extension": ".png",
+      "category": "other",
+      "size_bytes": 6187,
+      "line_count": 39,
+      "modified_at": "2025-10-26T15:30:41.431947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/img/icons/android-icon-96x96.png",
+      "path": "src/static-assets/img/icons/android-icon-96x96.png",
+      "extension": ".png",
+      "category": "other",
+      "size_bytes": 8333,
+      "line_count": 85,
+      "modified_at": "2025-10-26T15:30:41.431947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/img/icons/apple-icon-114x114.png",
+      "path": "src/static-assets/img/icons/apple-icon-114x114.png",
+      "extension": ".png",
+      "category": "other",
+      "size_bytes": 9620,
+      "line_count": 60,
+      "modified_at": "2025-10-26T15:30:41.431947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/img/icons/apple-icon-120x120.png",
+      "path": "src/static-assets/img/icons/apple-icon-120x120.png",
+      "extension": ".png",
+      "category": "other",
+      "size_bytes": 10032,
+      "line_count": 71,
+      "modified_at": "2025-10-26T15:30:41.431947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/img/icons/apple-icon-144x144.png",
+      "path": "src/static-assets/img/icons/apple-icon-144x144.png",
+      "extension": ".png",
+      "category": "other",
+      "size_bytes": 11834,
+      "line_count": 99,
+      "modified_at": "2025-10-26T15:30:41.431947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/img/icons/apple-icon-152x152.png",
+      "path": "src/static-assets/img/icons/apple-icon-152x152.png",
+      "extension": ".png",
+      "category": "other",
+      "size_bytes": 12539,
+      "line_count": 102,
+      "modified_at": "2025-10-26T15:30:41.431947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/img/icons/apple-icon-180x180.png",
+      "path": "src/static-assets/img/icons/apple-icon-180x180.png",
+      "extension": ".png",
+      "category": "other",
+      "size_bytes": 15037,
+      "line_count": 132,
+      "modified_at": "2025-10-26T15:30:41.435946+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/img/icons/apple-icon-57x57.png",
+      "path": "src/static-assets/img/icons/apple-icon-57x57.png",
+      "extension": ".png",
+      "category": "other",
+      "size_bytes": 5002,
+      "line_count": 34,
+      "modified_at": "2025-10-26T15:30:41.435946+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/img/icons/apple-icon-60x60.png",
+      "path": "src/static-assets/img/icons/apple-icon-60x60.png",
+      "extension": ".png",
+      "category": "other",
+      "size_bytes": 5362,
+      "line_count": 40,
+      "modified_at": "2025-10-26T15:30:41.435946+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/img/icons/apple-icon-72x72.png",
+      "path": "src/static-assets/img/icons/apple-icon-72x72.png",
+      "extension": ".png",
+      "category": "other",
+      "size_bytes": 6187,
+      "line_count": 39,
+      "modified_at": "2025-10-26T15:30:41.435946+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/img/icons/apple-icon-76x76.png",
+      "path": "src/static-assets/img/icons/apple-icon-76x76.png",
+      "extension": ".png",
+      "category": "other",
+      "size_bytes": 6575,
+      "line_count": 45,
+      "modified_at": "2025-10-26T15:30:41.435946+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/img/icons/apple-icon-precomposed.png",
+      "path": "src/static-assets/img/icons/apple-icon-precomposed.png",
+      "extension": ".png",
+      "category": "other",
+      "size_bytes": 12590,
+      "line_count": 107,
+      "modified_at": "2025-10-26T15:30:41.435946+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/img/icons/apple-icon.png",
+      "path": "src/static-assets/img/icons/apple-icon.png",
+      "extension": ".png",
+      "category": "other",
+      "size_bytes": 12590,
+      "line_count": 107,
+      "modified_at": "2025-10-26T15:30:41.435946+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/img/icons/browserconfig-disabled.xml",
+      "path": "src/static-assets/img/icons/browserconfig-disabled.xml",
+      "extension": ".xml",
+      "category": "xml",
+      "size_bytes": 281,
+      "line_count": 2,
+      "modified_at": "2025-10-26T15:30:41.435946+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/img/icons/favicon-16x16.png",
+      "path": "src/static-assets/img/icons/favicon-16x16.png",
+      "extension": ".png",
+      "category": "other",
+      "size_bytes": 1619,
+      "line_count": 9,
+      "modified_at": "2025-10-26T15:30:41.435946+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/img/icons/favicon-32x32.png",
+      "path": "src/static-assets/img/icons/favicon-32x32.png",
+      "extension": ".png",
+      "category": "other",
+      "size_bytes": 2595,
+      "line_count": 15,
+      "modified_at": "2025-10-26T15:30:41.435946+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/img/icons/favicon-96x96.png",
+      "path": "src/static-assets/img/icons/favicon-96x96.png",
+      "extension": ".png",
+      "category": "other",
+      "size_bytes": 8333,
+      "line_count": 85,
+      "modified_at": "2025-10-26T15:30:41.435946+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/img/icons/favicon.ico",
+      "path": "src/static-assets/img/icons/favicon.ico",
+      "extension": ".ico",
+      "category": "other",
+      "size_bytes": 1150,
+      "line_count": 5,
+      "modified_at": "2025-10-26T15:30:41.435946+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/img/icons/manifest-disabled.json",
+      "path": "src/static-assets/img/icons/manifest-disabled.json",
+      "extension": ".json",
+      "category": "json",
+      "size_bytes": 720,
+      "line_count": 41,
+      "modified_at": "2025-10-26T15:30:41.435946+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/img/icons/ms-icon-144x144.png",
+      "path": "src/static-assets/img/icons/ms-icon-144x144.png",
+      "extension": ".png",
+      "category": "other",
+      "size_bytes": 11834,
+      "line_count": 99,
+      "modified_at": "2025-10-26T15:30:41.435946+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/img/icons/ms-icon-150x150.png",
+      "path": "src/static-assets/img/icons/ms-icon-150x150.png",
+      "extension": ".png",
+      "category": "other",
+      "size_bytes": 12261,
+      "line_count": 93,
+      "modified_at": "2025-10-26T15:30:41.435946+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/img/icons/ms-icon-310x310.png",
+      "path": "src/static-assets/img/icons/ms-icon-310x310.png",
+      "extension": ".png",
+      "category": "other",
+      "size_bytes": 32607,
+      "line_count": 231,
+      "modified_at": "2025-10-26T15:30:41.435946+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/img/icons/ms-icon-70x70.png",
+      "path": "src/static-assets/img/icons/ms-icon-70x70.png",
+      "extension": ".png",
+      "category": "other",
+      "size_bytes": 6223,
+      "line_count": 50,
+      "modified_at": "2025-10-26T15:30:41.435946+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/img/login/google.svg",
+      "path": "src/static-assets/img/login/google.svg",
+      "extension": ".svg",
+      "category": "other",
+      "size_bytes": 742,
+      "line_count": 1,
+      "modified_at": "2025-10-26T15:30:41.435946+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/img/login/logo.svg",
+      "path": "src/static-assets/img/login/logo.svg",
+      "extension": ".svg",
+      "category": "other",
+      "size_bytes": 31784,
+      "line_count": 368,
+      "modified_at": "2025-10-26T15:30:41.435946+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/img/login/microsoft.svg",
+      "path": "src/static-assets/img/login/microsoft.svg",
+      "extension": ".svg",
+      "category": "other",
+      "size_bytes": 232,
+      "line_count": 1,
+      "modified_at": "2025-10-26T15:30:41.435946+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/img/logo.png",
+      "path": "src/static-assets/img/logo.png",
+      "extension": ".png",
+      "category": "other",
+      "size_bytes": 8335,
+      "line_count": 106,
+      "modified_at": "2025-10-26T15:30:41.435946+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/img/logoicon-white.png",
+      "path": "src/static-assets/img/logoicon-white.png",
+      "extension": ".png",
+      "category": "other",
+      "size_bytes": 3865,
+      "line_count": 65,
+      "modified_at": "2025-10-26T15:30:41.435946+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/img/logoicon.png",
+      "path": "src/static-assets/img/logoicon.png",
+      "extension": ".png",
+      "category": "other",
+      "size_bytes": 3562,
+      "line_count": 64,
+      "modified_at": "2025-10-26T15:30:41.435946+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/img/logosmall.png",
+      "path": "src/static-assets/img/logosmall.png",
+      "extension": ".png",
+      "category": "other",
+      "size_bytes": 11530,
+      "line_count": 138,
+      "modified_at": "2025-10-26T15:30:41.435946+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/js/adminlte.js",
+      "path": "src/static-assets/js/adminlte.js",
+      "extension": ".js",
+      "category": "javascript",
+      "size_bytes": 99945,
+      "line_count": 2962,
+      "modified_at": "2025-10-26T15:30:41.435946+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/js/adminlte.js.map",
+      "path": "src/static-assets/js/adminlte.js.map",
+      "extension": ".map",
+      "category": "other",
+      "size_bytes": 171653,
+      "line_count": 1,
+      "modified_at": "2025-10-26T15:30:41.439947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/js/adminlte.min.js",
+      "path": "src/static-assets/js/adminlte.min.js",
+      "extension": ".js",
+      "category": "javascript",
+      "size_bytes": 44244,
+      "line_count": 7,
+      "modified_at": "2025-10-26T15:30:41.439947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/js/adminlte.min.js.map",
+      "path": "src/static-assets/js/adminlte.min.js.map",
+      "extension": ".map",
+      "category": "other",
+      "size_bytes": 129651,
+      "line_count": 1,
+      "modified_at": "2025-10-26T15:30:41.439947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/libs/gridstrap/jquery.gridstrap.css",
+      "path": "src/static-assets/libs/gridstrap/jquery.gridstrap.css",
+      "extension": ".css",
+      "category": "stylesheet",
+      "size_bytes": 730,
+      "line_count": 29,
+      "modified_at": "2025-10-26T15:30:41.439947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/libs/gridstrap/jquery.gridstrap.js",
+      "path": "src/static-assets/libs/gridstrap/jquery.gridstrap.js",
+      "extension": ".js",
+      "category": "javascript",
+      "size_bytes": 62893,
+      "line_count": 1653,
+      "modified_at": "2025-10-26T15:30:41.439947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/libs/gridstrap/jquery.gridstrap.min.css",
+      "path": "src/static-assets/libs/gridstrap/jquery.gridstrap.min.css",
+      "extension": ".css",
+      "category": "stylesheet",
+      "size_bytes": 645,
+      "line_count": 10,
+      "modified_at": "2025-10-26T15:30:41.439947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/libs/gridstrap/jquery.gridstrap.min.js",
+      "path": "src/static-assets/libs/gridstrap/jquery.gridstrap.min.js",
+      "extension": ".js",
+      "category": "javascript",
+      "size_bytes": 27260,
+      "line_count": 12,
+      "modified_at": "2025-10-26T15:30:41.439947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/libs/gridstrap/jquery.gridstrap.min.js.map",
+      "path": "src/static-assets/libs/gridstrap/jquery.gridstrap.min.js.map",
+      "extension": ".map",
+      "category": "other",
+      "size_bytes": 33827,
+      "line_count": 1,
+      "modified_at": "2025-10-26T15:30:41.439947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/libs/invert-color/invert.min.js",
+      "path": "src/static-assets/libs/invert-color/invert.min.js",
+      "extension": ".js",
+      "category": "javascript",
+      "size_bytes": 1437,
+      "line_count": 2,
+      "modified_at": "2025-10-26T15:30:41.439947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/libs/pace/pace.css",
+      "path": "src/static-assets/libs/pace/pace.css",
+      "extension": ".css",
+      "category": "stylesheet",
+      "size_bytes": 3382,
+      "line_count": 146,
+      "modified_at": "2025-10-26T15:30:41.439947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/libs/select2-bootstrap4/select2-bootstrap4.min.css",
+      "path": "src/static-assets/libs/select2-bootstrap4/select2-bootstrap4.min.css",
+      "extension": ".css",
+      "category": "stylesheet",
+      "size_bytes": 5158,
+      "line_count": 1,
+      "modified_at": "2025-10-26T15:30:41.439947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/libs/sweetalert2/sweetAlert2-bootstrap-4.min.css",
+      "path": "src/static-assets/libs/sweetalert2/sweetAlert2-bootstrap-4.min.css",
+      "extension": ".css",
+      "category": "stylesheet",
+      "size_bytes": 33990,
+      "line_count": 1,
+      "modified_at": "2025-10-26T15:30:41.439947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "static-assets/libs/zxing-js/v0.21.min.js",
+      "path": "src/static-assets/libs/zxing-js/v0.21.min.js",
+      "extension": ".js",
+      "category": "javascript",
+      "size_bytes": 335967,
+      "line_count": 1,
+      "modified_at": "2025-10-26T15:30:41.443947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "training/index.php",
+      "path": "src/training/index.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 5786,
+      "line_count": 105,
+      "modified_at": "2025-10-26T15:30:41.443947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "training/module.php",
+      "path": "src/training/module.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 6367,
+      "line_count": 109,
+      "modified_at": "2025-10-26T15:30:41.443947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "training/training_modules.twig",
+      "path": "src/training/training_modules.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 15501,
+      "line_count": 248,
+      "modified_at": "2025-10-26T15:30:41.443947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "training/training_progress.twig",
+      "path": "src/training/training_progress.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 5540,
+      "line_count": 116,
+      "modified_at": "2025-10-26T15:30:41.443947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "training/training_steps.twig",
+      "path": "src/training/training_steps.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 18452,
+      "line_count": 301,
+      "modified_at": "2025-10-26T15:30:41.443947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "training/training_users.twig",
+      "path": "src/training/training_users.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 8842,
+      "line_count": 157,
+      "modified_at": "2025-10-26T15:30:41.443947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "training/types/1.twig",
+      "path": "src/training/types/1.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 169,
+      "line_count": 7,
+      "modified_at": "2025-10-26T15:30:41.443947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "training/types/2.twig",
+      "path": "src/training/types/2.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 147,
+      "line_count": 7,
+      "modified_at": "2025-10-26T15:30:41.443947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "training/types/3.twig",
+      "path": "src/training/types/3.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 413,
+      "line_count": 12,
+      "modified_at": "2025-10-26T15:30:41.443947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "training/types/youtubePageFooter.twig",
+      "path": "src/training/types/youtubePageFooter.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 2392,
+      "line_count": 59,
+      "modified_at": "2025-10-26T15:30:41.443947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "user.php",
+      "path": "src/user.php",
+      "extension": ".php",
+      "category": "php",
+      "size_bytes": 5655,
+      "line_count": 88,
+      "modified_at": "2025-10-26T15:30:41.443947+00:00"
+    },
+    {
+      "root": "src",
+      "relative_path": "user.twig",
+      "path": "src/user.twig",
+      "extension": ".twig",
+      "category": "template",
+      "size_bytes": 39738,
+      "line_count": 556,
+      "modified_at": "2025-10-26T15:30:41.443947+00:00"
+    }
+  ],
+  "stats": {
+    "src": {
+      "file_count": 504,
+      "total_size_bytes": 21984208,
+      "total_line_count": 173917,
+      "extension_breakdown": {
+        "<none>": 1,
+        ".twig": 127,
+        ".php": 300,
+        ".json": 2,
+        ".csv": 1,
+        ".ico": 2,
+        ".css": 17,
+        ".map": 15,
+        ".png": 29,
+        ".xml": 1,
+        ".svg": 3,
+        ".js": 6
+      },
+      "category_breakdown": {
+        "other": 50,
+        "template": 127,
+        "php": 300,
+        "json": 2,
+        "data": 1,
+        "stylesheet": 17,
+        "xml": 1,
+        "javascript": 6
+      },
+      "top_level_directories": {
+        ".htaccess": 1,
+        "401.twig": 1,
+        "404.php": 1,
+        "404.twig": 1,
+        "api": 215,
+        "asset.php": 1,
+        "asset.twig": 1,
+        "assets": 21,
+        "assets.php": 1,
+        "assets.twig": 1,
+        "clients.php": 1,
+        "clients.twig": 1,
+        "cms": 13,
+        "common": 24,
+        "dashboard-cmsPage.twig": 1,
+        "dashboard.twig": 1,
+        "favicon.ico": 1,
+        "index.php": 1,
+        "index_acceptTerms.twig": 1,
+        "index_emailVerified.twig": 1,
+        "index_forceChangePassword.twig": 1,
+        "index_instanceBillingIssue.twig": 1,
+        "index_noInstances.twig": 1,
+        "instances": 42,
+        "ledger.php": 1,
+        "ledger.twig": 1,
+        "location": 5,
+        "login": 8,
+        "maintenance": 13,
+        "manufacturers.php": 1,
+        "manufacturers.twig": 1,
+        "newAsset.php": 1,
+        "newAsset.twig": 1,
+        "project": 29,
+        "public": 4,
+        "search.php": 1,
+        "search.twig": 1,
+        "server": 18,
+        "static-assets": 73,
+        "training": 10,
+        "user.php": 1,
+        "user.twig": 1
+      }
+    }
+  }
+}
