@@ -1,16 +1,24 @@
-.DS_Store
-.vagrant
-*.swp
-
-.env
-
-vendor/
-
-.idea
-
+# Editor
 .idea/
+.vscode/
 
-/s3files/
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
 
-**/.idea
-.qodo
+# Node
+node_modules/
+pnpm-lock.yaml
+
+# Environment
+.env
+.env.*
+
+# Alembic
+backend/alembic/versions/*.pyc
