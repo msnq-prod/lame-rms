@@ -21,6 +21,8 @@
 4. Общий README раздел «Как запускать миграцию»: ссылка на таблицу этапов и команды.
 5. Шаблон `automation/templates/report.md` с блоками: *Summary*, *Artifacts*, *Checks*, *Next Gate*.
 6. Bootstrap-скрипт `automation/bin/ensure_tools.sh`, который проверяет наличие ключевых утилит (`act`, `k6`, Playwright, Terraform, Helm и др.), пытается установить их через `asdf`, `npm` или виртуальные окружения и фиксирует предупреждения в `status.json`, если автоматическая установка невозможна.
+7. Контракт статуса `automation/status.schema.json`, задающий структуру `status.json` и список обязательных ключей
+   (`state`, `checks`, `artifacts`, `last_run`, `warnings`, `notes`, `extra`).
 
 **Критерий готовности этапа 0** — все команды `make stageXX` для ещё не реализованных этапов завершаются сообщением
 «Stage XX not implemented», CI workflow успешно прогоняет заглушечный шаг, README содержит обновлённую секцию.
@@ -44,7 +46,7 @@
 | 11 | Инфраструктура и окружения | `make stage11` | `automation/stage11/report.md` | `automation/stage11/status.json` |
 | 12 | Параллельная эксплуатация и вывод PHP | `make stage12` | `automation/stage12/report.md` | `automation/stage12/status.json` |
 
-> В каждой подпапке создаётся `status.json` с полями `state`, `checks`, `artifacts`, `last_run`, обновляемый автоматически.
+> В каждой подпапке создаётся `status.json`, валидируемый по общей схеме `automation/status.schema.json`.
 
 ---
 
@@ -63,7 +65,7 @@
 
 **Автоматизированная задача для Codex5**
 - Заполнить `automation/stage01/run.sh`, который:
-  1. Создаёт ветку/тег `legacy/php-monolith` и перемещает монолит в `legacy/`.
+  1. Генерирует сценарий `automation/stage01/prepare_legacy.sh` с инструкциями по переносу монолита в `legacy/`.
   2. Генерирует каталоги `backend/`, `frontend/`, `infrastructure/`, `docs/` и `.gitkeep`.
   3. Обновляет `.gitignore`, `Makefile`, `README.md`, `.env.example` (backend/frontend), `scripts/bootstrap_dev.sh`.
   4. Создаёт CI заглушки (`.github/workflows/backend.yml`, `frontend.yml`).
@@ -74,17 +76,19 @@
 **Самопроверка Codex5 (`automation/stage01/self_check.sh`)**
 - Перед основными проверками запускает `STATUS_FILE=automation/stage01/status.json automation/bin/ensure_tools.sh`; если инструмент недоступен и не может быть установлен автоматически, записывает `warning` и пропускает соответствующий шаг без падения.
 - Проверяет структуру каталогов и наличие ключевых файлов (через `test`/`find`).
+- При наличии маркера (`--apply` флаг запуска или файл-подтверждение) убеждается, что перенос в `legacy/` выполнен.
 - Запускает `pre-commit run --all-files` и `make bootstrap-dev` из `scripts/bootstrap_dev.sh`.
 - Сверяет, что `docs/checklists/stage01.md` отмечен полностью (встроенный YAML/Markdown парсер).
 - Валидирует CI workflows через `act --dryrun` (или предоставляет заглушку, если `act` недоступен, но фиксирует предупреждение).
-- Генерирует `automation/stage01/status.json` с полями `state=passed|failed`, `checks` и таймстампом.
+- Обновляет `automation/stage01/status.json` в соответствии со схемой `automation/status.schema.json`, складывая агрегированные
+  результаты проверок в `extra.checks_summary`.
 
 **Артефакты и отчётность**
 - `automation/stage01/report.md` содержит: список созданных файлов, результаты `pre-commit`, вывод `act`.
 - Дополнительные артефакты: чек-лист, README-обновления, скрипт запуска окружения.
 
 **Команда оператора**
-- `make stage01 && make stage01-verify && make stage01-report`.
+- `make stage01`, затем после ревью вручную запустить `automation/stage01/prepare_legacy.sh`, после чего `make stage01-verify && make stage01-report`.
 
 ---
 
@@ -104,7 +108,8 @@
 - Валидирует YAML backlog (через `yamllint`) и JSON/CSV схемы.
 - Проверяет наличие диаграмм (существование файлов `.mmd`/`.puml`).
 - Сверяет, что ключевые риски помечены severity (`critical|high|medium|low`).
-- Обновляет `automation/stage02/status.json` и формирует diff-информацию по основным артефактам.
+- Обновляет `automation/stage02/status.json` по контракту `automation/status.schema.json`, сохраняя сводку ключевых
+  изменений в `extra.diff_summary`.
 
 **Артефакты и отчётность**
 - `automation/stage02/report.md`: таблица рисков, ссылки на диаграммы, экспорт API, backlog.
@@ -131,7 +136,8 @@
 - `alembic upgrade head` против временной БД (использовать docker-compose service `postgres-test`).
 - Проверка foreign keys и сравнение количества строк до/после ETL.
 - Генерация отчёта покрытия тестов для ETL.
-- Обновление `automation/stage03/status.json`.
+- Обновляет `automation/stage03/status.json` на базе схемы `automation/status.schema.json`, добавляя показатели покрытия
+  и статистику ETL в `extra.coverage` и `extra.etl_stats`.
 
 **Артефакты и отчётность**
 - `automation/stage03/report.md`: результаты тестов, покрытие, ссылки на ER-диаграмму.
@@ -155,6 +161,7 @@
 - `ruff check backend`, `mypy backend`, `pytest backend/tests/api -q`.
 - Проверка, что OpenAPI сгенерирован (`backend/openapi.json`).
 - Smoke запуск `uvicorn app.main:app --dry-run` (или `--app-dir`).
+- Обновляет `automation/stage04/status.json` по схеме `automation/status.schema.json`, фиксируя сведения об OpenAPI и smoke-проверке в `extra.api_snapshot` и `extra.smoke`.
 
 **Артефакты и отчётность**
 - `automation/stage04/report.md`: вывод линтеров/тестов, список эндпоинтов.
@@ -177,6 +184,7 @@
 - `pytest backend/tests/integration -q` + генерация Allure/HTML отчёта.
 - Нагрузочный тест (`k6 run backend/loadtests/main.js`) с метриками в `automation/stage05/metrics.json`.
 - Сравнение контрактов (`schemathesis` или `pytest --schemathesis`) против legacy OpenAPI.
+- Обновляет `automation/stage05/status.json` по схеме `automation/status.schema.json`, помещая результаты нагрузочных тестов и контрактного сравнения в `extra.performance` и `extra.contract_diff`.
 
 **Артефакты и отчётность**
 - Отчёт с перечислением перенесённых эндпоинтов, ссылками на документацию, результатами нагрузочных тестов.
@@ -199,6 +207,7 @@
 - Юнит-тесты на auth-флоу, e2e сценарии в Playwright (`frontend/tests/auth.spec.ts`).
 - Static анализ (`bandit`, `npm run lint`).
 - Проверка алертов (эмуляция события, убедиться, что alert записан в лог/метрику).
+- Обновляет `automation/stage06/status.json` в формате `automation/status.schema.json`, сохраняя найденные замечания и состояние алертов в `extra.security_findings` и `extra.alerts`.
 
 **Артефакты и отчётность**
 - Отчёт с тестами, чек-листом политик безопасности, ссылками на мониторинг.
@@ -221,6 +230,7 @@
 - Контрактные тесты адаптеров (`pytest backend/tests/integrations`).
 - Запуск воркера и тестового задания с проверкой отчёта (`celery -A app.worker inspect ping`).
 - Проверка мониторинга (Prometheus exporter, графики).
+- Обновляет `automation/stage07/status.json` согласно `automation/status.schema.json`, добавляя показатели очереди и мониторинга в `extra.queue_health` и `extra.monitoring`.
 
 **Артефакты и отчётность**
 - `automation/stage07/report.md`: список интеграций, статус очереди, мониторинг.
@@ -243,6 +253,7 @@
 - `npm run lint`, `npm run test`, `npm run storybook:check`.
 - Визуальная регрессия (Chromatic/Playwright) с сохранением скриншотов в `automation/stage08/screenshots/`.
 - Lighthouse audit (`npm run lighthouse -- --output-path automation/stage08/lighthouse.json`).
+- Обновляет `automation/stage08/status.json` по `automation/status.schema.json`, добавляя результаты визуальной регрессии и Lighthouse в `extra.visual_tests` и `extra.lighthouse`.
 
 **Артефакты и отчётность**
 - Отчёт со списком страниц, компонентов, ссылками на Storybook, результатами Lighthouse.
@@ -264,6 +275,7 @@
 - `npm run test:e2e` (Playwright), `npm run web-vitals` (с сохранением в `automation/stage09/metrics.json`).
 - Проверка feature flags переключением окружения (`npm run toggle-flags -- --target legacy`/`new`).
 - Генерация accessibility отчёта (axe/pa11y) → `automation/stage09/a11y.html`.
+- Обновляет `automation/stage09/status.json` согласно `automation/status.schema.json`, фиксируя UX-метрики и отчёт по доступности в `extra.ux_metrics` и `extra.accessibility`.
 
 **Артефакты и отчётность**
 - Отчёт с результатами e2e, UX-метрик, accessibility, списком фичефлагов.
@@ -285,6 +297,7 @@
 - Запуск всех тестов (`make test`, `make lint`), сбор coverage отчётов.
 - Валидация конфигураций CI через `act`/`ci-sim`.
 - Проверка, что отчёты загружаются в артефакты (например, имитация upload).
+- Обновляет `automation/stage10/status.json` по схеме `automation/status.schema.json`, добавляя агрегированные QA-метрики в `extra.qa_dashboard`.
 
 **Артефакты и отчётность**
 - Отчёт о качестве, ссылки на покрытия, чек-лист приёмки.
@@ -306,6 +319,7 @@
 - Локальный прогон `docker-compose up` в режиме CI (можно headless).
 - Проверка Terraform/Helm (`terraform validate`, `helm lint`).
 - Имитация деплоя (dry-run) и запуск smoke-тестов.
+- Обновляет `automation/stage11/status.json` по контракту `automation/status.schema.json`, сохраняя результаты инфраструктурных проверок в `extra.deployment_checks`.
 
 **Артефакты и отчётность**
 - Репозиторий инфраструктуры, dashboards, планы DR/backup.
@@ -328,6 +342,7 @@
 - Эмуляция переключения (`make blue-green-simulate`), проверка latency/ошибок.
 - Smoke-тесты новых сервисов после отключения legacy.
 - Валидация полного чек-листа (все пункты `done=true`).
+- Обновляет `automation/stage12/status.json` по схеме `automation/status.schema.json`, размещая отчёт по переключению и финальные метрики в `extra.cutover_report`.
 
 **Артефакты и отчётность**
 - Отчёт о переключении, финальный чек-лист, результаты smoke-тестов.
@@ -341,9 +356,9 @@
 
 - После каждого успешного этапа Codex5 автоматически коммитит изменения в ветку `migration/stageXX` и формирует Pull Request.
 - CI-пайплайн запускается автоматически через `workflow_dispatch` и сохраняет отчёты как артефакты.
-- Если `self_check.sh` завершился с ошибкой, статус в `status.json` выставляется в `failed` и PR помечается лейблом `needs-attention`.
-- По завершении всех этапов запускается финальный сценарий `automation/finalize.sh`, который собирает агрегированный отчёт и
-  архивирует все артефакты.
+- Если `self_check.sh` завершился с ошибкой, статус в `status.json` (валидируется по `automation/status.schema.json`) выставляется в `failed` и PR помечается лейблом `needs-attention`.
+- По завершении всех этапов запускается финальный сценарий `automation/finalize.sh`, который собирает агрегированный отчёт,
+  архивирует все артефакты и валидирует каждый `status.json` по общей схеме.
 
 Таким образом, весь план представляет собой последовательность полностью автоматизированных шагов. Мне достаточно выполнять
 команду `make stageXX` по мере готовности, контролировать отчёты и при необходимости инициировать повторный запуск.
