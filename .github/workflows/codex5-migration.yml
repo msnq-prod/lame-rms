@@ -1,0 +1,20 @@
+name: Codex5 Migration
+
+on:
+  workflow_dispatch:
+    inputs:
+      stage:
+        description: "Stage number to run (e.g. 01)"
+        required: true
+        default: "01"
+
+jobs:
+  run-stage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Run stage
+        run: make stage${{ inputs.stage }}
+      - name: Verify stage
+        run: make stage${{ inputs.stage }}-verify
