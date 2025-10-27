@@ -1,6 +1,6 @@
 {
-  "timestamp": "2025-10-27T00:11:59.094727+00:00",
-  "tools": [
+  "state": "needs_attention",
+  "checks": [
     {
       "name": "act",
       "status": "warning",
@@ -31,5 +31,38 @@
       "message": "asdf not available",
       "path": ""
     }
-  ]
+  ],
+  "artifacts": [],
+  "last_run": "2025-10-27T06:21:43.060242+00:00",
+  "warnings": [
+    {
+      "tool": "act",
+      "message": "asdf not available"
+    },
+    {
+      "tool": "k6",
+      "message": "asdf not available"
+    },
+    {
+      "tool": "playwright",
+      "message": "npm install -g playwright failed"
+    },
+    {
+      "tool": "terraform",
+      "message": "asdf not available"
+    },
+    {
+      "tool": "helm",
+      "message": "asdf not available"
+    }
+  ],
+  "notes": [],
+  "extra": {
+    "tools_summary": {
+      "total": 5,
+      "ok": 0,
+      "installed": 0,
+      "warnings": 5
+    }
+  }
 }
