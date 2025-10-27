@@ -1,10 +1,148 @@
 {
-  "$schema": "../status.schema.json",
-  "state": "pending",
-  "checks": [],
-  "artifacts": [],
-  "last_run": null,
-  "warnings": [],
-  "notes": [],
-  "extra": {}
+  "state": "needs_attention",
+  "checks": [
+    {
+      "name": "act",
+      "status": "warning",
+      "message": "asdf not available",
+      "path": ""
+    },
+    {
+      "name": "k6",
+      "status": "warning",
+      "message": "asdf not available",
+      "path": ""
+    },
+    {
+      "name": "playwright",
+      "status": "warning",
+      "message": "npm install -g playwright failed",
+      "path": ""
+    },
+    {
+      "name": "terraform",
+      "status": "warning",
+      "message": "asdf not available",
+      "path": ""
+    },
+    {
+      "name": "helm",
+      "status": "warning",
+      "message": "asdf not available",
+      "path": ""
+    },
+    {
+      "name": "artifacts",
+      "status": "ok",
+      "message": "13 artifacts present"
+    },
+    {
+      "name": "file-count",
+      "status": "ok",
+      "message": "reported=505, actual=505",
+      "path": "docs/inventory/files.json"
+    },
+    {
+      "name": "json-validate",
+      "status": "ok",
+      "message": "Validated 3 JSON files"
+    },
+    {
+      "name": "csv-validate",
+      "status": "ok",
+      "message": "Validated 2 CSV files"
+    },
+    {
+      "name": "yaml-validate",
+      "status": "ok",
+      "message": "Validated backlog YAML",
+      "path": "docs/backlog/migration_backlog.yaml"
+    },
+    {
+      "name": "diagrams",
+      "status": "ok",
+      "message": "Structure and API diagrams present"
+    },
+    {
+      "name": "risk-severity",
+      "status": "ok",
+      "message": "4 backlog items with severity"
+    },
+    {
+      "name": "yamllint",
+      "status": "warning",
+      "message": "yamllint not installed",
+      "path": "docs/backlog/migration_backlog.yaml"
+    }
+  ],
+  "artifacts": [
+    "docs/inventory/files.json",
+    "docs/inventory/files.csv",
+    "docs/inventory/files.md",
+    "docs/inventory/metrics.md",
+    "docs/inventory/cron.md",
+    "docs/inventory/structure.mmd",
+    "docs/inventory/api_surface.mmd",
+    "docs/inventory/api/openapi.json",
+    "docs/inventory/api/endpoints.csv",
+    "docs/inventory/api/summary.md",
+    "docs/backlog/migration_backlog.yaml",
+    "docs/backlog/migration_backlog.json",
+    "automation/stage02/report.md"
+  ],
+  "last_run": "2025-10-27T05:45:11.944504+00:00",
+  "warnings": [
+    {
+      "tool": "act",
+      "message": "asdf not available"
+    },
+    {
+      "tool": "k6",
+      "message": "asdf not available"
+    },
+    {
+      "tool": "playwright",
+      "message": "npm install -g playwright failed"
+    },
+    {
+      "tool": "terraform",
+      "message": "asdf not available"
+    },
+    {
+      "tool": "helm",
+      "message": "asdf not available"
+    },
+    {
+      "tool": "yamllint",
+      "message": "yamllint command unavailable"
+    }
+  ],
+  "notes": [
+    "self_check.sh executed"
+  ],
+  "extra": {
+    "tools_summary": {
+      "total": 5,
+      "ok": 0,
+      "installed": 0,
+      "warnings": 5
+    },
+    "diff_summary": {
+      "files": [
+        "automation/stage02/report.md",
+        "docs/backlog/migration_backlog.json",
+        "docs/backlog/migration_backlog.yaml",
+        "docs/inventory/api/openapi.json",
+        "docs/inventory/api/summary.md",
+        "docs/inventory/cron.md",
+        "docs/inventory/files.csv",
+        "docs/inventory/files.json",
+        "docs/inventory/files.md",
+        "docs/inventory/metrics.md",
+        "docs/inventory/structure.mmd"
+      ],
+      "total_additions": 1020,
+      "total_deletions": 1020
+    }
+  }
 }
