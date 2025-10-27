@@ -25,3 +25,7 @@ stage$(1)-report:
 endef
 
 $(foreach stage,$(STAGES),$(eval $(call stage_template,$(stage))))
+.PHONY: bootstrap-dev
+bootstrap-dev:
+	./scripts/bootstrap_dev.sh
+

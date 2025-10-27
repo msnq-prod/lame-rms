@@ -1,0 +1,12 @@
+automation/stage01/prepare_legacy.sh
+backend/.env.example
+backend/.gitkeep
+frontend/.env.example
+frontend/.gitkeep
+infrastructure/.gitkeep
+legacy/.gitkeep
+scripts/bootstrap_dev.sh
+.github/workflows/backend.yml
+.github/workflows/frontend.yml
+.pre-commit-config.yaml
+docs/checklists/stage01.md

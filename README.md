@@ -43,3 +43,19 @@ This repo has a configured devcontainer for use with GitHub Codespaces or VSCode
 4. Просмотрите отчёт с помощью `make stageXX-report` — команда выведет содержимое `automation/stageXX/report.md`.
 
 Сценарии не реализованных этапов выводят сообщение вида «Stage XX not implemented», поэтому их можно выполнять повторно без побочных эффектов. Для фиксации статуса и предупреждений можно обновлять `automation/stageXX/status.json`, а для наполнения отчётов — использовать шаблон `automation/templates/report.md`.
+
+## Repository layout (migration)
+
+- `legacy/` — исходный PHP-монолит (после запуска automation/stage01/prepare_legacy.sh)
+- `backend/` — новое серверное приложение на Python/FastAPI
+- `frontend/` — клиентское приложение на React/TypeScript
+- `infrastructure/` — инфраструктурные манифесты и IaC
+- `docs/` — документация по миграции и технические материалы
+- `automation/` — сценарии этапов миграции
+
+## Stage 01 quickstart
+
+1. Выполните `make stage01`, чтобы подготовить структуру репозитория.
+2. Просмотрите и при необходимости отредактируйте `automation/stage01/prepare_legacy.sh`.
+3. Запустите скрипт переноса `automation/stage01/prepare_legacy.sh` (после ревью).
+4. Выполните `make stage01-verify` и `make stage01-report` для самопроверки и отчёта.
