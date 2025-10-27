@@ -1,0 +1,35 @@
+{
+  "timestamp": "2025-10-27T00:11:59.094727+00:00",
+  "tools": [
+    {
+      "name": "act",
+      "status": "warning",
+      "message": "asdf not available",
+      "path": ""
+    },
+    {
+      "name": "k6",
+      "status": "warning",
+      "message": "asdf not available",
+      "path": ""
+    },
+    {
+      "name": "playwright",
+      "status": "warning",
+      "message": "npm install -g playwright failed",
+      "path": ""
+    },
+    {
+      "name": "terraform",
+      "status": "warning",
+      "message": "asdf not available",
+      "path": ""
+    },
+    {
+      "name": "helm",
+      "status": "warning",
+      "message": "asdf not available",
+      "path": ""
+    }
+  ]
+}

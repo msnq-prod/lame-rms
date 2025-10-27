@@ -1,0 +1,14 @@
+{
+  "etl_stats": {
+    "tables": {
+      "actionsCategories": 1,
+      "actions": 2
+    },
+    "total_rows": 3
+  },
+  "row_counts": {
+    "actionsCategories": 1,
+    "actions": 2
+  },
+  "foreign_failures": 0
+}

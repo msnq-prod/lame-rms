@@ -1,0 +1,63 @@
+{
+  "checks": {
+    "tooling": {
+      "label": "Tooling",
+      "status": "warn",
+      "details": "act=warning, k6=warning, playwright=warning, terraform=warning, helm=warning"
+    },
+    "pytest": {
+      "label": "Pytest (ETL)",
+      "status": "pass",
+      "details": "backend/tests/etl"
+    },
+    "alembic": {
+      "label": "Alembic upgrade",
+      "status": "warn",
+      "details": "docker not available"
+    },
+    "rows": {
+      "label": "Row counts",
+      "status": "pass",
+      "details": "3 rows loaded across 2 tables"
+    },
+    "foreign_keys": {
+      "label": "Foreign keys",
+      "status": "pass",
+      "details": "No missing references"
+    }
+  },
+  "warnings": [
+    "Some optional tools are unavailable: act=warning, k6=warning, playwright=warning, terraform=warning, helm=warning",
+    "Cannot start postgres-test: docker missing"
+  ],
+  "coverage": {
+    "covered_lines": 62,
+    "total_lines": 62,
+    "percent": 100.0,
+    "modules": {
+      "extract.py": {
+        "covered_lines": 17,
+        "total_lines": 17
+      },
+      "transform.py": {
+        "covered_lines": 14,
+        "total_lines": 14
+      },
+      "load.py": {
+        "covered_lines": 22,
+        "total_lines": 22
+      },
+      "__init__.py": {
+        "covered_lines": 9,
+        "total_lines": 9
+      }
+    }
+  },
+  "etl_stats": {
+    "tables": {
+      "actionsCategories": 1,
+      "actions": 2
+    },
+    "total_rows": 3
+  }
+}
