@@ -681,11 +681,6 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
-    if not args.schema.exists():
-        raise SystemExit(
-            f"Schema file {args.schema} does not exist. "
-            "Run vendor/bin/phinx schema:dump or provide --schema."
-        )
     schema_data = run_php_to_json(args.schema.resolve())
     tables = schema_data.get("tables", {})
     column_count = sum(len(table.get("columns", {})) for table in tables.values())
