@@ -1,10 +1,156 @@
 {
   "$schema": "../status.schema.json",
-  "state": "pending",
-  "checks": [],
-  "artifacts": [],
-  "last_run": null,
-  "warnings": [],
+  "state": "needs_attention",
+  "checks": [
+    {
+      "name": "structure",
+      "status": "ok",
+      "message": "Required directories and .gitkeep files present"
+    },
+    {
+      "name": "manifest",
+      "status": "ok",
+      "message": "All manifest entries exist"
+    },
+    {
+      "name": "legacy-transfer",
+      "status": "skip",
+      "message": "Legacy transfer not enforced"
+    },
+    {
+      "name": "pre-commit",
+      "status": "warning",
+      "message": "pre-commit command unavailable"
+    },
+    {
+      "name": "bootstrap-dev",
+      "status": "ok",
+      "message": "make bootstrap-dev succeeded"
+    },
+    {
+      "name": "checklist",
+      "status": "ok",
+      "message": "Checklist fully completed"
+    },
+    {
+      "name": "act",
+      "status": "warning",
+      "message": "act command unavailable"
+    }
+  ],
+  "artifacts": [
+    "automation/stage01/report.md",
+    "automation/stage01/created_files.txt"
+  ],
+  "last_run": "2025-10-27T04:46:40.283292+00:00",
+  "warnings": [
+    {
+      "tool": "pre-commit",
+      "message": "Failed to install pre-commit via pip"
+    },
+    {
+      "tool": "pre-commit",
+      "message": "pre-commit command unavailable"
+    },
+    {
+      "tool": "act",
+      "message": "act command unavailable"
+    },
+    {
+      "tool": "act",
+      "message": "asdf not available"
+    },
+    {
+      "tool": "k6",
+      "message": "asdf not available"
+    },
+    {
+      "tool": "playwright",
+      "message": "npm install -g playwright failed"
+    },
+    {
+      "tool": "terraform",
+      "message": "asdf not available"
+    },
+    {
+      "tool": "helm",
+      "message": "asdf not available"
+    }
+  ],
   "notes": [],
-  "extra": {}
+  "extra": {
+    "checks_summary": {
+      "ok": 4,
+      "skip": 1,
+      "warning": 2
+    },
+    "tools_status": {
+      "state": "needs_attention",
+      "checks": [
+        {
+          "name": "act",
+          "status": "warning",
+          "message": "asdf not available",
+          "path": ""
+        },
+        {
+          "name": "k6",
+          "status": "warning",
+          "message": "asdf not available",
+          "path": ""
+        },
+        {
+          "name": "playwright",
+          "status": "warning",
+          "message": "npm install -g playwright failed",
+          "path": ""
+        },
+        {
+          "name": "terraform",
+          "status": "warning",
+          "message": "asdf not available",
+          "path": ""
+        },
+        {
+          "name": "helm",
+          "status": "warning",
+          "message": "asdf not available",
+          "path": ""
+        }
+      ],
+      "artifacts": [],
+      "last_run": "2025-10-27T04:46:28.322744+00:00",
+      "warnings": [
+        {
+          "tool": "act",
+          "message": "asdf not available"
+        },
+        {
+          "tool": "k6",
+          "message": "asdf not available"
+        },
+        {
+          "tool": "playwright",
+          "message": "npm install -g playwright failed"
+        },
+        {
+          "tool": "terraform",
+          "message": "asdf not available"
+        },
+        {
+          "tool": "helm",
+          "message": "asdf not available"
+        }
+      ],
+      "notes": [],
+      "extra": {
+        "tools_summary": {
+          "total": 5,
+          "ok": 0,
+          "installed": 0,
+          "warnings": 5
+        }
+      }
+    }
+  }
 }

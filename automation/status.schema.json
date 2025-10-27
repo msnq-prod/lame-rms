@@ -44,7 +44,9 @@
             "enum": [
               "ok",
               "installed",
-              "warning"
+              "warning",
+              "fail",
+              "skip"
             ]
           },
           "message": {
