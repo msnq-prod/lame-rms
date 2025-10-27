@@ -1,0 +1,7 @@
+{
+  "schema": "backend/openapi.json",
+  "base_url": "http://127.0.0.1:8060",
+  "status": "skip",
+  "exit_code": 0,
+  "message": "schemathesis not available"
+}

@@ -4,6 +4,7 @@ set -euo pipefail
 
 ROOT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 REPO_ROOT=$(cd "$ROOT_DIR/.." && pwd)
+PYTHON_BIN=${PYTHON_BIN:-python3}
 
 STATUS_FILE="${STATUS_FILE:-$ROOT_DIR/status.json}"
 if [[ $# -gt 0 ]]; then
@@ -35,6 +36,10 @@ check_act() {
 
 check_k6() {
   check_command k6
+}
+
+check_schemathesis() {
+  check_command schemathesis
 }
 
 check_terraform() {
@@ -96,6 +101,24 @@ install_act() {
 
 install_k6() {
   install_tool_via_asdf k6
+}
+
+install_schemathesis() {
+  INSTALL_METHOD="pip"
+  INSTALL_RESULT_MESSAGE=""
+
+  if ! command -v "$PYTHON_BIN" >/dev/null 2>&1; then
+    INSTALL_RESULT_MESSAGE="python interpreter not available"
+    return 1
+  fi
+
+  if "$PYTHON_BIN" -m pip install --user --quiet schemathesis >/dev/null 2>&1; then
+    INSTALL_RESULT_MESSAGE="installed via pip --user"
+    return 0
+  fi
+
+  INSTALL_RESULT_MESSAGE="pip install --user schemathesis failed"
+  return 1
 }
 
 install_terraform() {
@@ -171,6 +194,7 @@ ensure_tool() {
 
 ensure_tool "act" check_act install_act
 ensure_tool "k6" check_k6 install_k6
+ensure_tool "schemathesis" check_schemathesis install_schemathesis
 ensure_tool "playwright" check_playwright install_playwright
 ensure_tool "terraform" check_terraform install_terraform
 ensure_tool "helm" check_helm install_helm

@@ -1,10 +1,267 @@
 {
   "$schema": "../status.schema.json",
-  "state": "pending",
-  "checks": [],
-  "artifacts": [],
-  "last_run": null,
-  "warnings": [],
-  "notes": [],
-  "extra": {}
+  "state": "needs_attention",
+  "checks": [
+    {
+      "name": "act",
+      "status": "warning",
+      "message": "asdf not available",
+      "path": ""
+    },
+    {
+      "name": "k6",
+      "status": "warning",
+      "message": "asdf not available",
+      "path": ""
+    },
+    {
+      "name": "schemathesis",
+      "status": "warning",
+      "message": "pip install --user schemathesis failed",
+      "path": ""
+    },
+    {
+      "name": "playwright",
+      "status": "warning",
+      "message": "npm install -g playwright failed",
+      "path": ""
+    },
+    {
+      "name": "terraform",
+      "status": "warning",
+      "message": "asdf not available",
+      "path": ""
+    },
+    {
+      "name": "helm",
+      "status": "warning",
+      "message": "asdf not available",
+      "path": ""
+    },
+    {
+      "name": "pytest-integration",
+      "status": "ok",
+      "message": "pytest backend/tests/integration -q"
+    },
+    {
+      "name": "k6-load",
+      "status": "skip",
+      "message": "k6 not available"
+    },
+    {
+      "name": "contract-diff",
+      "status": "ok",
+      "message": "Compared backend/openapi.json with legacy specification"
+    },
+    {
+      "name": "schemathesis-contract",
+      "status": "skip",
+      "message": "schemathesis not available"
+    }
+  ],
+  "artifacts": [
+    "automation/stage05/report.md",
+    "automation/stage05/summary.json",
+    "automation/stage05/metrics.json",
+    "automation/stage05/contract_diff.json",
+    "automation/stage05/logs/pytest_integration.log",
+    "automation/stage05/pytest_integration.html",
+    "automation/stage05/logs/schemathesis.log",
+    "automation/stage05/schemathesis_summary.json",
+    "automation/stage05/logs/uvicorn.log",
+    "automation/stage05/logs/uvicorn_schemathesis.log"
+  ],
+  "last_run": "2025-10-27T08:19:04.516552+00:00",
+  "warnings": [
+    {
+      "tool": "act",
+      "message": "asdf not available"
+    },
+    {
+      "tool": "k6",
+      "message": "asdf not available"
+    },
+    {
+      "tool": "schemathesis",
+      "message": "pip install --user schemathesis failed"
+    },
+    {
+      "tool": "playwright",
+      "message": "npm install -g playwright failed"
+    },
+    {
+      "tool": "terraform",
+      "message": "asdf not available"
+    },
+    {
+      "tool": "helm",
+      "message": "asdf not available"
+    },
+    {
+      "tool": "pytest",
+      "message": "Allure plugin missing; used log/HTML fallback"
+    },
+    {
+      "tool": "k6",
+      "message": "k6 not available"
+    },
+    {
+      "tool": "schemathesis",
+      "message": "schemathesis not available"
+    }
+  ],
+  "notes": [
+    "self_check.sh executed",
+    "pytest exit=0",
+    "k6 status=skip",
+    "schemathesis status=skip"
+  ],
+  "extra": {
+    "contract_diff": {
+      "added": [
+        {
+          "method": "GET",
+          "path": "/api/assets",
+          "summary": "List assets with pagination and optional free-text search."
+        },
+        {
+          "method": "GET",
+          "path": "/api/assets/{asset_id}",
+          "summary": "Retrieve detailed information about a single asset by identifier."
+        }
+      ],
+      "missing_in_new": [
+        {
+          "method": "GET",
+          "path": "/api/assets/searchAssetsBarcode",
+          "summary": "searchAssetsBarcode (GET)"
+        },
+        {
+          "method": "POST",
+          "path": "/api/assets/archive",
+          "summary": "archive (POST)"
+        },
+        {
+          "method": "POST",
+          "path": "/api/assets/barcodes/assign",
+          "summary": "assign (POST)"
+        },
+        {
+          "method": "POST",
+          "path": "/api/assets/barcodes/delete",
+          "summary": "delete (POST)"
+        },
+        {
+          "method": "POST",
+          "path": "/api/assets/barcodes/index",
+          "summary": "index (POST)"
+        },
+        {
+          "method": "POST",
+          "path": "/api/assets/barcodes/search",
+          "summary": "search (POST)"
+        },
+        {
+          "method": "POST",
+          "path": "/api/assets/delete",
+          "summary": "delete (POST)"
+        },
+        {
+          "method": "POST",
+          "path": "/api/assets/editAsset",
+          "summary": "editAsset (POST)"
+        },
+        {
+          "method": "POST",
+          "path": "/api/assets/editAssetType",
+          "summary": "editAssetType (POST)"
+        },
+        {
+          "method": "POST",
+          "path": "/api/assets/editAssetTypeDefinableFields",
+          "summary": "editAssetTypeDefinableFields (POST)"
+        },
+        {
+          "method": "POST",
+          "path": "/api/assets/export",
+          "summary": "export (POST)"
+        },
+        {
+          "method": "POST",
+          "path": "/api/assets/getAssetTypeData",
+          "summary": "getAssetTypeData (POST)"
+        },
+        {
+          "method": "POST",
+          "path": "/api/assets/list",
+          "summary": "list (POST)"
+        },
+        {
+          "method": "POST",
+          "path": "/api/assets/newAssetFromType",
+          "summary": "newAssetFromType (POST)"
+        },
+        {
+          "method": "POST",
+          "path": "/api/assets/newAssetType",
+          "summary": "newAssetType (POST)"
+        },
+        {
+          "method": "POST",
+          "path": "/api/assets/searchAssets",
+          "summary": "searchAssets (POST)"
+        },
+        {
+          "method": "POST",
+          "path": "/api/assets/searchType",
+          "summary": "searchType (POST)"
+        },
+        {
+          "method": "POST",
+          "path": "/api/assets/substitutions",
+          "summary": "substitutions (POST)"
+        },
+        {
+          "method": "POST",
+          "path": "/api/assets/transfer",
+          "summary": "transfer (POST)"
+        }
+      ],
+      "unchanged": 0,
+      "summary": {
+        "new_total": 4,
+        "legacy_total": 209
+      }
+    },
+    "performance": {
+      "status": "skipped",
+      "message": "k6 executable is not available on this host"
+    },
+    "test_artifacts": {
+      "pytest_log": "automation/stage05/logs/pytest_integration.log",
+      "html_report": "automation/stage05/pytest_integration.html",
+      "allure_results": "automation/stage05/allure-results",
+      "schemathesis_log": "automation/stage05/logs/schemathesis.log",
+      "schemathesis_summary": "automation/stage05/schemathesis_summary.json"
+    },
+    "contract_tests": {
+      "schema": "backend/openapi.json",
+      "base_url": "http://127.0.0.1:8060",
+      "status": "skip",
+      "exit_code": 0,
+      "message": "schemathesis not available"
+    },
+    "tools_summary": {
+      "total": 6,
+      "ok": 0,
+      "installed": 0,
+      "warnings": 6
+    },
+    "backlog_item": {
+      "id": "M5-001",
+      "title": "Assets API read models",
+      "domain": "assets"
+    },
+    "feature_flag": "assets_api"
+  }
 }

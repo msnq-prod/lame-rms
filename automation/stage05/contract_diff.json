@@ -1,0 +1,116 @@
+{
+  "added": [
+    {
+      "method": "GET",
+      "path": "/api/assets",
+      "summary": "List assets with pagination and optional free-text search."
+    },
+    {
+      "method": "GET",
+      "path": "/api/assets/{asset_id}",
+      "summary": "Retrieve detailed information about a single asset by identifier."
+    }
+  ],
+  "missing_in_new": [
+    {
+      "method": "GET",
+      "path": "/api/assets/searchAssetsBarcode",
+      "summary": "searchAssetsBarcode (GET)"
+    },
+    {
+      "method": "POST",
+      "path": "/api/assets/archive",
+      "summary": "archive (POST)"
+    },
+    {
+      "method": "POST",
+      "path": "/api/assets/barcodes/assign",
+      "summary": "assign (POST)"
+    },
+    {
+      "method": "POST",
+      "path": "/api/assets/barcodes/delete",
+      "summary": "delete (POST)"
+    },
+    {
+      "method": "POST",
+      "path": "/api/assets/barcodes/index",
+      "summary": "index (POST)"
+    },
+    {
+      "method": "POST",
+      "path": "/api/assets/barcodes/search",
+      "summary": "search (POST)"
+    },
+    {
+      "method": "POST",
+      "path": "/api/assets/delete",
+      "summary": "delete (POST)"
+    },
+    {
+      "method": "POST",
+      "path": "/api/assets/editAsset",
+      "summary": "editAsset (POST)"
+    },
+    {
+      "method": "POST",
+      "path": "/api/assets/editAssetType",
+      "summary": "editAssetType (POST)"
+    },
+    {
+      "method": "POST",
+      "path": "/api/assets/editAssetTypeDefinableFields",
+      "summary": "editAssetTypeDefinableFields (POST)"
+    },
+    {
+      "method": "POST",
+      "path": "/api/assets/export",
+      "summary": "export (POST)"
+    },
+    {
+      "method": "POST",
+      "path": "/api/assets/getAssetTypeData",
+      "summary": "getAssetTypeData (POST)"
+    },
+    {
+      "method": "POST",
+      "path": "/api/assets/list",
+      "summary": "list (POST)"
+    },
+    {
+      "method": "POST",
+      "path": "/api/assets/newAssetFromType",
+      "summary": "newAssetFromType (POST)"
+    },
+    {
+      "method": "POST",
+      "path": "/api/assets/newAssetType",
+      "summary": "newAssetType (POST)"
+    },
+    {
+      "method": "POST",
+      "path": "/api/assets/searchAssets",
+      "summary": "searchAssets (POST)"
+    },
+    {
+      "method": "POST",
+      "path": "/api/assets/searchType",
+      "summary": "searchType (POST)"
+    },
+    {
+      "method": "POST",
+      "path": "/api/assets/substitutions",
+      "summary": "substitutions (POST)"
+    },
+    {
+      "method": "POST",
+      "path": "/api/assets/transfer",
+      "summary": "transfer (POST)"
+    }
+  ],
+  "unchanged": 0,
+  "summary": {
+    "new_total": 4,
+    "legacy_total": 209
+  }
+}
