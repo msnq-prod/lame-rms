@@ -1,0 +1,18 @@
+[
+  {
+    "methods": [
+      "GET"
+    ],
+    "path": "/",
+    "name": "root",
+    "summary": ""
+  },
+  {
+    "methods": [
+      "GET"
+    ],
+    "path": "/api/health",
+    "name": "read_health",
+    "summary": ""
+  }
+]
