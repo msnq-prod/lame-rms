@@ -1,6 +1,6 @@
 # Summary
 
-- Inventory generated on 2025-10-26T16:18:42.025204+00:00 covering 504 files across src.
+- Inventory generated on 2025-10-27T02:49:10.583971+00:00 covering 504 files across src.
 - Detected 207 API endpoints and 0 cron candidates.
 - Migration backlog initialised with actionable items and risk ratings.
 

@@ -71,7 +71,7 @@
       "description": "Stage report"
     }
   ],
-  "last_run": "2025-10-26T16:19:15.936234+00:00",
+  "last_run": "2025-10-27T02:49:18.230741+00:00",
   "warnings": [
     "Some optional tools are unavailable: act=warning, k6=warning, playwright=warning, terraform=warning, helm=warning",
     "yamllint not installed; backlog lint skipped"
@@ -80,8 +80,16 @@
   "extra": {
     "diff_summary": [
       " M automation/stage02/report.md",
-      "?? docs/backlog/",
-      "?? docs/inventory/"
+      " M docs/backlog/migration_backlog.json",
+      " M docs/backlog/migration_backlog.yaml",
+      " M docs/inventory/api/openapi.json",
+      " M docs/inventory/api/summary.md",
+      " M docs/inventory/cron.md",
+      " M docs/inventory/files.csv",
+      " M docs/inventory/files.json",
+      " M docs/inventory/files.md",
+      " M docs/inventory/metrics.md",
+      " M docs/inventory/structure.mmd"
     ],
     "tool_inventory": [
       {

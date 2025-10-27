@@ -1,6 +1,6 @@
 # API Inventory
 
-Generated: 2025-10-26T16:18:42.025204+00:00
+Generated: 2025-10-27T02:49:10.583971+00:00
 
 | Path | Methods | Files |
 | --- | --- | --- |
