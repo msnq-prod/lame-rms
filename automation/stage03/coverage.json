@@ -1,0 +1,1 @@
+{"covered_lines": 62, "total_lines": 62, "percent": 100.0, "modules": {"extract.py": {"covered_lines": 17, "total_lines": 17}, "transform.py": {"covered_lines": 14, "total_lines": 14}, "load.py": {"covered_lines": 22, "total_lines": 22}, "__init__.py": {"covered_lines": 9, "total_lines": 9}}}

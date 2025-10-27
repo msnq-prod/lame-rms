@@ -1,0 +1,25 @@
+{
+  "actionsCategories": [
+    {
+      "actionsCategories_id": 1,
+      "actionsCategories_name": "Operations",
+      "actionsCategories_order": 1
+    }
+  ],
+  "actions": [
+    {
+      "actions_id": 1,
+      "actions_name": "Check Inventory",
+      "actionsCategories_id": 1,
+      "actions_dependent": null,
+      "actions_incompatible": null
+    },
+    {
+      "actions_id": 2,
+      "actions_name": "Calibrate Lights",
+      "actionsCategories_id": 1,
+      "actions_dependent": null,
+      "actions_incompatible": null
+    }
+  ]
+}
