@@ -18,7 +18,7 @@ Success: no issues found in 35 source files
 ## Tests (pytest backend/tests/api -q)
 ```
 .                                                                                                                        [100%]
-1 passed in 0.84s
+1 passed in 1.17s
 ```
 
 ## Endpoints
