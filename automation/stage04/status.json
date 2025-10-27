@@ -1,10 +1,122 @@
 {
   "$schema": "../status.schema.json",
-  "state": "pending",
-  "checks": [],
-  "artifacts": [],
-  "last_run": null,
-  "warnings": [],
-  "notes": [],
-  "extra": {}
+  "state": "completed",
+  "checks": [
+    {
+      "name": "bootstrap",
+      "status": "ok",
+      "message": "FastAPI skeleton created"
+    },
+    {
+      "name": "alembic-upgrade",
+      "status": "ok",
+      "message": "alembic upgrade head"
+    },
+    {
+      "name": "ruff",
+      "status": "ok",
+      "message": "ruff check backend"
+    },
+    {
+      "name": "mypy",
+      "status": "ok",
+      "message": "mypy backend"
+    },
+    {
+      "name": "pytest",
+      "status": "ok",
+      "message": "pytest backend/tests/api -q"
+    },
+    {
+      "name": "openapi",
+      "status": "ok",
+      "message": "backend/openapi.json generated"
+    },
+    {
+      "name": "openapi-artifact",
+      "status": "ok",
+      "message": "backend/openapi.json present"
+    },
+    {
+      "name": "uvicorn-smoke",
+      "status": "ok",
+      "message": "uvicorn startup/shutdown"
+    }
+  ],
+  "artifacts": [
+    "backend/app/core/config.py",
+    "backend/app/core/logging.py",
+    "backend/app/core/middleware.py",
+    "backend/app/core/exceptions.py",
+    "backend/app/main.py",
+    "backend/app/api/routes/health.py",
+    "backend/app/services/health.py",
+    "backend/tests/api/test_health.py",
+    "backend/openapi.json",
+    "backend/requirements.txt",
+    "backend/.pre-commit-config.yaml",
+    "backend/pydantic_settings/__init__.py",
+    "backend/structlog/__init__.py",
+    "backend/pyproject.toml",
+    "automation/stage04/report.md",
+    "automation/stage04/endpoints.md",
+    "automation/stage04/endpoints.json"
+  ],
+  "last_run": "2025-10-27T07:28:37.149514+00:00",
+  "warnings": [
+    {
+      "tool": "act",
+      "message": "asdf not available"
+    },
+    {
+      "tool": "k6",
+      "message": "asdf not available"
+    },
+    {
+      "tool": "playwright",
+      "message": "npm install -g playwright failed"
+    },
+    {
+      "tool": "terraform",
+      "message": "asdf not available"
+    },
+    {
+      "tool": "helm",
+      "message": "asdf not available"
+    }
+  ],
+  "notes": [
+    "run.sh executed"
+  ],
+  "extra": {
+    "api_snapshot": [
+      {
+        "methods": [
+          "GET"
+        ],
+        "path": "/",
+        "name": "root",
+        "summary": ""
+      },
+      {
+        "methods": [
+          "GET"
+        ],
+        "path": "/api/health",
+        "name": "read_health",
+        "summary": ""
+      }
+    ],
+    "tools_summary": {
+      "total": 5,
+      "ok": 0,
+      "installed": 0,
+      "warnings": 5
+    },
+    "smoke": {
+      "command": "uvicorn startup/shutdown",
+      "status": "ok",
+      "log": "uvicorn_smoke.log"
+    }
+  }
 }

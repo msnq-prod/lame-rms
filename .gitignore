@@ -54,3 +54,8 @@ infrastructure/.terraform/
 
 # Automation artifacts
 automation/*/artifacts/
+automation/*/ensure_tools.log
+automation/*/tools_status.json
+
+# Generated runtime data
+backend/data/
