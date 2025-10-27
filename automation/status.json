@@ -1,0 +1,10 @@
+{
+  "$schema": "status.schema.json",
+  "state": "pending",
+  "checks": [],
+  "artifacts": [],
+  "last_run": null,
+  "warnings": [],
+  "notes": [],
+  "extra": {}
+}

@@ -206,12 +206,34 @@ if lines:
 else:
     payload_rows = []
 
-payload = {
-    "timestamp": datetime.now(timezone.utc).isoformat(),
-    "tools": payload_rows,
+warnings = [
+    {"tool": row["name"], "message": row["message"]}
+    for row in payload_rows
+    if row.get("status") not in {"ok", "installed"}
+]
+
+summary = {
+    "total": len(payload_rows),
+    "ok": sum(1 for row in payload_rows if row.get("status") == "ok"),
+    "installed": sum(1 for row in payload_rows if row.get("status") == "installed"),
+    "warnings": sum(1 for row in payload_rows if row.get("status") not in {"ok", "installed"}),
 }
+
+payload = {
+    "state": "completed" if not warnings else "needs_attention",
+    "checks": payload_rows,
+    "artifacts": [],
+    "last_run": datetime.now(timezone.utc).isoformat(),
+    "warnings": warnings,
+    "notes": [],
+    "extra": {
+        "tools_summary": summary,
+    },
+}
+
 with open(status_file, "w", encoding="utf-8") as fp:
     json.dump(payload, fp, ensure_ascii=False, indent=2)
+    fp.write("\n")
 PY
 
 if [[ "$KEEP_TMP" != "1" ]]; then
