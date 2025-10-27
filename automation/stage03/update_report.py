@@ -1,8 +1,3 @@
-#!/usr/bin/env python3
-"""Update the stage03 report with verification results."""
-
-from __future__ import annotations
-
 import argparse
 import json
 from pathlib import Path
@@ -37,6 +32,26 @@ def build_artifacts_list() -> list[str]:
     ]
 
 
+def build_key_files_list() -> list[str]:
+    return [
+        "- backend/app/models/generated.py",
+        "- backend/app/schemas/generated.py",
+        "- backend/app/etl/ (extract.py, transform.py, load.py, run.py)",
+        "- backend/tests/etl/test_pipeline.py",
+        "- docs/data/migration_plan.md",
+        "- automation/stage03/run.sh",
+        "- automation/stage03/self_check.sh",
+    ]
+
+
+def build_commands_section() -> list[str]:
+    return [
+        "1. `make stage03` — генерация схемы, моделей, ETL и документации.",
+        "2. `make stage03-verify` — pytest, alembic, проверки данных и coverage.",
+        "3. `make stage03-report` — вывод актуального отчёта.",
+    ]
+
+
 def render(summary: dict[str, Any], results: dict[str, Any]) -> str:
     timestamp = summary.get("timestamp")
     table_count = summary.get("table_count", 0)
@@ -62,6 +77,12 @@ def render(summary: dict[str, Any], results: dict[str, Any]) -> str:
     lines.extend(build_artifacts_list())
     lines.extend([
         "",
+        "## Key Files",
+        "",
+    ])
+    lines.extend(build_key_files_list())
+    lines.extend([
+        "",
         "## Checks",
         "",
     ])
@@ -71,6 +92,12 @@ def render(summary: dict[str, Any], results: dict[str, Any]) -> str:
         "## Coverage",
         "",
         f"- {coverage_line}",
+        "",
+        "## Commands",
+        "",
+    ])
+    lines.extend(build_commands_section())
+    lines.extend([
         "",
         "## Next Gate",
         "",

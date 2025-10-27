@@ -1,10 +1,94 @@
 {
   "$schema": "../status.schema.json",
-  "state": "pending",
-  "checks": [],
-  "artifacts": [],
-  "last_run": null,
-  "warnings": [],
-  "notes": [],
-  "extra": {}
+  "state": "needs_attention",
+  "checks": [
+    {
+      "name": "tooling",
+      "status": "warning",
+      "message": "act=warning, k6=warning, playwright=warning, terraform=warning, helm=warning"
+    },
+    {
+      "name": "pytest",
+      "status": "ok",
+      "message": "backend/tests/etl (see pytest.log)"
+    },
+    {
+      "name": "alembic",
+      "status": "warning",
+      "message": "docker not available"
+    },
+    {
+      "name": "rows",
+      "status": "ok",
+      "message": "actionsCategories=1/1, actions=2/2"
+    },
+    {
+      "name": "foreign_keys",
+      "status": "ok",
+      "message": "No foreign key violations"
+    }
+  ],
+  "artifacts": [
+    "automation/stage03/report.md",
+    "automation/stage03/coverage.json",
+    "automation/stage03/self_check_results.json",
+    "automation/stage03/etl_results.json",
+    "automation/stage03/pytest.log",
+    "automation/stage03/alembic.log",
+    "automation/stage03/ensure_tools.log"
+  ],
+  "last_run": "2025-10-27T06:21:48.867123+00:00",
+  "warnings": [
+    "act: asdf not available",
+    "k6: asdf not available",
+    "playwright: npm install -g playwright failed",
+    "terraform: asdf not available",
+    "helm: asdf not available",
+    "docker not available"
+  ],
+  "notes": [
+    "self_check.sh executed"
+  ],
+  "extra": {
+    "coverage": {
+      "covered_lines": 62,
+      "total_lines": 86,
+      "percent": 72.09,
+      "modules": {
+        "__init__.py": {
+          "covered_lines": 9,
+          "total_lines": 9
+        },
+        "extract.py": {
+          "covered_lines": 17,
+          "total_lines": 20
+        },
+        "load.py": {
+          "covered_lines": 22,
+          "total_lines": 23
+        },
+        "run.py": {
+          "covered_lines": 0,
+          "total_lines": 19
+        },
+        "transform.py": {
+          "covered_lines": 14,
+          "total_lines": 15
+        }
+      }
+    },
+    "etl_stats": {
+      "tables": {
+        "actionsCategories": 1,
+        "actions": 2
+      },
+      "total_rows": 3
+    },
+    "summary": {
+      "timestamp": "2025-10-27T06:21:38.656851+00:00",
+      "table_count": 51,
+      "column_count": 469,
+      "foreign_key_count": 80
+    }
+  }
 }

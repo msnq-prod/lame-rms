@@ -8,7 +8,7 @@
     "pytest": {
       "label": "Pytest (ETL)",
       "status": "pass",
-      "details": "backend/tests/etl"
+      "details": "backend/tests/etl (see pytest.log)"
     },
     "alembic": {
       "label": "Alembic upgrade",
@@ -18,38 +18,46 @@
     "rows": {
       "label": "Row counts",
       "status": "pass",
-      "details": "3 rows loaded across 2 tables"
+      "details": "actionsCategories=1/1, actions=2/2"
     },
     "foreign_keys": {
       "label": "Foreign keys",
       "status": "pass",
-      "details": "No missing references"
+      "details": "No foreign key violations"
     }
   },
   "warnings": [
-    "Some optional tools are unavailable: act=warning, k6=warning, playwright=warning, terraform=warning, helm=warning",
-    "Cannot start postgres-test: docker missing"
+    "act: asdf not available",
+    "k6: asdf not available",
+    "playwright: npm install -g playwright failed",
+    "terraform: asdf not available",
+    "helm: asdf not available",
+    "docker not available"
   ],
   "coverage": {
     "covered_lines": 62,
-    "total_lines": 62,
-    "percent": 100.0,
+    "total_lines": 86,
+    "percent": 72.09,
     "modules": {
-      "extract.py": {
-        "covered_lines": 17,
-        "total_lines": 17
-      },
-      "transform.py": {
-        "covered_lines": 14,
-        "total_lines": 14
-      },
-      "load.py": {
-        "covered_lines": 22,
-        "total_lines": 22
-      },
       "__init__.py": {
         "covered_lines": 9,
         "total_lines": 9
+      },
+      "extract.py": {
+        "covered_lines": 17,
+        "total_lines": 20
+      },
+      "load.py": {
+        "covered_lines": 22,
+        "total_lines": 23
+      },
+      "run.py": {
+        "covered_lines": 0,
+        "total_lines": 19
+      },
+      "transform.py": {
+        "covered_lines": 14,
+        "total_lines": 15
       }
     }
   },

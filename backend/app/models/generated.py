@@ -8,7 +8,7 @@ from sqlalchemy import BigInteger, SmallInteger
 
 from app.db.base import Base
 
-# Auto-generated on 2025-10-27T00:11:45.758380+00:00 from db/schema.php
+# Auto-generated on 2025-10-27T06:21:38.656851+00:00 from db/schema.php
 
 class Actions(Base):
     __tablename__ = "actions"

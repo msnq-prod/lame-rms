@@ -1,5 +1,5 @@
 {
-  "etl_stats": {
+  "stats": {
     "tables": {
       "actionsCategories": 1,
       "actions": 2
@@ -10,5 +10,5 @@
     "actionsCategories": 1,
     "actions": 2
   },
-  "foreign_failures": 0
+  "foreign_key_errors": []
 }

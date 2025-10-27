@@ -6,7 +6,7 @@ from typing import List
 from decimal import Decimal
 from pydantic import BaseModel, ConfigDict
 
-# Auto-generated on 2025-10-27T00:11:45.758380+00:00 from db/schema.php
+# Auto-generated on 2025-10-27T06:21:38.656851+00:00 from db/schema.php
 
 class ActionsSchema(BaseModel):
     """Schema for table actions."""
