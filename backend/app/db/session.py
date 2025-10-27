@@ -1,19 +1,28 @@
-import os
+from __future__ import annotations
+
+from pathlib import Path
 from typing import Generator
 
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import Session, sessionmaker
 
+from app.core.config import get_settings
 from app.db.base import Base
 
-DEFAULT_DATABASE_URL = "postgresql+psycopg://postgres:postgres@localhost:5432/postgres"
-DATABASE_URL = os.getenv("DATABASE_URL", DEFAULT_DATABASE_URL)
+settings = get_settings()
 
-engine = create_engine(DATABASE_URL, future=True)
+default_database_url = settings.database_url
+
+if default_database_url.startswith("sqlite"):
+    database_path = default_database_url.split("///")[-1]
+    if database_path:
+        Path(database_path).parent.mkdir(parents=True, exist_ok=True)
+
+engine = create_engine(default_database_url, future=True)
 SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False)
 
 
-def get_db() -> Generator:
+def get_db() -> Generator[Session, None, None]:
     db = SessionLocal()
     try:
         yield db
