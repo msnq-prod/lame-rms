@@ -1,0 +1,102 @@
+{
+  "state": "ready",
+  "checks": {
+    "tooling": {
+      "status": "warn",
+      "details": "act=warning, k6=warning, playwright=warning, terraform=warning, helm=warning"
+    },
+    "pytest": {
+      "status": "pass",
+      "details": "backend/tests/etl"
+    },
+    "alembic": {
+      "status": "warn",
+      "details": "docker not available"
+    },
+    "rows": {
+      "status": "pass",
+      "details": "3 rows loaded across 2 tables"
+    },
+    "foreign_keys": {
+      "status": "pass",
+      "details": "No missing references"
+    }
+  },
+  "artifacts": [
+    {
+      "type": "diagram",
+      "path": "docs/data/er_diagram.mmd",
+      "description": "ER diagram"
+    },
+    {
+      "type": "schema",
+      "path": "automation/stage03/schema.json",
+      "description": "Legacy schema snapshot"
+    },
+    {
+      "type": "models",
+      "path": "backend/app/models/generated.py",
+      "description": "SQLAlchemy models"
+    },
+    {
+      "type": "schemas",
+      "path": "backend/app/schemas/generated.py",
+      "description": "Pydantic schemas"
+    },
+    {
+      "type": "etl",
+      "path": "backend/app/etl",
+      "description": "ETL pipeline"
+    },
+    {
+      "type": "report",
+      "path": "automation/stage03/report.md",
+      "description": "Stage report"
+    }
+  ],
+  "last_run": "2025-10-27T00:12:14.402793+00:00",
+  "warnings": [
+    "Some optional tools are unavailable: act=warning, k6=warning, playwright=warning, terraform=warning, helm=warning",
+    "Cannot start postgres-test: docker missing"
+  ],
+  "notes": [],
+  "extra": {
+    "coverage": {
+      "covered_lines": 62,
+      "total_lines": 62,
+      "percent": 100.0,
+      "modules": {
+        "extract.py": {
+          "covered_lines": 17,
+          "total_lines": 17
+        },
+        "transform.py": {
+          "covered_lines": 14,
+          "total_lines": 14
+        },
+        "load.py": {
+          "covered_lines": 22,
+          "total_lines": 22
+        },
+        "__init__.py": {
+          "covered_lines": 9,
+          "total_lines": 9
+        }
+      }
+    },
+    "etl_stats": {
+      "etl_stats": {
+        "tables": {
+          "actionsCategories": 1,
+          "actions": 2
+        },
+        "total_rows": 3
+      },
+      "row_counts": {
+        "actionsCategories": 1,
+        "actions": 2
+      },
+      "foreign_failures": 0
+    }
+  }
+}

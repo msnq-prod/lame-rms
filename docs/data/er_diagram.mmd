@@ -1,0 +1,654 @@
+%% Auto-generated ER diagram
+%% Generated on 2025-10-27T00:11:45.758380+00:00
+erDiagram
+    actions {
+        INT actions_id PK
+        VARCHAR actions_name
+        INT actionsCategories_id FK
+        VARCHAR actions_dependent
+        VARCHAR actions_incompatible
+    }
+    actionsCategories {
+        INT actionsCategories_id PK
+        VARCHAR actionsCategories_name
+        INT actionsCategories_order
+    }
+    assetCategories {
+        INT assetCategories_id PK
+        VARCHAR assetCategories_name
+        VARCHAR assetCategories_fontAwesome
+        INT assetCategories_rank
+        INT assetCategoriesGroups_id FK
+        INT instances_id FK
+        TINYINT assetCategories_deleted
+    }
+    assetCategoriesGroups {
+        INT assetCategoriesGroups_id PK
+        VARCHAR assetCategoriesGroups_name
+        VARCHAR assetCategoriesGroups_fontAwesome
+        INT assetCategoriesGroups_order
+    }
+    assetGroups {
+        INT assetGroups_id PK
+        VARCHAR assetGroups_name
+        TEXT assetGroups_description
+        TINYINT assetGroups_deleted
+        INT users_userid FK
+        INT instances_id FK
+    }
+    assetTypes {
+        INT assetTypes_id PK
+        VARCHAR assetTypes_name
+        INT assetCategories_id FK
+        INT manufacturers_id FK
+        INT instances_id FK
+        VARCHAR assetTypes_description
+        VARCHAR assetTypes_productLink
+        VARCHAR assetTypes_definableFields
+        DECIMAL assetTypes_mass
+        TIMESTAMP assetTypes_inserted
+        INT assetTypes_dayRate
+        INT assetTypes_weekRate
+        INT assetTypes_value
+    }
+    assets {
+        INT assets_id PK
+        VARCHAR assets_tag
+        INT assetTypes_id FK
+        TEXT assets_notes
+        INT instances_id FK
+        VARCHAR asset_definableFields_1
+        VARCHAR asset_definableFields_2
+        VARCHAR asset_definableFields_3
+        VARCHAR asset_definableFields_4
+        VARCHAR asset_definableFields_5
+        VARCHAR asset_definableFields_6
+        VARCHAR asset_definableFields_7
+        VARCHAR asset_definableFields_8
+        VARCHAR asset_definableFields_9
+        VARCHAR asset_definableFields_10
+        TIMESTAMP assets_inserted
+        INT assets_dayRate
+        INT assets_linkedTo FK
+        INT assets_weekRate
+        INT assets_value
+        DECIMAL assets_mass
+        TINYINT assets_deleted
+        TIMESTAMP assets_endDate
+        VARCHAR assets_archived
+        VARCHAR assets_assetGroups
+        INT assets_storageLocation FK
+        TINYINT assets_showPublic
+    }
+    assetsAssignments {
+        INT assetsAssignments_id PK
+        INT assets_id FK
+        INT projects_id FK
+        VARCHAR assetsAssignments_comment
+        INT assetsAssignments_customPrice
+        FLOAT assetsAssignments_discount
+        TIMESTAMP assetsAssignments_timestamp
+        TINYINT assetsAssignments_deleted
+        INT assetsAssignmentsStatus_id
+        INT assetsAssignments_linkedTo FK
+    }
+    assetsAssignmentsStatus {
+        INT assetsAssignmentsStatus_id PK
+        INT instances_id FK
+        VARCHAR assetsAssignmentsStatus_name
+        INT assetsAssignmentsStatus_order
+    }
+    assetsBarcodes {
+        INT assetsBarcodes_id PK
+        INT assets_id FK
+        VARCHAR assetsBarcodes_value
+        VARCHAR assetsBarcodes_type
+        TEXT assetsBarcodes_notes
+        TIMESTAMP assetsBarcodes_added
+        INT users_userid FK
+        TINYINT assetsBarcodes_deleted
+    }
+    assetsBarcodesScans {
+        INT assetsBarcodesScans_id PK
+        INT assetsBarcodes_id FK
+        TIMESTAMP assetsBarcodesScans_timestamp
+        INT users_userid FK
+        INT locationsBarcodes_id FK
+        INT location_assets_id FK
+        VARCHAR assetsBarcodes_customLocation
+    }
+    auditLog {
+        INT auditLog_id PK
+        VARCHAR auditLog_actionType
+        VARCHAR auditLog_actionTable
+        LONGTEXT auditLog_actionData
+        TIMESTAMP auditLog_timestamp
+        INT users_userid FK
+        INT auditLog_actionUserid FK
+        INT projects_id
+        TINYINT auditLog_deleted
+        INT auditLog_targetID
+    }
+    authTokens {
+        INT authTokens_id PK
+        VARCHAR authTokens_token UQ
+        TIMESTAMP authTokens_created
+        VARCHAR authTokens_ipAddress
+        INT users_userid FK
+        TINYINT authTokens_valid
+        INT authTokens_adminId FK
+        VARCHAR authTokens_deviceType
+    }
+    clients {
+        INT clients_id PK
+        VARCHAR clients_name
+        INT instances_id FK
+        TINYINT clients_deleted
+        VARCHAR clients_website
+        VARCHAR clients_email
+        TEXT clients_notes
+        VARCHAR clients_address
+        VARCHAR clients_phone
+    }
+    cmsPages {
+        INT cmsPages_id PK
+        INT instances_id FK
+        TINYINT cmsPages_showNav
+        TINYINT cmsPages_showPublic
+        TINYINT cmsPages_showPublicNav
+        VARCHAR cmsPages_visibleToGroups
+        INT cmsPages_navOrder
+        VARCHAR cmsPages_fontAwesome
+        VARCHAR cmsPages_name
+        TEXT cmsPages_description
+        TINYINT cmsPages_archived
+        TINYINT cmsPages_deleted
+        TIMESTAMP cmsPages_added
+        INT cmsPages_subOf FK
+    }
+    cmsPagesDrafts {
+        INT cmsPagesDrafts_id PK
+        INT cmsPages_id FK
+        INT users_userid FK
+        TIMESTAMP cmsPagesDrafts_timestamp FK
+        JSON cmsPagesDrafts_data
+        TEXT cmsPagesDrafts_changelog
+        INT cmsPagesDrafts_revisionID
+    }
+    cmsPagesViews {
+        INT cmsPagesViews_id PK
+        INT cmsPages_id FK
+        TIMESTAMP cmsPagesViews_timestamp FK
+        INT users_userid FK
+        TINYINT cmsPages_type
+    }
+    crewAssignments {
+        INT crewAssignments_id PK
+        INT users_userid FK
+        INT projects_id FK
+        VARCHAR crewAssignments_personName
+        VARCHAR crewAssignments_role
+        VARCHAR crewAssignments_comment
+        TINYINT crewAssignments_deleted
+        INT crewAssignments_rank
+    }
+    emailSent {
+        INT emailSent_id PK
+        INT users_userid FK
+        LONGTEXT emailSent_html
+        VARCHAR emailSent_subject
+        TIMESTAMP emailSent_sent
+        VARCHAR emailSent_fromEmail
+        VARCHAR emailSent_fromName
+        VARCHAR emailSent_toName
+        VARCHAR emailSent_toEmail
+    }
+    emailVerificationCodes {
+        INT emailVerificationCodes_id PK
+        VARCHAR emailVerificationCodes_code
+        TINYINT emailVerificationCodes_used
+        TIMESTAMP emailVerificationCodes_timestamp
+        INT emailVerificationCodes_valid
+        INT users_userid FK
+    }
+    instanceActions {
+        INT instanceActions_id PK
+        VARCHAR instanceActions_name
+        INT instanceActionsCategories_id FK
+        VARCHAR instanceActions_dependent
+        VARCHAR instanceActions_incompatible
+    }
+    instanceActionsCategories {
+        INT instanceActionsCategories_id PK
+        VARCHAR instanceActionsCategories_name
+        INT instanceActionsCategories_order
+    }
+    instancePositions {
+        INT instancePositions_id PK
+        INT instances_id FK
+        VARCHAR instancePositions_displayName
+        INT instancePositions_rank
+        VARCHAR instancePositions_actions
+        TINYINT instancePositions_deleted
+    }
+    instances {
+        INT instances_id PK
+        VARCHAR instances_name
+        TINYINT instances_deleted
+        VARCHAR instances_plan
+        VARCHAR instances_address
+        VARCHAR instances_phone
+        VARCHAR instances_email
+        VARCHAR instances_website
+        TEXT instances_weekStartDates
+        INT instances_logo
+        INT instances_emailHeader
+        TEXT instances_termsAndPayment
+        BIGINT instances_storageLimit
+        DOUBLE instances_config_linkedDefaultDiscount
+        VARCHAR instances_config_currency
+        TEXT instances_cableColours
+        TEXT instances_publicConfig
+    }
+    locations {
+        INT locations_id PK
+        VARCHAR locations_name
+        INT clients_id FK
+        INT instances_id FK
+        TEXT locations_address
+        TINYINT locations_deleted
+        INT locations_subOf FK
+        TEXT locations_notes
+    }
+    locationsBarcodes {
+        INT locationsBarcodes_id PK
+        INT locations_id
+        VARCHAR locationsBarcodes_value
+        VARCHAR locationsBarcodes_type
+        TEXT locationsBarcodes_notes
+        TIMESTAMP locationsBarcodes_added
+        INT users_userid FK
+        TINYINT locationsBarcodes_deleted
+    }
+    loginAttempts {
+        INT loginAttempts_id PK
+        TIMESTAMP loginAttempts_timestamp
+        VARCHAR loginAttempts_textEntered
+        VARCHAR loginAttempts_ip
+        TINYINT loginAttempts_blocked
+        TINYINT loginAttempts_successful
+    }
+    maintenanceJobs {
+        INT maintenanceJobs_id PK
+        VARCHAR maintenanceJobs_assets
+        TIMESTAMP maintenanceJobs_timestamp_added
+        TIMESTAMP maintenanceJobs_timestamp_due
+        VARCHAR maintenanceJobs_user_tagged
+        INT maintenanceJobs_user_creator FK
+        INT maintenanceJobs_user_assignedTo
+        VARCHAR maintenanceJobs_title
+        VARCHAR maintenanceJobs_faultDescription
+        TINYINT maintenanceJobs_priority
+        INT instances_id
+        TINYINT maintenanceJobs_deleted
+        INT maintenanceJobsStatuses_id
+        TINYINT maintenanceJobs_flagAssets
+        TINYINT maintenanceJobs_blockAssets
+    }
+    maintenanceJobsMessages {
+        INT maintenanceJobsMessages_id PK
+        INT maintenanceJobs_id FK
+        TIMESTAMP maintenanceJobsMessages_timestamp
+        INT users_userid
+        TINYINT maintenanceJobsMessages_deleted
+        TEXT maintenanceJobsMessages_text
+        INT maintenanceJobsMessages_file FK
+    }
+    maintenanceJobsStatuses {
+        INT maintenanceJobsStatuses_id PK
+        INT instances_id FK
+        VARCHAR maintenanceJobsStatuses_name
+        TINYINT maintenanceJobsStatuses_order
+        TINYINT maintenanceJobsStatuses_deleted
+        TINYINT maintenanceJobsStatuses_showJobInMainList
+    }
+    manufacturers {
+        INT manufacturers_id PK
+        VARCHAR manufacturers_name
+        INT instances_id FK
+        VARCHAR manufacturers_internalAdamRMSNote
+        VARCHAR manufacturers_website
+        TEXT manufacturers_notes
+    }
+    modules {
+        INT modules_id PK
+        INT instances_id FK
+        INT users_userid FK
+        VARCHAR modules_name
+        TEXT modules_description
+        TEXT modules_learningObjectives
+        TINYINT modules_deleted
+        TINYINT modules_show
+        INT modules_thumbnail FK
+        TINYINT modules_type
+    }
+    modulesSteps {
+        INT modulesSteps_id PK
+        INT modules_id FK
+        TINYINT modulesSteps_deleted
+        TINYINT modulesSteps_show
+        VARCHAR modulesSteps_name
+        TINYINT modulesSteps_type
+        LONGTEXT modulesSteps_content
+        INT modulesSteps_completionTime
+        LONGTEXT modulesSteps_internalNotes
+        INT modulesSteps_order
+        TINYINT modulesSteps_locked
+    }
+    passwordResetCodes {
+        INT passwordResetCodes_id PK
+        VARCHAR passwordResetCodes_code
+        TINYINT passwordResetCodes_used
+        TIMESTAMP passwordResetCodes_timestamp
+        INT passwordResetCodes_valid
+        INT users_userid FK
+    }
+    payments {
+        INT payments_id PK
+        INT payments_amount
+        INT payments_quantity
+        TINYINT payments_type
+        VARCHAR payments_reference
+        TIMESTAMP payments_date
+        VARCHAR payments_supplier
+        VARCHAR payments_method
+        VARCHAR payments_comment
+        INT projects_id FK
+        TINYINT payments_deleted
+    }
+    phinxlog {
+        BIGINT version PK
+        VARCHAR migration_name
+        TIMESTAMP start_time
+        TIMESTAMP end_time
+        TINYINT breakpoint
+    }
+    positions {
+        INT positions_id PK
+        VARCHAR positions_displayName
+        VARCHAR positions_positionsGroups
+        TINYINT positions_rank
+    }
+    positionsGroups {
+        INT positionsGroups_id PK
+        VARCHAR positionsGroups_name
+        VARCHAR positionsGroups_actions
+    }
+    projects {
+        INT projects_id PK
+        VARCHAR projects_name
+        INT instances_id FK
+        INT projects_manager FK
+        TEXT projects_description
+        TIMESTAMP projects_created
+        INT clients_id FK
+        TINYINT projects_deleted
+        TINYINT projects_archived
+        TIMESTAMP projects_dates_use_start
+        TIMESTAMP projects_dates_use_end
+        TIMESTAMP projects_dates_deliver_start
+        TIMESTAMP projects_dates_deliver_end
+        TINYINT projects_status
+        INT locations_id FK
+        TEXT projects_invoiceNotes
+        DOUBLE projects_defaultDiscount
+        INT projectsTypes_id FK
+    }
+    projectsFinanceCache {
+        INT projectsFinanceCache_id PK
+        INT projects_id FK
+        TIMESTAMP projectsFinanceCache_timestamp FK
+        TIMESTAMP projectsFinanceCache_timestampUpdated
+        INT projectsFinanceCache_equipmentSubTotal
+        INT projectsFinanceCache_equiptmentDiscounts
+        INT projectsFinanceCache_equiptmentTotal
+        INT projectsFinanceCache_salesTotal
+        INT projectsFinanceCache_staffTotal
+        INT projectsFinanceCache_externalHiresTotal
+        INT projectsFinanceCache_paymentsReceived
+        INT projectsFinanceCache_grandTotal
+        INT projectsFinanceCache_value
+        DECIMAL projectsFinanceCache_mass
+    }
+    projectsNotes {
+        INT projectsNotes_id PK
+        VARCHAR projectsNotes_title
+        TEXT projectsNotes_text
+        INT projectsNotes_userid FK
+        INT projects_id FK
+        TINYINT projectsNotes_deleted
+    }
+    projectsTypes {
+        INT projectsTypes_id PK
+        VARCHAR projectsTypes_name
+        INT instances_id FK
+        TINYINT projectsTypes_deleted
+        TINYINT projectsTypes_config_finance
+        INT projectsTypes_config_files
+        INT projectsTypes_config_assets
+        INT projectsTypes_config_client
+        INT projectsTypes_config_venue
+        INT projectsTypes_config_notes
+        INT projectsTypes_config_crew
+    }
+    projectsVacantRoles {
+        INT projectsVacantRoles_id PK
+        INT projects_id FK
+        VARCHAR projectsVacantRoles_name
+        TEXT projectsVacantRoles_description
+        TEXT projectsVacantRoles_personSpecification
+        TINYINT projectsVacantRoles_deleted
+        TINYINT projectsVacantRoles_open
+        TINYINT projectsVacantRoles_showPublic
+        TIMESTAMP projectsVacantRoles_added
+        TIMESTAMP projectsVacantRoles_deadline
+        TINYINT projectsVacantRoles_firstComeFirstServed
+        TINYINT projectsVacantRoles_fileUploads
+        INT projectsVacantRoles_slots
+        INT projectsVacantRoles_slotsFilled
+        JSON projectsVacantRoles_questions
+        TINYINT projectsVacantRoles_collectPhone
+        TINYINT projectsVacantRoles_privateToPM
+    }
+    projectsVacantRolesApplications {
+        INT projectsVacantRolesApplications_id PK
+        INT projectsVacantRoles_id FK
+        INT users_userid FK
+        TEXT projectsVacantRolesApplications_files
+        VARCHAR projectsVacantRolesApplications_phone
+        TEXT projectsVacantRolesApplications_applicantComment
+        TINYINT projectsVacantRolesApplications_deleted
+        TINYINT projectsVacantRolesApplications_withdrawn
+        TIMESTAMP projectsVacantRolesApplications_submitted
+        JSON projectsVacantRolesApplications_questionAnswers
+        TINYINT projectsVacantRolesApplications_status
+    }
+    s3files {
+        INT s3files_id PK
+        INT instances_id FK
+        VARCHAR s3files_path
+        VARCHAR s3files_name
+        VARCHAR s3files_filename
+        VARCHAR s3files_extension
+        VARCHAR s3files_original_name
+        VARCHAR s3files_region
+        VARCHAR s3files_endpoint
+        VARCHAR s3files_cdn_endpoint
+        VARCHAR s3files_bucket
+        BIGINT s3files_meta_size
+        TINYINT s3files_meta_public
+        TINYINT s3files_meta_type
+        INT s3files_meta_subType
+        TIMESTAMP s3files_meta_uploaded
+        INT users_userid FK
+        TIMESTAMP s3files_meta_deleteOn
+        TINYINT s3files_meta_physicallyStored
+        TINYINT s3files_compressed
+    }
+    signupCodes {
+        INT signupCodes_id PK
+        VARCHAR signupCodes_name UQ
+        INT instances_id FK
+        TINYINT signupCodes_deleted
+        TINYINT signupCodes_valid
+        TEXT signupCodes_notes
+        VARCHAR signupCodes_role
+        INT instancePositions_id FK
+    }
+    userInstances {
+        INT userInstances_id PK
+        INT users_userid FK
+        INT instancePositions_id FK
+        VARCHAR userInstances_extraPermissions
+        VARCHAR userInstances_label
+        TINYINT userInstances_deleted
+        INT signupCodes_id FK
+        TIMESTAMP userInstances_archived
+    }
+    userModules {
+        INT userModules_id PK
+        INT modules_id FK
+        INT users_userid FK
+        VARCHAR userModules_stepsCompleted
+        INT userModules_currentStep FK
+        TIMESTAMP userModules_started
+        TIMESTAMP userModules_updated
+    }
+    userModulesCertifications {
+        INT userModulesCertifications_id PK
+        INT modules_id FK
+        INT users_userid FK
+        TINYINT userModulesCertifications_revoked
+        INT userModulesCertifications_approvedBy FK
+        VARCHAR userModulesCertifications_approvedComment
+        TIMESTAMP userModulesCertifications_timestamp
+    }
+    userPositions {
+        INT userPositions_id PK
+        INT users_userid FK
+        TIMESTAMP userPositions_start
+        TIMESTAMP userPositions_end
+        INT positions_id FK
+        VARCHAR userPositions_displayName
+        VARCHAR userPositions_extraPermissions
+        TINYINT userPositions_show
+    }
+    users {
+        VARCHAR users_username UQ
+        VARCHAR users_name1
+        VARCHAR users_name2
+        INT users_userid PK
+        VARCHAR users_salty1
+        VARCHAR users_password
+        VARCHAR users_salty2
+        VARCHAR users_hash
+        VARCHAR users_email UQ
+        TIMESTAMP users_created
+        TEXT users_notes
+        INT users_thumbnail
+        TINYINT users_changepass
+        INT users_selectedProjectID
+        INT users_selectedInstanceIDLast
+        TINYINT users_suspended
+        TINYINT users_deleted
+        TINYINT users_emailVerified
+        VARCHAR users_social_facebook
+        VARCHAR users_social_twitter
+        VARCHAR users_social_instagram
+        VARCHAR users_social_linkedin
+        VARCHAR users_social_snapchat
+        VARCHAR users_calendarHash
+        VARCHAR users_widgets
+        TEXT users_notificationSettings
+        VARCHAR users_assetGroupsWatching
+    }
+    actions }o--|| actionsCategories : "actionsCategories_id"
+    assetCategories }o--|| assetCategoriesGroups : "assetCategoriesGroups_id"
+    assetCategories }o--|| instances : "instances_id"
+    assetGroups }o--|| instances : "instances_id"
+    assetGroups }o--|| users : "users_userid"
+    assetTypes }o--|| assetCategories : "assetCategories_id"
+    assetTypes }o--|| instances : "instances_id"
+    assetTypes }o--|| manufacturers : "manufacturers_id"
+    assets }o--|| assetTypes : "assetTypes_id"
+    assets }o--|| assets : "assets_linkedTo"
+    assets }o--|| instances : "instances_id"
+    assets }o--|| locations : "assets_storageLocation"
+    assetsAssignments }o--|| assets : "assets_id"
+    assetsAssignments }o--|| assetsAssignments : "assetsAssignments_linkedTo"
+    assetsAssignments }o--|| projects : "projects_id"
+    assetsAssignmentsStatus }o--|| instances : "instances_id"
+    assetsBarcodes }o--|| assets : "assets_id"
+    assetsBarcodes }o--|| users : "users_userid"
+    assetsBarcodesScans }o--|| assets : "location_assets_id"
+    assetsBarcodesScans }o--|| assetsBarcodes : "assetsBarcodes_id"
+    assetsBarcodesScans }o--|| locationsBarcodes : "locationsBarcodes_id"
+    assetsBarcodesScans }o--|| users : "users_userid"
+    auditLog }o--|| users : "auditLog_actionUserid"
+    auditLog }o--|| users : "users_userid"
+    authTokens }o--|| users : "authTokens_adminId"
+    authTokens }o--|| users : "users_userid"
+    clients }o--|| instances : "instances_id"
+    cmsPages }o--|| cmsPages : "cmsPages_subOf"
+    cmsPages }o--|| instances : "instances_id"
+    cmsPagesDrafts }o--|| cmsPages : "cmsPages_id"
+    cmsPagesDrafts }o--|| users : "users_userid"
+    cmsPagesViews }o--|| cmsPages : "cmsPages_id"
+    cmsPagesViews }o--|| users : "users_userid"
+    crewAssignments }o--|| projects : "projects_id"
+    crewAssignments }o--|| users : "users_userid"
+    emailSent }o--|| users : "users_userid"
+    emailVerificationCodes }o--|| users : "users_userid"
+    instanceActions }o--|| instanceActionsCategories : "instanceActionsCategories_id"
+    instancePositions }o--|| instances : "instances_id"
+    locations }o--|| clients : "clients_id"
+    locations }o--|| instances : "instances_id"
+    locations }o--|| locations : "locations_subOf"
+    locationsBarcodes }o--|| users : "users_userid"
+    maintenanceJobs }o--|| users : "maintenanceJobs_user_creator"
+    maintenanceJobsMessages }o--|| maintenanceJobs : "maintenanceJobs_id"
+    maintenanceJobsMessages }o--|| s3files : "maintenanceJobsMessages_file"
+    maintenanceJobsStatuses }o--|| instances : "instances_id"
+    manufacturers }o--|| instances : "instances_id"
+    modules }o--|| instances : "instances_id"
+    modules }o--|| s3files : "modules_thumbnail"
+    modules }o--|| users : "users_userid"
+    modulesSteps }o--|| modules : "modules_id"
+    passwordResetCodes }o--|| users : "users_userid"
+    payments }o--|| projects : "projects_id"
+    projects }o--|| clients : "clients_id"
+    projects }o--|| instances : "instances_id"
+    projects }o--|| locations : "locations_id"
+    projects }o--|| users : "projects_manager"
+    projectsFinanceCache }o--|| projects : "projects_id"
+    projectsNotes }o--|| projects : "projects_id"
+    projectsNotes }o--|| users : "projectsNotes_userid"
+    projectsTypes }o--|| instances : "instances_id"
+    projectsVacantRoles }o--|| projects : "projects_id"
+    projectsVacantRolesApplications }o--|| projectsVacantRoles : "projectsVacantRoles_id"
+    projectsVacantRolesApplications }o--|| users : "users_userid"
+    s3files }o--|| instances : "instances_id"
+    s3files }o--|| users : "users_userid"
+    signupCodes }o--|| instancePositions : "instancePositions_id"
+    signupCodes }o--|| instances : "instances_id"
+    userInstances }o--|| instancePositions : "instancePositions_id"
+    userInstances }o--|| signupCodes : "signupCodes_id"
+    userInstances }o--|| users : "users_userid"
+    userModules }o--|| modules : "modules_id"
+    userModules }o--|| modulesSteps : "userModules_currentStep"
+    userModules }o--|| users : "users_userid"
+    userModulesCertifications }o--|| modules : "modules_id"
+    userModulesCertifications }o--|| users : "userModulesCertifications_approvedBy"
+    userModulesCertifications }o--|| users : "users_userid"
+    userPositions }o--|| positions : "positions_id"
+    userPositions }o--|| users : "users_userid"
