@@ -1,0 +1,137 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Automation Stage Status",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "state",
+    "checks",
+    "artifacts",
+    "last_run",
+    "warnings",
+    "notes",
+    "extra"
+  ],
+  "properties": {
+    "state": {
+      "type": "string",
+      "description": "Overall state of the automation stage run",
+      "enum": [
+        "pending",
+        "running",
+        "completed",
+        "needs_attention",
+        "failed"
+      ]
+    },
+    "checks": {
+      "type": "array",
+      "description": "Individual tool verification results",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "status",
+          "message"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ok",
+              "installed",
+              "warning"
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "description": "Files generated during the stage run",
+      "items": {
+        "type": "string"
+      }
+    },
+    "last_run": {
+      "description": "ISO8601 timestamp of the last execution",
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "warnings": {
+      "type": "array",
+      "description": "List of warnings collected while preparing tools",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "tool",
+          "message"
+        ],
+        "properties": {
+          "tool": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "notes": {
+      "type": "array",
+      "description": "Free-form notes from the automation run",
+      "items": {
+        "type": "string"
+      }
+    },
+    "extra": {
+      "type": "object",
+      "description": "Structured extension data specific to the stage",
+      "properties": {
+        "tools_summary": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "total",
+            "ok",
+            "installed",
+            "warnings"
+          ],
+          "properties": {
+            "total": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "ok": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "installed": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "warnings": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

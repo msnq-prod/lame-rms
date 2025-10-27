@@ -36,9 +36,10 @@ This repo has a configured devcontainer for use with GitHub Codespaces or VSCode
 
 Автоматизированная миграция разбита на этапы `stage01`–`stage12` согласно [плану](docs/migration_plan.md). Каждый этап имеет единый набор команд, которые можно запускать локально или через CI.
 
+0. (Опционально) Установите и проверьте вспомогательные утилиты командой `automation/bin/ensure_tools.sh`. Скрипт создаёт файл статуса (по умолчанию `automation/status.json` или значение переменной `STATUS_FILE`), соответствующий схеме `automation/status.schema.json`, фиксирует предупреждения о недостающих инструментах и собирает краткую сводку в `extra.tools_summary`.
 1. Определите номер этапа, который нужно выполнить, и подставьте его вместо `XX`.
 2. Запустите `make stageXX`, чтобы выполнить основной сценарий (`automation/stageXX/run.sh`).
 3. Запустите `make stageXX-verify`, чтобы выполнить самопроверку (`automation/stageXX/self_check.sh`).
 4. Просмотрите отчёт с помощью `make stageXX-report` — команда выведет содержимое `automation/stageXX/report.md`.
 
-Сценарии не реализованных этапов выводят сообщение вида «Stage XX not implemented», поэтому их можно выполнять повторно без побочных эффектов. Для наполнения отчётов можно использовать шаблон `automation/templates/report.md`.
+Сценарии не реализованных этапов выводят сообщение вида «Stage XX not implemented», поэтому их можно выполнять повторно без побочных эффектов. Для фиксации статуса и предупреждений можно обновлять `automation/stageXX/status.json`, а для наполнения отчётов — использовать шаблон `automation/templates/report.md`.
