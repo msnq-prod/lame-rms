@@ -13,7 +13,7 @@ from collections import Counter
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Dict, List, Sequence, Set, Tuple
+from typing import Any, Dict, List, Sequence, Set, Tuple
 
 
 @dataclass
@@ -152,6 +152,67 @@ def write_text_with_newline(path: Path, content: str) -> None:
     if not content.endswith("\n"):
         content = content + "\n"
     path.write_text(content, encoding="utf-8")
+
+
+def format_yaml_scalar(value: Any) -> str:
+    if isinstance(value, str):
+        return json.dumps(value, ensure_ascii=False)
+    if isinstance(value, bool):
+        return "true" if value else "false"
+    if value is None:
+        return "null"
+    return str(value)
+
+
+def iter_yaml_lines(value: Any, indent: int = 0) -> List[str]:
+    prefix = " " * indent
+    if isinstance(value, dict):
+        lines: List[str] = []
+        if not value:
+            lines.append(f"{prefix}{{}}")
+            return lines
+        for key, item in value.items():
+            if isinstance(item, dict):
+                if not item:
+                    lines.append(f"{prefix}{key}: {{}}")
+                else:
+                    lines.append(f"{prefix}{key}:")
+                    lines.extend(iter_yaml_lines(item, indent + 2))
+            elif isinstance(item, list):
+                if not item:
+                    lines.append(f"{prefix}{key}: []")
+                else:
+                    lines.append(f"{prefix}{key}:")
+                    lines.extend(iter_yaml_lines(item, indent + 2))
+            else:
+                lines.append(f"{prefix}{key}: {format_yaml_scalar(item)}")
+        return lines
+    if isinstance(value, list):
+        lines = []
+        if not value:
+            lines.append(f"{prefix}[]")
+            return lines
+        for item in value:
+            if isinstance(item, dict):
+                if not item:
+                    lines.append(f"{prefix}- {{}}")
+                else:
+                    lines.append(f"{prefix}-")
+                    lines.extend(iter_yaml_lines(item, indent + 2))
+            elif isinstance(item, list):
+                if not item:
+                    lines.append(f"{prefix}- []")
+                else:
+                    lines.append(f"{prefix}-")
+                    lines.extend(iter_yaml_lines(item, indent + 2))
+            else:
+                lines.append(f"{prefix}- {format_yaml_scalar(item)}")
+        return lines
+    return [f"{prefix}{format_yaml_scalar(value)}"]
+
+
+def dump_yaml(value: Any) -> str:
+    return "\n".join(iter_yaml_lines(value)) + "\n"
 
 
 def collect_files(source_roots: Sequence[Tuple[str, Path]], repo_root: Path) -> Tuple[List[FileEntry], Dict[str, RootStats], List[dict], List[dict]]:
@@ -580,9 +641,10 @@ def build_backlog(backlog_dir: Path, timestamp: str) -> Tuple[Path, Path, List[d
 
     backlog_yaml = backlog_dir / "migration_backlog.yaml"
     backlog_json = backlog_dir / "migration_backlog.json"
-    text = json.dumps(payload, ensure_ascii=False, indent=2)
-    write_text_with_newline(backlog_yaml, text)
-    write_text_with_newline(backlog_json, text)
+    yaml_text = dump_yaml(payload)
+    write_text_with_newline(backlog_yaml, yaml_text)
+    json_text = json.dumps(payload, ensure_ascii=False, indent=2)
+    write_text_with_newline(backlog_json, json_text)
     return backlog_yaml, backlog_json, backlog_items
 
 

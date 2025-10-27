@@ -1,72 +1,55 @@
-{
-  "version": 1,
-  "generated_at": "2025-10-26T16:18:42.025204+00:00",
-  "total_items": 4,
-  "items": [
-    {
-      "id": "M2-001",
-      "title": "Stabilise API documentation",
-      "description": "Confirm detected endpoints and classify authentication requirements.",
-      "estimate": 5,
-      "dependencies": [],
-      "components": [
-        "api"
-      ],
-      "risk": {
-        "severity": "high",
-        "impact": "Incorrect endpoint catalogue may block client migrations.",
-        "mitigation": "Review generated OpenAPI with engineering leads and add automated smoke tests."
-      }
-    },
-    {
-      "id": "M2-002",
-      "title": "Template parity audit",
-      "description": "Enumerate Twig templates and map them to new React views.",
-      "estimate": 8,
-      "dependencies": [
-        "M2-001"
-      ],
-      "components": [
-        "templates"
-      ],
-      "risk": {
-        "severity": "medium",
-        "impact": "Missing templates degrade UX during migration.",
-        "mitigation": "Prioritise high-traffic templates and create acceptance criteria."
-      }
-    },
-    {
-      "id": "M2-003",
-      "title": "Cron job remediation plan",
-      "description": "Assess scheduled tasks and design equivalents for the asynchronous stack.",
-      "estimate": 5,
-      "dependencies": [],
-      "components": [
-        "cron",
-        "operations"
-      ],
-      "risk": {
-        "severity": "critical",
-        "impact": "Unmigrated cron jobs can halt invoicing and notifications.",
-        "mitigation": "Document ownership, add monitoring, and schedule reimplementation on FastAPI workers."
-      }
-    },
-    {
-      "id": "M2-004",
-      "title": "Metrics coverage",
-      "description": "Baseline key metrics (file counts, LOC, module sizes) for progress tracking.",
-      "estimate": 3,
-      "dependencies": [
-        "M2-001"
-      ],
-      "components": [
-        "metrics"
-      ],
-      "risk": {
-        "severity": "low",
-        "impact": "Lack of metrics limits visibility into migration progress.",
-        "mitigation": "Integrate reports into CI dashboards and revisit quarterly."
-      }
-    }
-  ]
-}
+version: 1
+generated_at: "2025-10-27T02:49:10.583971+00:00"
+total_items: 4
+items:
+  -
+    id: "M2-001"
+    title: "Stabilise API documentation"
+    description: "Confirm detected endpoints and classify authentication requirements."
+    estimate: 5
+    dependencies: []
+    components:
+      - "api"
+    risk:
+      severity: "high"
+      impact: "Incorrect endpoint catalogue may block client migrations."
+      mitigation: "Review generated OpenAPI with engineering leads and add automated smoke tests."
+  -
+    id: "M2-002"
+    title: "Template parity audit"
+    description: "Enumerate Twig templates and map them to new React views."
+    estimate: 8
+    dependencies:
+      - "M2-001"
+    components:
+      - "templates"
+    risk:
+      severity: "medium"
+      impact: "Missing templates degrade UX during migration."
+      mitigation: "Prioritise high-traffic templates and create acceptance criteria."
+  -
+    id: "M2-003"
+    title: "Cron job remediation plan"
+    description: "Assess scheduled tasks and design equivalents for the asynchronous stack."
+    estimate: 5
+    dependencies: []
+    components:
+      - "cron"
+      - "operations"
+    risk:
+      severity: "critical"
+      impact: "Unmigrated cron jobs can halt invoicing and notifications."
+      mitigation: "Document ownership, add monitoring, and schedule reimplementation on FastAPI workers."
+  -
+    id: "M2-004"
+    title: "Metrics coverage"
+    description: "Baseline key metrics (file counts, LOC, module sizes) for progress tracking."
+    estimate: 3
+    dependencies:
+      - "M2-001"
+    components:
+      - "metrics"
+    risk:
+      severity: "low"
+      impact: "Lack of metrics limits visibility into migration progress."
+      mitigation: "Integrate reports into CI dashboards and revisit quarterly."
