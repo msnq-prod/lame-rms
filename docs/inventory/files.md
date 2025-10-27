@@ -1,15 +1,17 @@
 # File Inventory Overview
 
-Generated: 2025-10-27T02:49:10.583971+00:00
+Generated: 2025-10-27T05:43:46.287385+00:00
 
 | Root | Files | Lines | Size (KB) |
 | --- | ---: | ---: | ---: |
+| legacy | 1 | 0 | 0.0 |
 | src | 504 | 173917 | 21469.0 |
 
 ## Top-level directories
 
 | Root | Directory | Files |
 | --- | --- | ---: |
+| legacy | .gitkeep | 1 |
 | src | api | 215 |
 | src | static-assets | 73 |
 | src | instances | 42 |
