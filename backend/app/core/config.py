@@ -25,6 +25,7 @@ class Settings(BaseSettings):
     log_level: str = "INFO"
     database_url: str = "sqlite:///./data/app.db"
     cors_origins: list[str] = Field(default_factory=lambda: ["*"])
+    feature_flags: dict[str, bool] = Field(default_factory=dict)
 
     @property
     def is_debug(self) -> bool:

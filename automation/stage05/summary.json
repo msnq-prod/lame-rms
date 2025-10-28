@@ -1,0 +1,34 @@
+{
+  "timestamp": "2025-10-27T08:17:42.307468+00:00",
+  "backlog_item": {
+    "id": "M5-001",
+    "title": "Assets API read models",
+    "domain": "assets"
+  },
+  "feature_flag": "assets_api",
+  "documentation": "docs/api/assets.md",
+  "endpoints": [
+    {
+      "operation_id": "list_assets",
+      "method": "GET",
+      "path": "/assets",
+      "summary": "List assets with pagination and optional free-text search."
+    },
+    {
+      "operation_id": "get_asset",
+      "method": "GET",
+      "path": "/assets/{asset_id}",
+      "summary": "Retrieve detailed information about a single asset by identifier."
+    }
+  ],
+  "schemas": {
+    "module": "app.schemas.assets",
+    "models": [
+      "AssetSummary",
+      "AssetDetails"
+    ],
+    "responses": [
+      "AssetListResponse"
+    ]
+  }
+}

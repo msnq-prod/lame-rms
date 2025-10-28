@@ -1,7 +1,7 @@
 {
   "version": 1,
   "generated_at": "2025-10-27T05:43:46.287385+00:00",
-  "total_items": 4,
+  "total_items": 5,
   "items": [
     {
       "id": "M2-001",
@@ -66,6 +66,59 @@
         "severity": "low",
         "impact": "Lack of metrics limits visibility into migration progress.",
         "mitigation": "Integrate reports into CI dashboards and revisit quarterly."
+      }
+    },
+    {
+      "id": "M5-001",
+      "stage": 5,
+      "domain": "assets",
+      "title": "Assets API read models",
+      "description": "Expose read-only endpoints for inventory assets using FastAPI backed by the migrated PostgreSQL schema.",
+      "estimate": 13,
+      "dependencies": [
+        "M3-001"
+      ],
+      "components": [
+        "api",
+        "assets"
+      ],
+      "risk": {
+        "severity": "high",
+        "impact": "Without an assets API the new frontend and integrations cannot access migrated inventory data.",
+        "mitigation": "Implement feature flags, contract tests, and load testing before enabling clients."
+      },
+      "fastapi": {
+        "feature_flag": "assets_api",
+        "router_module": "app.api.routes.assets",
+        "documentation": "docs/api/assets.md",
+        "endpoints": [
+          {
+            "operation_id": "list_assets",
+            "method": "GET",
+            "path": "/assets",
+            "summary": "List assets with pagination and optional free-text search."
+          },
+          {
+            "operation_id": "get_asset",
+            "method": "GET",
+            "path": "/assets/{asset_id}",
+            "summary": "Retrieve detailed information about a single asset by identifier."
+          }
+        ]
+      },
+      "schemas": {
+        "module": "app.schemas.assets",
+        "models": [
+          "AssetSummary",
+          "AssetDetails"
+        ],
+        "responses": [
+          "AssetListResponse"
+        ]
+      },
+      "loadtest": {
+        "entrypoint": "backend/loadtests/main.js",
+        "scenario": "assets_read"
       }
     }
   ]

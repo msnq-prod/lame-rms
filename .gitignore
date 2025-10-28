@@ -59,3 +59,4 @@ automation/*/tools_status.json
 
 # Generated runtime data
 backend/data/
+data/
