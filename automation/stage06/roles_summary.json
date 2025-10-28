@@ -1,0 +1,36 @@
+{
+  "roles": [
+    {
+      "slug": "system_admin",
+      "name": "System Administrator",
+      "description": "Full administrative access to AdamRMS backend, including role and security policy management.",
+      "permissions": "audit:events:export, auth:mfa:reset, auth:roles:read, auth:roles:write, auth:users:read, auth:users:write",
+      "mfa_required": "yes",
+      "is_default": "no"
+    },
+    {
+      "slug": "project_manager",
+      "name": "Project Manager",
+      "description": "Manage projects and crew assignments with elevated read/write permissions but limited security scope.",
+      "permissions": "assets:reserve, auth:users:read, crew:assign, projects:read, projects:write",
+      "mfa_required": "yes",
+      "is_default": "yes"
+    },
+    {
+      "slug": "auditor",
+      "name": "Security Auditor",
+      "description": "Read-only visibility into audit and security events for compliance reviews.",
+      "permissions": "audit:events:read, auth:roles:read, auth:users:read",
+      "mfa_required": "no",
+      "is_default": "no"
+    },
+    {
+      "slug": "viewer",
+      "name": "Operations Viewer",
+      "description": "Baseline read-only access to operational data without security-sensitive permissions.",
+      "permissions": "assets:read, inventory:read, projects:read",
+      "mfa_required": "no",
+      "is_default": "yes"
+    }
+  ]
+}
