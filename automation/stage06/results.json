@@ -1,0 +1,128 @@
+{
+  "checks": {
+    "pytest": {
+      "status": "ok",
+      "message": "pytest backend/tests/auth backend/tests/monitoring -q",
+      "log": "/workspace/lame-rms/automation/stage06/logs/pytest_auth.log"
+    },
+    "bandit": {
+      "status": "warning",
+      "message": "bandit not installed",
+      "log": "/workspace/lame-rms/automation/stage06/logs/bandit.log"
+    },
+    "npm_lint": {
+      "status": "ok",
+      "message": "npm run lint",
+      "log": "/workspace/lame-rms/automation/stage06/logs/npm_lint.log"
+    },
+    "playwright": {
+      "status": "skip",
+      "message": "Playwright dependencies missing",
+      "log": "/workspace/lame-rms/automation/stage06/logs/playwright_auth.log"
+    },
+    "alert_emulation": {
+      "status": "ok",
+      "message": "Security alert emulated",
+      "log": "/workspace/lame-rms/automation/stage06/alert_summary.json"
+    }
+  },
+  "tools": {
+    "state": "needs_attention",
+    "checks": [
+      {
+        "name": "act",
+        "status": "warning",
+        "message": "asdf not available",
+        "path": ""
+      },
+      {
+        "name": "k6",
+        "status": "warning",
+        "message": "asdf not available",
+        "path": ""
+      },
+      {
+        "name": "schemathesis",
+        "status": "warning",
+        "message": "pip install --user schemathesis failed",
+        "path": ""
+      },
+      {
+        "name": "playwright",
+        "status": "warning",
+        "message": "npm install -g playwright failed",
+        "path": ""
+      },
+      {
+        "name": "terraform",
+        "status": "warning",
+        "message": "asdf not available",
+        "path": ""
+      },
+      {
+        "name": "helm",
+        "status": "warning",
+        "message": "asdf not available",
+        "path": ""
+      }
+    ],
+    "artifacts": [],
+    "last_run": "2025-10-28T03:26:42.480983+00:00",
+    "warnings": [
+      {
+        "tool": "act",
+        "message": "asdf not available"
+      },
+      {
+        "tool": "k6",
+        "message": "asdf not available"
+      },
+      {
+        "tool": "schemathesis",
+        "message": "pip install --user schemathesis failed"
+      },
+      {
+        "tool": "playwright",
+        "message": "npm install -g playwright failed"
+      },
+      {
+        "tool": "terraform",
+        "message": "asdf not available"
+      },
+      {
+        "tool": "helm",
+        "message": "asdf not available"
+      }
+    ],
+    "notes": [],
+    "extra": {
+      "tools_summary": {
+        "total": 6,
+        "ok": 0,
+        "installed": 0,
+        "warnings": 6
+      }
+    }
+  },
+  "alerts": {
+    "alert": {
+      "title": "Brute force detected",
+      "severity": "high",
+      "payload": {
+        "source_ip": "203.0.113.10",
+        "attempts": 12
+      },
+      "created_at": "2025-10-28T03:26:47.985190+00:00",
+      "log": "/workspace/lame-rms/automation/stage06/security_alerts.jsonl"
+    },
+    "event": {
+      "event_type": "auth.bruteforce_blocked",
+      "severity": "medium",
+      "payload": {
+        "ip": "203.0.113.10",
+        "blocked_at": "2025-10-28T03:26:47.985457+00:00"
+      },
+      "recorded_at": "2025-10-28T03:26:47.985471+00:00"
+    }
+  }
+}

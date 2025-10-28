@@ -1,0 +1,12 @@
+{
+  "name": "lame-rms-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "node ./scripts/lint.mjs",
+    "test:auth": "npx --yes playwright test frontend/tests/auth.spec.ts"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

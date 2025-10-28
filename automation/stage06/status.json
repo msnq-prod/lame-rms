@@ -1,10 +1,168 @@
 {
   "$schema": "../status.schema.json",
-  "state": "pending",
-  "checks": [],
-  "artifacts": [],
-  "last_run": null,
-  "warnings": [],
-  "notes": [],
-  "extra": {}
+  "state": "needs_attention",
+  "checks": [
+    {
+      "name": "alembic",
+      "status": "ok",
+      "message": "alembic upgrade head"
+    },
+    {
+      "name": "roles-sync",
+      "status": "ok",
+      "message": "default roles synchronised",
+      "path": "docs/security/roles.md"
+    },
+    {
+      "name": "pytest-auth",
+      "status": "ok",
+      "message": "pytest backend/tests/auth backend/tests/monitoring -q",
+      "path": "/workspace/lame-rms/automation/stage06/logs/pytest_auth.log"
+    },
+    {
+      "name": "bandit",
+      "status": "warning",
+      "message": "bandit not installed",
+      "path": "/workspace/lame-rms/automation/stage06/logs/bandit.log"
+    },
+    {
+      "name": "npm-lint",
+      "status": "ok",
+      "message": "npm run lint",
+      "path": "/workspace/lame-rms/automation/stage06/logs/npm_lint.log"
+    },
+    {
+      "name": "playwright-auth",
+      "status": "skip",
+      "message": "Playwright dependencies missing",
+      "path": "/workspace/lame-rms/automation/stage06/logs/playwright_auth.log"
+    },
+    {
+      "name": "alert-emulation",
+      "status": "ok",
+      "message": "Security alert emulated",
+      "path": "/workspace/lame-rms/automation/stage06/alert_summary.json"
+    }
+  ],
+  "artifacts": [
+    "/workspace/lame-rms/automation/stage06/alert_summary.json",
+    "/workspace/lame-rms/automation/stage06/logs/bandit.log",
+    "/workspace/lame-rms/automation/stage06/logs/npm_lint.log",
+    "/workspace/lame-rms/automation/stage06/logs/playwright_auth.log",
+    "/workspace/lame-rms/automation/stage06/logs/pytest_auth.log",
+    "automation/stage06/alert_summary.json",
+    "automation/stage06/report.md",
+    "automation/stage06/results.json",
+    "automation/stage06/summary.json",
+    "docs/security/policies.md",
+    "docs/security/roles.md"
+  ],
+  "last_run": "2025-10-28T03:26:49.912301+00:00",
+  "warnings": [
+    {
+      "tool": "act",
+      "message": "asdf not available"
+    },
+    {
+      "tool": "k6",
+      "message": "asdf not available"
+    },
+    {
+      "tool": "schemathesis",
+      "message": "pip install --user schemathesis failed"
+    },
+    {
+      "tool": "playwright",
+      "message": "npm install -g playwright failed"
+    },
+    {
+      "tool": "terraform",
+      "message": "asdf not available"
+    },
+    {
+      "tool": "helm",
+      "message": "asdf not available"
+    },
+    {
+      "tool": "bandit",
+      "message": "bandit not installed"
+    },
+    {
+      "tool": "playwright",
+      "message": "Playwright dependencies missing"
+    }
+  ],
+  "notes": [
+    "run.sh executed",
+    "self_check.sh executed",
+    "pytest status=ok",
+    "bandit status=warning",
+    "npm status=ok",
+    "playwright status=skip"
+  ],
+  "extra": {
+    "roles": [
+      {
+        "slug": "system_admin",
+        "name": "System Administrator",
+        "description": "Full administrative access to AdamRMS backend, including role and security policy management.",
+        "permissions": "audit:events:export, auth:mfa:reset, auth:roles:read, auth:roles:write, auth:users:read, auth:users:write",
+        "mfa_required": "yes",
+        "is_default": "no"
+      },
+      {
+        "slug": "project_manager",
+        "name": "Project Manager",
+        "description": "Manage projects and crew assignments with elevated read/write permissions but limited security scope.",
+        "permissions": "assets:reserve, auth:users:read, crew:assign, projects:read, projects:write",
+        "mfa_required": "yes",
+        "is_default": "yes"
+      },
+      {
+        "slug": "auditor",
+        "name": "Security Auditor",
+        "description": "Read-only visibility into audit and security events for compliance reviews.",
+        "permissions": "audit:events:read, auth:roles:read, auth:users:read",
+        "mfa_required": "no",
+        "is_default": "no"
+      },
+      {
+        "slug": "viewer",
+        "name": "Operations Viewer",
+        "description": "Baseline read-only access to operational data without security-sensitive permissions.",
+        "permissions": "assets:read, inventory:read, projects:read",
+        "mfa_required": "no",
+        "is_default": "yes"
+      }
+    ],
+    "policy_doc": "docs/security/policies.md",
+    "security_findings": "bandit not installed",
+    "alerts": {
+      "alert": {
+        "title": "Brute force detected",
+        "severity": "high",
+        "payload": {
+          "source_ip": "203.0.113.10",
+          "attempts": 12
+        },
+        "created_at": "2025-10-28T03:26:47.985190+00:00",
+        "log": "/workspace/lame-rms/automation/stage06/security_alerts.jsonl"
+      },
+      "event": {
+        "event_type": "auth.bruteforce_blocked",
+        "severity": "medium",
+        "payload": {
+          "ip": "203.0.113.10",
+          "blocked_at": "2025-10-28T03:26:47.985457+00:00"
+        },
+        "recorded_at": "2025-10-28T03:26:47.985471+00:00"
+      }
+    },
+    "tools_summary": {
+      "total": 6,
+      "ok": 0,
+      "installed": 0,
+      "warnings": 6
+    }
+  }
 }

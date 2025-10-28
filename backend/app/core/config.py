@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+from datetime import timedelta
 from functools import lru_cache
+from pathlib import Path
 from typing import Any, Literal
 
 from pydantic import Field
@@ -26,6 +28,31 @@ class Settings(BaseSettings):
     database_url: str = "sqlite:///./data/app.db"
     cors_origins: list[str] = Field(default_factory=lambda: ["*"])
     feature_flags: dict[str, bool] = Field(default_factory=dict)
+    jwt_secret_key: str = Field(default="change-me", min_length=8)
+    jwt_algorithm: str = "HS256"
+    access_token_expiry_minutes: int = 15
+    refresh_token_expiry_days: int = 7
+    jwt_issuer: str = "adamrms-backend"
+    mfa_totp_digits: int = 6
+    mfa_totp_interval_seconds: int = 30
+    audit_log_path: str = Field(default="backend/var/security_audit.log")
+    security_alert_log_path: str = Field(default="backend/var/security_alerts.jsonl")
+
+    @property
+    def access_token_ttl(self) -> timedelta:
+        return timedelta(minutes=self.access_token_expiry_minutes)
+
+    @property
+    def refresh_token_ttl(self) -> timedelta:
+        return timedelta(days=self.refresh_token_expiry_days)
+
+    @property
+    def audit_log_file(self) -> Path:
+        return Path(self.audit_log_path)
+
+    @property
+    def security_alert_file(self) -> Path:
+        return Path(self.security_alert_log_path)
 
     @property
     def is_debug(self) -> bool:

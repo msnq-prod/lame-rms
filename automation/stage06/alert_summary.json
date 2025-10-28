@@ -1,0 +1,21 @@
+{
+  "alert": {
+    "title": "Brute force detected",
+    "severity": "high",
+    "payload": {
+      "source_ip": "203.0.113.10",
+      "attempts": 12
+    },
+    "created_at": "2025-10-28T03:26:47.985190+00:00",
+    "log": "/workspace/lame-rms/automation/stage06/security_alerts.jsonl"
+  },
+  "event": {
+    "event_type": "auth.bruteforce_blocked",
+    "severity": "medium",
+    "payload": {
+      "ip": "203.0.113.10",
+      "blocked_at": "2025-10-28T03:26:47.985457+00:00"
+    },
+    "recorded_at": "2025-10-28T03:26:47.985471+00:00"
+  }
+}
