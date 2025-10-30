@@ -20,14 +20,51 @@
 | GET | /api/assets | List assets with pagination and optional free-text search. | list_assets |
 | GET | /api/assets/{asset_id} | Retrieve detailed information about a single asset by identifier. | get_asset |
 
-## Load Testing
+## Performance
+
+Aggregated results from k6:
+
+- Status: fail
+- Runner: missing
+- p95 latency: n/a
+- Success rate: n/a
+
+## Contract
+
+Aggregated results from schemathesis:
+
+- Status: fail
+- Runner: missing
+- Success rate: 0.00%
+- Checks passed: n/a
+- Notes: schemathesis runner not available
+
+## Metrics Export
 
 Results captured in `automation/stage05/metrics.json`:
 
 ```json
 {
-  "status": "skipped",
-  "message": "k6 executable is not available on this host"
+  "performance": {
+    "status": "fail",
+    "message": "k6 runner not available",
+    "runner": "missing",
+    "exit_code": 1,
+    "summary_path": null,
+    "log_path": null,
+    "p95_latency_ms": null,
+    "success_rate": null
+  },
+  "contract": {
+    "status": "fail",
+    "message": "schemathesis runner not available",
+    "runner": "missing",
+    "exit_code": 1,
+    "log_path": null,
+    "summary_path": "automation/stage05/schemathesis_summary.json",
+    "success_rate": 0.0,
+    "checks": null
+  }
 }
 ```
 

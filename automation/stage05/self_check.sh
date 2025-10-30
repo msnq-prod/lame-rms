@@ -12,6 +12,7 @@ METRICS_JSON="$SCRIPT_DIR/metrics.json"
 CONTRACT_DIFF="$SCRIPT_DIR/contract_diff.json"
 PYTEST_LOG="$SCRIPT_DIR/logs/pytest_integration.log"
 K6_LOG="$SCRIPT_DIR/logs/k6.log"
+K6_SUMMARY_RAW="$SCRIPT_DIR/k6_summary.json"
 UVICORN_LOG="$SCRIPT_DIR/logs/uvicorn.log"
 SCHEMATHESIS_LOG="$SCRIPT_DIR/logs/schemathesis.log"
 SCHEMATHESIS_UVICORN_LOG="$SCRIPT_DIR/logs/uvicorn_schemathesis.log"
@@ -92,13 +93,28 @@ if [[ $PYTEST_EXIT -ne 0 ]]; then
 fi
 
 log "Running schemathesis contract checks"
-SCHEMATHESIS_STATUS="skip"
-SCHEMATHESIS_EXIT=0
-SCHEMATHESIS_MESSAGE="schemathesis not available"
+SCHEMATHESIS_STATUS="fail"
+SCHEMATHESIS_EXIT=1
+SCHEMATHESIS_MESSAGE="schemathesis runner not available"
 SCHEMATHESIS_SCHEMA="backend/openapi.json"
+SCHEMATHESIS_RUNNER_KIND="missing"
+SCHEMATHESIS_RUNNER=""
 SCHEMATHESIS_PORT=${SCHEMATHESIS_PORT:-8060}
 SCHEMATHESIS_BASE_URL="http://127.0.0.1:${SCHEMATHESIS_PORT}"
 if command -v schemathesis >/dev/null 2>&1; then
+  SCHEMATHESIS_RUNNER="schemathesis"
+  SCHEMATHESIS_RUNNER_KIND="native"
+elif [[ -x "$REPO_ROOT/automation/bin/tools/run_schemathesis.sh" ]]; then
+  SCHEMATHESIS_RUNNER="$REPO_ROOT/automation/bin/tools/run_schemathesis.sh"
+  SCHEMATHESIS_RUNNER_KIND="container"
+fi
+
+SCHEMATHESIS_SCHEMA_PATH="$REPO_ROOT/$SCHEMATHESIS_SCHEMA"
+SCHEMATHESIS_SCHEMA_CONTAINER="/workspace/$SCHEMATHESIS_SCHEMA"
+
+if [[ -z "$SCHEMATHESIS_RUNNER" ]]; then
+  printf 'schemathesis runner not available; marking contract tests as failed\n' >"$SCHEMATHESIS_LOG"
+else
   SCHEMATHESIS_STATUS="ok"
   SCHEMATHESIS_MESSAGE="schemathesis run succeeded"
   : >"$SCHEMATHESIS_LOG"
@@ -107,7 +123,11 @@ if command -v schemathesis >/dev/null 2>&1; then
   PYTHONPATH="$REPO_ROOT/backend" "$PYTHON_BIN" -m uvicorn app.main:app --host 127.0.0.1 --port "$SCHEMATHESIS_PORT" --log-level warning >"$SCHEMATHESIS_UVICORN_LOG" 2>&1 &
   UVICORN_CONTRACT_PID=$!
   sleep 2
-  schemathesis run "$REPO_ROOT/$SCHEMATHESIS_SCHEMA" --base-url "$SCHEMATHESIS_BASE_URL" --checks=all --hypothesis-deadline=500 --hypothesis-suppress-health-check=too_slow >"$SCHEMATHESIS_LOG" 2>&1
+  SCHEMATHESIS_TARGET="$SCHEMATHESIS_SCHEMA_PATH"
+  if [[ "$SCHEMATHESIS_RUNNER_KIND" == "container" ]]; then
+    SCHEMATHESIS_TARGET="$SCHEMATHESIS_SCHEMA_CONTAINER"
+  fi
+  "$SCHEMATHESIS_RUNNER" run "$SCHEMATHESIS_TARGET" --base-url "$SCHEMATHESIS_BASE_URL" --checks=all --hypothesis-deadline=500 --hypothesis-suppress-health-check=too_slow >"$SCHEMATHESIS_LOG" 2>&1
   SCHEMATHESIS_EXIT=${PIPESTATUS[0]:-1}
   kill "$UVICORN_CONTRACT_PID" >/dev/null 2>&1 || true
   wait "$UVICORN_CONTRACT_PID" >/dev/null 2>&1 || true
@@ -116,11 +136,9 @@ if command -v schemathesis >/dev/null 2>&1; then
     SCHEMATHESIS_STATUS="fail"
     SCHEMATHESIS_MESSAGE="schemathesis run reported non-zero exit code"
   fi
-else
-  printf 'schemathesis executable not available; skipping contract tests\n' >"$SCHEMATHESIS_LOG"
 fi
 
-"$PYTHON_BIN" - <<'PY' "$SCHEMATHESIS_SUMMARY" "$SCHEMATHESIS_SCHEMA" "$SCHEMATHESIS_BASE_URL" "$SCHEMATHESIS_STATUS" "$SCHEMATHESIS_EXIT" "$SCHEMATHESIS_MESSAGE"
+"$PYTHON_BIN" - <<'PY' "$SCHEMATHESIS_SUMMARY" "$SCHEMATHESIS_SCHEMA" "$SCHEMATHESIS_BASE_URL" "$SCHEMATHESIS_STATUS" "$SCHEMATHESIS_EXIT" "$SCHEMATHESIS_MESSAGE" "$SCHEMATHESIS_RUNNER_KIND"
 import json
 import sys
 from pathlib import Path
@@ -131,6 +149,7 @@ base_url = sys.argv[3]
 status = sys.argv[4]
 exit_code = int(sys.argv[5])
 message = sys.argv[6]
+runner = sys.argv[7]
 
 payload = {
     "schema": schema,
@@ -138,6 +157,7 @@ payload = {
     "status": status,
     "exit_code": exit_code,
     "message": message,
+    "runner": runner,
 }
 summary_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 PY
@@ -145,24 +165,50 @@ PY
 export SCHEMATHESIS_STATUS
 export SCHEMATHESIS_EXIT_CODE=$SCHEMATHESIS_EXIT
 export SCHEMATHESIS_MESSAGE
+export SCHEMATHESIS_RUNNER_KIND
 export SCHEMATHESIS_LOG_PATH="automation/stage05/logs/schemathesis.log"
 export SCHEMATHESIS_SUMMARY_PATH="automation/stage05/schemathesis_summary.json"
 export SCHEMATHESIS_UVICORN_LOG_PATH="automation/stage05/logs/uvicorn_schemathesis.log"
 
 log "Executing k6 load test scenario"
-K6_STATUS="skip"
-K6_EXIT=0
-K6_MESSAGE="k6 not available"
+K6_STATUS="fail"
+K6_EXIT=1
+K6_MESSAGE="k6 runner not available"
+K6_RUNNER_KIND="missing"
+K6_RUNNER=""
 if command -v k6 >/dev/null 2>&1; then
+  K6_RUNNER="k6"
+  K6_RUNNER_KIND="native"
+elif [[ -x "$REPO_ROOT/automation/bin/tools/run_k6.sh" ]]; then
+  K6_RUNNER="$REPO_ROOT/automation/bin/tools/run_k6.sh"
+  K6_RUNNER_KIND="container"
+fi
+
+K6_SCRIPT_HOST="$REPO_ROOT/backend/loadtests/main.js"
+K6_SCRIPT_CONTAINER="/workspace/backend/loadtests/main.js"
+K6_SUMMARY_ARG="$K6_SUMMARY_RAW"
+if [[ "$K6_RUNNER_KIND" == "container" ]]; then
+  K6_SUMMARY_ARG="/workspace/automation/stage05/k6_summary.json"
+fi
+
+rm -f "$K6_SUMMARY_RAW"
+
+if [[ -z "$K6_RUNNER" ]]; then
+  printf 'k6 runner not available; marking performance tests as failed\n' >"$K6_LOG"
+else
   K6_STATUS="ok"
-  K6_MESSAGE=""
-  : >"$METRICS_JSON"
+  K6_MESSAGE="k6 run succeeded"
+  : >"$K6_LOG"
   set +e
   PYTHONPATH="$REPO_ROOT/backend" "$PYTHON_BIN" -m uvicorn app.main:app --host 127.0.0.1 --port 8050 --log-level warning >"$UVICORN_LOG" 2>&1 &
   UVICORN_PID=$!
   sleep 2
-  k6 run --summary-export "$METRICS_JSON" --env API_BASE_URL="http://127.0.0.1:8050/api" "$REPO_ROOT/backend/loadtests/main.js" | tee "$K6_LOG"
-  K6_EXIT=${PIPESTATUS[0]}
+  K6_TARGET="$K6_SCRIPT_HOST"
+  if [[ "$K6_RUNNER_KIND" == "container" ]]; then
+    K6_TARGET="$K6_SCRIPT_CONTAINER"
+  fi
+  "$K6_RUNNER" run --summary-export "$K6_SUMMARY_ARG" --env API_BASE_URL="http://127.0.0.1:8050/api" "$K6_TARGET" | tee "$K6_LOG"
+  K6_EXIT=${PIPESTATUS[0]:-1}
   kill "$UVICORN_PID" >/dev/null 2>&1 || true
   wait "$UVICORN_PID" >/dev/null 2>&1 || true
   set -e
@@ -170,14 +216,107 @@ if command -v k6 >/dev/null 2>&1; then
     K6_STATUS="fail"
     K6_MESSAGE="k6 run reported non-zero exit code"
   fi
-else
-  cat <<'JSON' >"$METRICS_JSON"
-{
-  "status": "skipped",
-  "message": "k6 executable is not available on this host"
-}
-JSON
 fi
+
+log "Aggregating performance and contract metrics"
+"$PYTHON_BIN" - <<'PY' "$METRICS_JSON" "$K6_SUMMARY_RAW" "$K6_STATUS" "$K6_MESSAGE" "$K6_RUNNER_KIND" "$K6_EXIT" "$K6_LOG" "$SCHEMATHESIS_LOG" "$SCHEMATHESIS_STATUS" "$SCHEMATHESIS_MESSAGE" "$SCHEMATHESIS_RUNNER_KIND" "$SCHEMATHESIS_EXIT" "$SCHEMATHESIS_SUMMARY"
+import json,re,sys
+from pathlib import Path
+
+out = Path(sys.argv[1])
+k6_summary = Path(sys.argv[2])
+k6_status = sys.argv[3]
+k6_message = sys.argv[4]
+k6_runner = sys.argv[5]
+k6_exit = int(sys.argv[6])
+k6_log = Path(sys.argv[7])
+schema_log = Path(sys.argv[8])
+schema_status = sys.argv[9]
+schema_message = sys.argv[10]
+schema_runner = sys.argv[11]
+schema_exit = int(sys.argv[12])
+schema_summary = Path(sys.argv[13])
+
+cwd = Path.cwd()
+
+def rel(path: Path) -> str | None:
+    try:
+        resolved = path.resolve()
+    except FileNotFoundError:
+        resolved = path
+    try:
+        return str(resolved.relative_to(cwd))
+    except ValueError:
+        return str(resolved)
+
+performance = {
+    "status": k6_status,
+    "message": k6_message,
+    "runner": k6_runner,
+    "exit_code": k6_exit,
+    "summary_path": rel(k6_summary) if k6_summary.exists() else None,
+    "log_path": rel(k6_log) if k6_log.exists() else None,
+    "p95_latency_ms": None,
+    "success_rate": None,
+}
+
+if k6_summary.exists():
+    try:
+        data = json.loads(k6_summary.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        performance["raw_summary_error"] = "invalid json"
+    else:
+        metrics = data.get("metrics", {}) if isinstance(data, dict) else {}
+        values = (metrics.get("http_req_duration", {}) or {}).get("values", {}) if isinstance(metrics, dict) else {}
+        p95 = values.get("p(95)")
+        if isinstance(p95, (int, float)):
+            performance["p95_latency_ms"] = float(p95)
+        check_values = (metrics.get("checks", {}) or {}).get("values", {}) if isinstance(metrics, dict) else {}
+        passes = check_values.get("passes")
+        fails = check_values.get("fails")
+        rate = check_values.get("rate")
+        success = None
+        if isinstance(passes, (int, float)) and isinstance(fails, (int, float)):
+            total = float(passes) + float(fails)
+            if total > 0:
+                success = float(passes) / total
+        elif isinstance(rate, (int, float)):
+            success = float(rate)
+        if success is not None:
+            performance["success_rate"] = success
+        performance["samples"] = {"checks_passes": passes, "checks_fails": fails}
+
+contract = {
+    "status": schema_status,
+    "message": schema_message,
+    "runner": schema_runner,
+    "exit_code": schema_exit,
+    "log_path": rel(schema_log) if schema_log.exists() else None,
+    "summary_path": rel(schema_summary) if schema_summary.exists() else None,
+    "success_rate": None,
+    "checks": None,
+}
+
+if schema_log.exists():
+    text = schema_log.read_text(encoding="utf-8", errors="replace")
+    match = re.search(r"Checks[^:]*:\s*([0-9.,]+)%\s*\((\d+)/(\d+)\)", text)
+    if match:
+        percent = match.group(1).replace(",", ".")
+        try:
+            contract["success_rate"] = float(percent) / 100.0
+        except ValueError:
+            pass
+        else:
+            contract["checks"] = {"passed": int(match.group(2)), "total": int(match.group(3))}
+
+if contract["success_rate"] is None:
+    if schema_exit == 0:
+        contract["success_rate"] = 1.0
+    elif schema_exit > 0:
+        contract["success_rate"] = 0.0
+
+out.write_text(json.dumps({"performance": performance, "contract": contract}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+PY
 
 log "Diffing OpenAPI contracts"
 "$PYTHON_BIN" - <<'PY' "$REPO_ROOT/backend/openapi.json" "$REPO_ROOT/docs/inventory/api/openapi.json" "$CONTRACT_DIFF"
@@ -262,13 +401,38 @@ feature_flag = summary.get("feature_flag", "assets_api")
 backlog = summary.get("backlog_item", {})
 documentation = summary.get("documentation")
 
+metrics_data: dict | None = None
 metrics_excerpt = "Metrics not available."
 if metrics_path.exists():
+    raw_metrics = metrics_path.read_text(encoding="utf-8")
     try:
-        metrics_data = json.loads(metrics_path.read_text(encoding="utf-8"))
+        metrics_data = json.loads(raw_metrics)
         metrics_excerpt = json.dumps(metrics_data, ensure_ascii=False, indent=2)
     except json.JSONDecodeError:
-        metrics_excerpt = metrics_path.read_text(encoding="utf-8")
+        metrics_excerpt = raw_metrics
+
+def ensure_dict(value: object) -> dict:
+    return value if isinstance(value, dict) else {}
+
+performance_metrics = ensure_dict(metrics_data.get("performance") if isinstance(metrics_data, dict) else {})
+contract_metrics = ensure_dict(metrics_data.get("contract") if isinstance(metrics_data, dict) else {})
+
+def fmt_ms(value: object) -> str:
+    if isinstance(value, (int, float)):
+        return f"{float(value):.2f} ms"
+    return "n/a"
+
+def fmt_percent(value: object) -> str:
+    if isinstance(value, (int, float)):
+        return f"{float(value) * 100:.2f}%"
+    return "n/a"
+
+def fmt_ratio(payload: dict) -> str:
+    passed = payload.get("passed") if isinstance(payload, dict) else None
+    total = payload.get("total") if isinstance(payload, dict) else None
+    if isinstance(passed, int) and isinstance(total, int):
+        return f"{passed}/{total}"
+    return "n/a"
 
 def format_endpoint(item: dict[str, str]) -> str:
     method = item.get("method", "GET")
@@ -276,6 +440,17 @@ def format_endpoint(item: dict[str, str]) -> str:
     summary = item.get("summary", "")
     operation_id = item.get("operation_id", "")
     return f"| {method} | {path} | {summary} | {operation_id} |"
+
+performance_status = performance_metrics.get("status", "n/a")
+performance_runner = performance_metrics.get("runner", "n/a")
+performance_latency = fmt_ms(performance_metrics.get("p95_latency_ms"))
+performance_success = fmt_percent(performance_metrics.get("success_rate"))
+
+contract_status = contract_metrics.get("status", "n/a")
+contract_runner = contract_metrics.get("runner", "n/a")
+contract_success = fmt_percent(contract_metrics.get("success_rate"))
+contract_checks = fmt_ratio(contract_metrics.get("checks", {}))
+contract_message = contract_metrics.get("message") if isinstance(contract_metrics.get("message"), str) else None
 
 lines = [
     "# Stage 05 Report",
@@ -299,7 +474,35 @@ lines.extend(format_endpoint(endpoint) for endpoint in endpoints)
 lines.extend(
     [
         "",
-        "## Load Testing",
+        "## Performance",
+        "",
+        "Aggregated results from k6:",
+        "",
+        f"- Status: {performance_status}",
+        f"- Runner: {performance_runner}",
+        f"- p95 latency: {performance_latency}",
+        f"- Success rate: {performance_success}",
+    ]
+)
+lines.extend(
+    [
+        "",
+        "## Contract",
+        "",
+        "Aggregated results from schemathesis:",
+        "",
+        f"- Status: {contract_status}",
+        f"- Runner: {contract_runner}",
+        f"- Success rate: {contract_success}",
+        f"- Checks passed: {contract_checks}",
+    ]
+)
+if contract_message:
+    lines.append(f"- Notes: {contract_message}")
+lines.extend(
+    [
+        "",
+        "## Metrics Export",
         "",
         "Results captured in `automation/stage05/metrics.json`:",
         "",
@@ -325,6 +528,7 @@ export ALLURE_AVAILABLE
 export K6_STATUS
 export K6_EXIT_CODE=$K6_EXIT
 export K6_MESSAGE
+export K6_RUNNER_KIND
 export UVICORN_LOG_PATH="automation/stage05/logs/uvicorn.log"
 
 log "Writing updated status.json"
@@ -385,13 +589,16 @@ schemathesis_message_env = os.environ.get("SCHEMATHESIS_MESSAGE")
 if schemathesis_message_env:
     schemathesis_summary["message"] = schemathesis_message_env
 
-schemathesis_status = schemathesis_summary.get("status", "skip")
+k6_runner_kind_env = os.environ.get("K6_RUNNER_KIND")
+schemathesis_runner_kind_env = os.environ.get("SCHEMATHESIS_RUNNER_KIND")
+
+schemathesis_status = schemathesis_summary.get("status", "fail")
 schemathesis_message = schemathesis_summary.get("message", "schemathesis run not executed")
 
 pytest_status = os.environ.get("PYTEST_STATUS", "fail")
 pytest_exit = int(os.environ.get("PYTEST_EXIT_CODE", "1"))
 allure_available = os.environ.get("ALLURE_AVAILABLE", "0") == "1"
-k6_status = os.environ.get("K6_STATUS", "skip")
+k6_status = os.environ.get("K6_STATUS", "fail")
 k6_exit = int(os.environ.get("K6_EXIT_CODE", "0"))
 k6_message = os.environ.get("K6_MESSAGE", "")
 
@@ -428,13 +635,14 @@ checks.append(
 if not allure_available:
     warnings.append({"tool": "pytest", "message": "Allure plugin missing; used log/HTML fallback"})
 
+k6_check_message = "k6 run backend/loadtests/main.js"
+if k6_runner_kind_env:
+    k6_check_message = f"{k6_check_message} ({k6_runner_kind_env})"
 if k6_status == "ok" and k6_exit == 0:
-    checks.append({"name": "k6-load", "status": "ok", "message": "k6 run backend/loadtests/main.js"})
-elif k6_status == "fail":
-    checks.append({"name": "k6-load", "status": "fail", "message": k6_message or "k6 run failed"})
+    checks.append({"name": "k6-load", "status": "ok", "message": k6_check_message})
 else:
-    checks.append({"name": "k6-load", "status": "skip", "message": k6_message})
-    warnings.append({"tool": "k6", "message": k6_message})
+    fail_message = k6_message or f"{k6_check_message} failed"
+    checks.append({"name": "k6-load", "status": "fail", "message": fail_message})
 
 checks.append(
     {
@@ -444,14 +652,14 @@ checks.append(
     }
 )
 
-schemathesis_check_message = schemathesis_message or "schemathesis contract tests"
+schemathesis_check_message = "schemathesis contract tests"
+if schemathesis_runner_kind_env:
+    schemathesis_check_message = f"{schemathesis_check_message} ({schemathesis_runner_kind_env})"
 if schemathesis_status == "ok":
     checks.append({"name": "schemathesis-contract", "status": "ok", "message": schemathesis_check_message})
-elif schemathesis_status == "fail":
-    checks.append({"name": "schemathesis-contract", "status": "fail", "message": schemathesis_check_message})
 else:
-    checks.append({"name": "schemathesis-contract", "status": "skip", "message": schemathesis_check_message})
-    warnings.append({"tool": "schemathesis", "message": schemathesis_check_message})
+    fail_message = schemathesis_message or schemathesis_check_message
+    checks.append({"name": "schemathesis-contract", "status": "fail", "message": fail_message})
 
 state = "completed"
 if any(check.get("status") == "fail" for check in checks):
