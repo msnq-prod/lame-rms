@@ -189,4 +189,14 @@ payload = {
 status_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 PY
 
+if command -v node >/dev/null 2>&1; then
+  log "Ensuring Playwright dependencies"
+  (
+    cd "$REPO_ROOT/frontend"
+    node scripts/install_playwright.mjs
+  ) || log "Playwright dependency installation failed"
+else
+  log "Node.js not available; skipping Playwright dependency installation"
+fi
+
 log "Stage 06 preparation complete"

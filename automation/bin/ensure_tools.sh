@@ -369,17 +369,24 @@ install_bandit() {
 
   INSTALL_METHOD="pip"
 
-  if ! command -v "$PYTHON_BIN" >/dev/null 2>&1; then
+  if command -v python >/dev/null 2>&1; then
+    if python -m pip install --user bandit >/dev/null 2>&1; then
+      INSTALL_RESULT_MESSAGE="installed via python -m pip --user"
+      return 0
+    fi
+  fi
+
+  if command -v "$PYTHON_BIN" >/dev/null 2>&1; then
+    if "$PYTHON_BIN" -m pip install --user bandit >/dev/null 2>&1; then
+      INSTALL_RESULT_MESSAGE="installed via ${PYTHON_BIN} -m pip --user"
+      return 0
+    fi
+  else
     INSTALL_RESULT_MESSAGE="python interpreter not available"
     return 1
   fi
 
-  if "$PYTHON_BIN" -m pip install --user --quiet bandit >/dev/null 2>&1; then
-    INSTALL_RESULT_MESSAGE="installed via pip --user"
-    return 0
-  fi
-
-  INSTALL_RESULT_MESSAGE="pip install --user bandit failed"
+  INSTALL_RESULT_MESSAGE="python -m pip install --user bandit failed"
   return 1
 }
 
