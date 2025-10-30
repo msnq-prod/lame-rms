@@ -1,94 +1,197 @@
 version: 1
-generated_at: "2025-10-27T05:43:46.287385+00:00"
-total_items: 5
+generated_at: '2025-10-30T14:39:42.651121+00:00'
+total_items: 9
 items:
-  -
-    id: "M2-001"
-    title: "Stabilise API documentation"
-    description: "Confirm detected endpoints and classify authentication requirements."
-    estimate: 5
-    dependencies: []
-    components:
-      - "api"
-    risk:
-      severity: "high"
-      impact: "Incorrect endpoint catalogue may block client migrations."
-      mitigation: "Review generated OpenAPI with engineering leads and add automated smoke tests."
-  -
-    id: "M2-002"
-    title: "Template parity audit"
-    description: "Enumerate Twig templates and map them to new React views."
-    estimate: 8
-    dependencies:
-      - "M2-001"
-    components:
-      - "templates"
-    risk:
-      severity: "medium"
-      impact: "Missing templates degrade UX during migration."
-      mitigation: "Prioritise high-traffic templates and create acceptance criteria."
-  -
-    id: "M2-003"
-    title: "Cron job remediation plan"
-    description: "Assess scheduled tasks and design equivalents for the asynchronous stack."
-    estimate: 5
-    dependencies: []
-    components:
-      - "cron"
-      - "operations"
-    risk:
-      severity: "critical"
-      impact: "Unmigrated cron jobs can halt invoicing and notifications."
-      mitigation: "Document ownership, add monitoring, and schedule reimplementation on FastAPI workers."
-  -
-    id: "M2-004"
-    title: "Metrics coverage"
-    description: "Baseline key metrics (file counts, LOC, module sizes) for progress tracking."
-    estimate: 3
-    dependencies:
-      - "M2-001"
-    components:
-      - "metrics"
-    risk:
-      severity: "low"
-      impact: "Lack of metrics limits visibility into migration progress."
-      mitigation: "Integrate reports into CI dashboards and revisit quarterly."
-  -
-    id: "M5-001"
-    stage: 5
-    domain: "assets"
-    title: "Assets API read models"
-    description: "Expose read-only endpoints for inventory assets using FastAPI backed by the migrated PostgreSQL schema."
-    estimate: 13
-    dependencies:
-      - "M3-001"
-    components:
-      - "api"
-      - "assets"
-    risk:
-      severity: "high"
-      impact: "Without an assets API the new frontend and integrations cannot access migrated inventory data."
-      mitigation: "Implement feature flags, contract tests, and load testing before enabling clients."
-    fastapi:
-      feature_flag: "assets_api"
-      router_module: "app.api.routes.assets"
-      documentation: "docs/api/assets.md"
-      endpoints:
-        - operation_id: "list_assets"
-          method: "GET"
-          path: "/assets"
-          summary: "List assets with pagination and optional free-text search."
-        - operation_id: "get_asset"
-          method: "GET"
-          path: "/assets/{asset_id}"
-          summary: "Retrieve detailed information about a single asset by identifier."
-    schemas:
-      module: "app.schemas.assets"
-      models:
-        - "AssetSummary"
-        - "AssetDetails"
-      responses:
-        - "AssetListResponse"
-    loadtest:
-      entrypoint: "backend/loadtests/main.js"
-      scenario: "assets_read"
+- id: M2-001
+  title: Stabilise API documentation
+  description: Confirm detected endpoints and classify authentication requirements.
+  estimate: 5
+  dependencies: []
+  components:
+  - api
+  risk:
+    severity: high
+    impact: Incorrect endpoint catalogue may block client migrations.
+    mitigation: Review generated OpenAPI with engineering leads and add automated
+      smoke tests.
+- id: M2-002
+  title: Template parity audit
+  description: Enumerate Twig templates and map them to new React views.
+  estimate: 8
+  dependencies:
+  - M2-001
+  components:
+  - templates
+  risk:
+    severity: medium
+    impact: Missing templates degrade UX during migration.
+    mitigation: Prioritise high-traffic templates and create acceptance criteria.
+- id: M2-003
+  title: Cron job remediation plan
+  description: Assess scheduled tasks and design equivalents for the asynchronous
+    stack.
+  estimate: 5
+  dependencies: []
+  components:
+  - cron
+  - operations
+  risk:
+    severity: critical
+    impact: Unmigrated cron jobs can halt invoicing and notifications.
+    mitigation: Document ownership, add monitoring, and schedule reimplementation
+      on FastAPI workers.
+- id: M2-004
+  title: Metrics coverage
+  description: Baseline key metrics (file counts, LOC, module sizes) for progress
+    tracking.
+  estimate: 3
+  dependencies:
+  - M2-001
+  components:
+  - metrics
+  risk:
+    severity: low
+    impact: Lack of metrics limits visibility into migration progress.
+    mitigation: Integrate reports into CI dashboards and revisit quarterly.
+- id: M5-001
+  stage: 5
+  domain: assets
+  title: Assets API read models
+  description: Expose read-only endpoints for inventory assets using FastAPI backed
+    by the migrated PostgreSQL schema.
+  estimate: 13
+  dependencies:
+  - M3-001
+  components:
+  - api
+  - assets
+  risk:
+    severity: high
+    impact: Without an assets API the new frontend and integrations cannot access
+      migrated inventory data.
+    mitigation: Implement feature flags, contract tests, and load testing before enabling
+      clients.
+  fastapi:
+    feature_flag: assets_api
+    router_module: app.api.routes.assets
+    documentation: docs/api/assets.md
+    endpoints:
+    - operation_id: list_assets
+      method: GET
+      path: /assets
+      summary: List assets with pagination and optional free-text search.
+    - operation_id: get_asset
+      method: GET
+      path: /assets/{asset_id}
+      summary: Retrieve detailed information about a single asset by identifier.
+  schemas:
+    module: app.schemas.assets
+    models:
+    - AssetSummary
+    - AssetDetails
+    responses:
+    - AssetListResponse
+  loadtest:
+    entrypoint: backend/loadtests/main.js
+    scenario: assets_read
+- id: M5-002
+  stage: 5
+  domain: assets
+  title: Assets barcode workflows parity
+  description: 'Implement FastAPI endpoints covering barcode assignment, removal,
+    and discovery so that inventory scans remain functional during the migration.
+    Legacy parity required for 5 route(s): GET /api/assets/searchAssetsBarcode, POST
+    /api/assets/barcodes/assign, POST /api/assets/barcodes/delete, POST /api/assets/barcodes/index,
+    POST /api/assets/barcodes/search'
+  estimate: 8
+  dependencies:
+  - M5-001
+  components:
+  - api
+  - assets
+  - barcodes
+  legacy_routes:
+  - GET /api/assets/searchAssetsBarcode
+  - POST /api/assets/barcodes/assign
+  - POST /api/assets/barcodes/delete
+  - POST /api/assets/barcodes/index
+  - POST /api/assets/barcodes/search
+- id: M5-003
+  stage: 5
+  domain: assets
+  title: Assets CRUD and asset-type management parity
+  description: 'Provide create, update, delete, listing, and search operations for
+    assets and asset types in FastAPI to unlock end-to-end inventory management. Legacy
+    parity required for 13 route(s): POST /api/assets/archive, POST /api/assets/delete,
+    POST /api/assets/editAsset, POST /api/assets/editAssetType, POST /api/assets/editAssetTypeDefinableFields,
+    POST /api/assets/getAssetTypeData, POST /api/assets/list, POST /api/assets/newAssetFromType,
+    POST /api/assets/newAssetType, POST /api/assets/searchAssets, POST /api/assets/searchType,
+    POST /api/assets/substitutions, POST /api/assets/transfer'
+  estimate: 13
+  dependencies:
+  - M5-001
+  components:
+  - api
+  - assets
+  legacy_routes:
+  - POST /api/assets/archive
+  - POST /api/assets/delete
+  - POST /api/assets/editAsset
+  - POST /api/assets/editAssetType
+  - POST /api/assets/editAssetTypeDefinableFields
+  - POST /api/assets/getAssetTypeData
+  - POST /api/assets/list
+  - POST /api/assets/newAssetFromType
+  - POST /api/assets/newAssetType
+  - POST /api/assets/searchAssets
+  - POST /api/assets/searchType
+  - POST /api/assets/substitutions
+  - POST /api/assets/transfer
+- id: M5-004
+  stage: 5
+  domain: assets
+  title: Assets export parity
+  description: 'Reproduce the legacy CSV export pipeline for assets with FastAPI endpoints
+    and background tasks. Legacy parity required for 1 route(s): POST /api/assets/export'
+  estimate: 5
+  dependencies:
+  - M5-003
+  components:
+  - api
+  - assets
+  - reports
+  legacy_routes:
+  - POST /api/assets/export
+- id: M6-001
+  stage: 6
+  domain: security
+  title: Authentication, MFA, and audit parity
+  description: 'Rebuild authentication, refresh token, multi-factor, and audit guard
+    rails on FastAPI while keeping compatibility with legacy session workflows. Legacy
+    parity required for 6 route(s): POST /api/auth/login, POST /api/auth/refresh,
+    POST /api/auth/logout, POST /api/auth/mfa/setup, POST /api/auth/mfa/verify, GET
+    /api/auth/roles'
+  estimate: 13
+  dependencies:
+  - M2-001
+  - M5-001
+  components:
+  - api
+  - auth
+  - security
+  legacy_routes:
+  - POST /api/auth/login
+  - POST /api/auth/refresh
+  - POST /api/auth/logout
+  - POST /api/auth/mfa/setup
+  - POST /api/auth/mfa/verify
+  - GET /api/auth/roles
+  security:
+    controls:
+    - jwt
+    - refresh-tokens
+    - mfa
+    - audit-log
+    playbooks:
+    - docs/security/policies.md
+    - automation/stage06/alert_summary.json
