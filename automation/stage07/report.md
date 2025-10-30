@@ -4,6 +4,7 @@
 - Integration adapters have been consolidated under `backend/app/integrations`.
 - Celery worker, beat scheduler, and Redis broker configured in docker-compose.
 - Prometheus metrics endpoint exposed at `/api/metrics`.
+- Added React UI module for monitoring integration tasks under `frontend/src/features/integration-progress`.
 
 ## Integrations
 - `crm_sync` → CRMIntegration
@@ -18,3 +19,4 @@
 
 ## Next Steps
 - Run `make stage07-verify` to execute Celery checks and integration tests.
+- Install frontend dependencies with `npm install --prefix frontend` and run `npm test --prefix frontend` for UI smoke verification.
