@@ -1,0 +1,101 @@
+{
+  "checks": {
+    "pytest": {
+      "status": "ok",
+      "message": "pytest backend/tests/integrations -q",
+      "log": "/workspace/lame-rms/automation/stage07/logs/pytest.log"
+    },
+    "celery_worker": {
+      "status": "warning",
+      "message": "celery command unavailable"
+    },
+    "celery_ping": {
+      "status": "warning",
+      "message": "celery not run",
+      "log": "/workspace/lame-rms/automation/stage07/logs/celery_ping.log"
+    }
+  },
+  "tools": {
+    "state": "needs_attention",
+    "checks": [
+      {
+        "name": "act",
+        "status": "warning",
+        "message": "asdf not available",
+        "path": ""
+      },
+      {
+        "name": "k6",
+        "status": "warning",
+        "message": "asdf not available",
+        "path": ""
+      },
+      {
+        "name": "schemathesis",
+        "status": "warning",
+        "message": "pip install --user schemathesis failed",
+        "path": ""
+      },
+      {
+        "name": "playwright",
+        "status": "warning",
+        "message": "npm install -g playwright failed",
+        "path": ""
+      },
+      {
+        "name": "terraform",
+        "status": "warning",
+        "message": "asdf not available",
+        "path": ""
+      },
+      {
+        "name": "helm",
+        "status": "warning",
+        "message": "asdf not available",
+        "path": ""
+      }
+    ],
+    "artifacts": [],
+    "last_run": "2025-10-30T03:25:44.189010+00:00",
+    "warnings": [
+      {
+        "tool": "act",
+        "message": "asdf not available"
+      },
+      {
+        "tool": "k6",
+        "message": "asdf not available"
+      },
+      {
+        "tool": "schemathesis",
+        "message": "pip install --user schemathesis failed"
+      },
+      {
+        "tool": "playwright",
+        "message": "npm install -g playwright failed"
+      },
+      {
+        "tool": "terraform",
+        "message": "asdf not available"
+      },
+      {
+        "tool": "helm",
+        "message": "asdf not available"
+      }
+    ],
+    "notes": [],
+    "extra": {
+      "tools_summary": {
+        "total": 6,
+        "ok": 0,
+        "installed": 0,
+        "warnings": 6
+      }
+    }
+  },
+  "artifacts": {
+    "pytest_log": "/workspace/lame-rms/automation/stage07/logs/pytest.log",
+    "celery_ping": "/workspace/lame-rms/automation/stage07/logs/celery_ping.log",
+    "metrics": "/workspace/lame-rms/automation/stage07/metrics.txt"
+  }
+}

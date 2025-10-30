@@ -1,0 +1,42 @@
+{
+  "generated_at": "2025-10-30T03:22:09.398138+00:00",
+  "integrations": [
+    {
+      "name": "crm_sync",
+      "factory": "CRMIntegration"
+    },
+    {
+      "name": "crm_cached",
+      "factory": "CachedCRMIntegration"
+    },
+    {
+      "name": "notifications",
+      "factory": "NotificationIntegration"
+    },
+    {
+      "name": "object_storage",
+      "factory": "ObjectStorageIntegration"
+    }
+  ],
+  "beat_schedule": {
+    "crm_sync_daily": {
+      "task": "app.integrations.tasks.run_crm_sync"
+    },
+    "storage_cleanup": {
+      "task": "app.integrations.tasks.archive_storage_snapshot"
+    },
+    "notification_digest": {
+      "task": "app.integrations.tasks.deliver_notifications"
+    }
+  },
+  "queue": {
+    "broker": "redis://redis:6379/0",
+    "result_backend": "redis://redis:6379/1",
+    "default_queue": "integrations",
+    "fallback": {
+      "enabled": true,
+      "broker": "memory://",
+      "result_backend": "cache+memory://"
+    }
+  }
+}

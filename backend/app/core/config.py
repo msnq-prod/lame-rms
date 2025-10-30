@@ -37,6 +37,15 @@ class Settings(BaseSettings):
     mfa_totp_interval_seconds: int = 30
     audit_log_path: str = Field(default="backend/var/security_audit.log")
     security_alert_log_path: str = Field(default="backend/var/security_alerts.jsonl")
+    celery_broker_url: str = "redis://redis:6379/0"
+    celery_result_backend: str = "redis://redis:6379/1"
+    celery_fallback_broker_url: str = "memory://"
+    celery_fallback_result_backend: str = "cache+memory://"
+    celery_default_queue: str = "integrations"
+    celery_task_always_eager: bool = False
+    celery_beat_schedule_path: str = "backend/app/integrations/schedule.py"
+    integration_modes: dict[str, str] = Field(default_factory=dict)
+    queue_fallback_enabled: bool = True
 
     @property
     def access_token_ttl(self) -> timedelta:
@@ -53,6 +62,10 @@ class Settings(BaseSettings):
     @property
     def security_alert_file(self) -> Path:
         return Path(self.security_alert_log_path)
+
+    @property
+    def beat_schedule_path(self) -> Path:
+        return Path(self.celery_beat_schedule_path)
 
     @property
     def is_debug(self) -> bool:

@@ -1,0 +1,10 @@
+{
+  "broker": "redis://redis:6379/0",
+  "result_backend": "redis://redis:6379/1",
+  "default_queue": "integrations",
+  "fallback": {
+    "enabled": true,
+    "broker": "memory://",
+    "result_backend": "cache+memory://"
+  }
+}
