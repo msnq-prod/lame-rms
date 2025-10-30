@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/workspace/lame-rms/automation/bin/run_pg_tmp.py", line 15, in <module>
+    from testing.postgresql import Postgresql
+ModuleNotFoundError: No module named 'testing'

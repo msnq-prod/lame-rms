@@ -1,7 +1,7 @@
 {
-  "covered_lines": 62,
+  "covered_lines": 81,
   "total_lines": 86,
-  "percent": 72.09,
+  "percent": 94.19,
   "modules": {
     "__init__.py": {
       "covered_lines": 9,
@@ -16,7 +16,7 @@
       "total_lines": 23
     },
     "run.py": {
-      "covered_lines": 0,
+      "covered_lines": 19,
       "total_lines": 19
     },
     "transform.py": {
