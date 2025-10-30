@@ -198,6 +198,13 @@
 **Команда оператора**
 - `make stage05 && make stage05-verify && make stage05-report`.
 
+**Критерий готовности этапа 5** — закрыты backlog-элементы `M5-001`, `M5-002`, `M5-003` и `M5-004`,
+обеспечивающие паритет по критичным маршрутам:
+
+- `/api/assets/searchAssetsBarcode` и весь набор `/api/assets/barcodes/*` для сканеров;
+- `/api/assets/list`, `/api/assets/newAssetType`, `/api/assets/editAsset`, `/api/assets/delete`, `/api/assets/transfer` для CRUD-операций;
+- `/api/assets/export` для выгрузки в CSV и синхронизации с внешними системами.
+
 ---
 
 ## Этап 6. Аутентификация, авторизация и аудит
