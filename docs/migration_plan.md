@@ -244,6 +244,8 @@
 - Запуск воркера и тестового задания с проверкой отчёта (`celery -A app.worker inspect ping`).
 - Проверка мониторинга (Prometheus exporter, графики).
 - Обновляет `automation/stage07/status.json` согласно `automation/status.schema.json`, добавляя показатели очереди и мониторинга в `extra.queue_health` и `extra.monitoring`.
+- В `automation/stage07/status.json` фиксирует правило: `state=completed` допустим только при успешном `celery inspect ping`; при любом другом результате очередь помечается как `needs_attention` с расшифровкой в `extra.queue_health`.
+- Для локальной отладки описывает, как поднять memory fallback вручную: `APP_CELERY_BROKER_URL=memory:// APP_CELERY_RESULT_BACKEND=cache+memory:// APP_QUEUE_FALLBACK_ENABLED=true PYTHONPATH=backend backend/.venv/bin/python -m celery -A app.worker worker --loglevel=info --concurrency=1 --pool=solo` и последующий `PYTHONPATH=backend backend/.venv/bin/python -m celery -A app.worker inspect ping`.
 
 **Артефакты и отчётность**
 - `automation/stage07/report.md`: список интеграций, статус очереди, мониторинг.

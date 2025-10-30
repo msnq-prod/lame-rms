@@ -5,6 +5,7 @@ set -euo pipefail
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 REPO_ROOT=$(cd "$SCRIPT_DIR/../.." && pwd)
 PYTHON_BIN=${PYTHON_BIN:-python3}
+VENV_DIR="$REPO_ROOT/backend/.venv"
 STATUS_JSON="$SCRIPT_DIR/status.json"
 SUMMARY_JSON="$SCRIPT_DIR/summary.json"
 RESULTS_JSON="$SCRIPT_DIR/results.json"
@@ -42,23 +43,52 @@ WORKER_MESSAGE="celery command unavailable"
 PING_STATUS="warning"
 PING_MESSAGE="celery not run"
 WORKER_PID=""
-if command -v celery >/dev/null 2>&1; then
+
+CELERY_CMD=()
+CELERY_NEEDS_PYTHONPATH=0
+CELERY_DESC=""
+if [[ -x "$VENV_DIR/bin/python" ]] && "$VENV_DIR/bin/python" -c "import celery" >/dev/null 2>&1; then
+  CELERY_CMD=("$VENV_DIR/bin/python" -m celery)
+  CELERY_NEEDS_PYTHONPATH=1
+  CELERY_DESC="python -m celery (.venv)"
+elif command -v celery >/dev/null 2>&1; then
+  CELERY_CMD=(celery)
+  CELERY_DESC="celery binary"
+elif "$PYTHON_BIN" -c "import celery" >/dev/null 2>&1; then
+  CELERY_CMD=("$PYTHON_BIN" -m celery)
+  CELERY_NEEDS_PYTHONPATH=1
+  CELERY_DESC="python -m celery ($PYTHON_BIN)"
+fi
+
+run_celery() {
+  if [[ $CELERY_NEEDS_PYTHONPATH -eq 1 ]]; then
+    PYTHONPATH="$REPO_ROOT/backend" "${CELERY_CMD[@]}" "$@"
+  else
+    "${CELERY_CMD[@]}" "$@"
+  fi
+}
+
+if [[ ${#CELERY_CMD[@]} -gt 0 ]]; then
   WORKER_STATUS="ok"
+  WORKER_MESSAGE="using $CELERY_DESC"
   ORIGINAL_BROKER=${APP_CELERY_BROKER_URL:-}
   ORIGINAL_BACKEND=${APP_CELERY_RESULT_BACKEND:-}
   ORIGINAL_FALLBACK=${APP_QUEUE_FALLBACK_ENABLED:-}
   export APP_CELERY_BROKER_URL="memory://"
   export APP_CELERY_RESULT_BACKEND="cache+memory://"
   export APP_QUEUE_FALLBACK_ENABLED="true"
-  (
-    cd "$REPO_ROOT/backend"
-    celery -A app.worker worker --loglevel=info --concurrency=1 --pool=solo >"$LOG_DIR/celery_worker.log" 2>&1 &
-    WORKER_PID=$!
+  WORKER_PID=$( 
+    cd "$REPO_ROOT/backend" && {
+      run_celery -A app.worker worker --loglevel=info --concurrency=1 --pool=solo >"$LOG_DIR/celery_worker.log" 2>&1 &
+      echo $!
+    }
   )
   sleep 5
-  if ps -p $WORKER_PID >/dev/null 2>&1; then
+  if [[ $WORKER_PID =~ ^[0-9]+$ ]] && ps -p "$WORKER_PID" >/dev/null 2>&1; then
     set +e
-    celery -A app.worker inspect ping >"$QUEUE_PING_LOG" 2>&1
+    (
+      cd "$REPO_ROOT/backend" && run_celery -A app.worker inspect ping >"$QUEUE_PING_LOG" 2>&1
+    )
     PING_EXIT=$?
     set -e
     if [[ $PING_EXIT -eq 0 ]]; then
@@ -70,9 +100,10 @@ if command -v celery >/dev/null 2>&1; then
     fi
   else
     WORKER_STATUS="fail"
-    WORKER_MESSAGE="celery worker failed to start"
+    WORKER_MESSAGE="celery worker failed to start ($CELERY_DESC)"
+    printf 'celery worker process not running\n' >"$QUEUE_PING_LOG"
   fi
-  if [[ -n "$WORKER_PID" ]]; then
+  if [[ $WORKER_PID =~ ^[0-9]+$ ]]; then
     kill "$WORKER_PID" >/dev/null 2>&1 || true
     wait "$WORKER_PID" 2>/dev/null || true
   fi
@@ -164,13 +195,29 @@ for name, detail in results["checks"].items():
     if status not in {"ok", "warning", "skip"}:
         failed = True
 
-state = "completed" if not failed else "needs_attention"
+worker_check = results["checks"].get("celery_worker", {"status": "unknown", "message": "missing"})
+ping_check = results["checks"].get("celery_ping", {"status": "unknown", "message": "missing"})
+queue_ok = worker_check.get("status") == "ok" and ping_check.get("status") == "ok"
+
+state = "completed" if (not failed and queue_ok) else "needs_attention"
 now = datetime.now(timezone.utc).isoformat()
 
+def _fmt_queue(detail):
+    message = detail.get("message")
+    if message:
+        return f"{detail.get('status')}: {message}"
+    return str(detail.get("status"))
+
+queue_health = {
+    "worker": worker_check,
+    "ping": ping_check,
+    "status": "ok" if queue_ok else "needs_attention",
+}
+if not queue_ok:
+    queue_health["summary"] = f"worker={_fmt_queue(worker_check)}; ping={_fmt_queue(ping_check)}"
+
 extra = {
-    "queue_health": {
-        "ping": results["checks"]["celery_ping"],
-    },
+    "queue_health": queue_health,
     "monitoring": {
         "metrics_file": results["artifacts"]["metrics"],
     },
