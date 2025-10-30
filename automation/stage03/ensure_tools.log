@@ -1,6 +1,9 @@
+⚠ asdf not found
+✔ npm available at /root/.nvm/versions/node/v20.19.4/bin/npm
+✔ npx available at /root/.nvm/versions/node/v20.19.4/bin/npx
+curl: (22) The requested URL returned error: 403
 ⚠ act not installed
+curl: (22) The requested URL returned error: 403
 ⚠ k6 not installed
-⚠ playwright not installed
-⚠ terraform not installed
-⚠ helm not installed
-Status written to /workspace/lame-rms/automation/stage03/tools_status.json
+⚠ schemathesis not installed
+/workspace/lame-rms/automation/bin/ensure_tools.sh: line 37: $1: unbound variable

@@ -22,19 +22,24 @@
 - automation/stage03/run.sh
 - automation/stage03/self_check.sh
 
+## Tests
+
+- Added a CLI smoke test that runs `app.etl.run` against a temporary SQLite database and asserts the resulting tables and row counts.
+
 ## Checks
 
 | Check | Result | Details |
 | --- | --- | --- |
 | Tooling | warn | act=warning, k6=warning, playwright=warning, terraform=warning, helm=warning |
 | Pytest (ETL) | pass | backend/tests/etl (see pytest.log) |
-| Alembic upgrade | warn | docker not available |
+| Alembic upgrade | fail | Temporary PostgreSQL did not provide URI (see alembic.log) |
 | Row counts | pass | actionsCategories=1/1, actions=2/2 |
 | Foreign keys | pass | No foreign key violations |
+| run.py coverage | pass | run.py covered_lines=19/19 |
 
 ## Coverage
 
-- Coverage: 72.09% (62/86 lines)
+- Coverage: 94.19% (81/86 lines)
 
 ## Commands
 

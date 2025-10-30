@@ -14,8 +14,8 @@
     },
     {
       "name": "alembic",
-      "status": "warning",
-      "message": "docker not available"
+      "status": "fail",
+      "message": "Temporary PostgreSQL did not provide URI (see alembic.log)"
     },
     {
       "name": "rows",
@@ -26,6 +26,11 @@
       "name": "foreign_keys",
       "status": "ok",
       "message": "No foreign key violations"
+    },
+    {
+      "name": "run_py_coverage",
+      "status": "ok",
+      "message": "run.py covered_lines=19/19"
     }
   ],
   "artifacts": [
@@ -37,23 +42,23 @@
     "automation/stage03/alembic.log",
     "automation/stage03/ensure_tools.log"
   ],
-  "last_run": "2025-10-27T06:21:48.867123+00:00",
+  "last_run": "2025-10-30T14:31:27.050621+00:00",
   "warnings": [
     "act: asdf not available",
     "k6: asdf not available",
     "playwright: npm install -g playwright failed",
     "terraform: asdf not available",
     "helm: asdf not available",
-    "docker not available"
+    "Temporary PostgreSQL did not provide URI (see alembic.log)"
   ],
   "notes": [
     "self_check.sh executed"
   ],
   "extra": {
     "coverage": {
-      "covered_lines": 62,
+      "covered_lines": 81,
       "total_lines": 86,
-      "percent": 72.09,
+      "percent": 94.19,
       "modules": {
         "__init__.py": {
           "covered_lines": 9,
@@ -68,7 +73,7 @@
           "total_lines": 23
         },
         "run.py": {
-          "covered_lines": 0,
+          "covered_lines": 19,
           "total_lines": 19
         },
         "transform.py": {

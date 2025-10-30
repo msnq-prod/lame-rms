@@ -12,8 +12,8 @@
     },
     "alembic": {
       "label": "Alembic upgrade",
-      "status": "warn",
-      "details": "docker not available"
+      "status": "fail",
+      "details": "Temporary PostgreSQL did not provide URI (see alembic.log)"
     },
     "rows": {
       "label": "Row counts",
@@ -24,6 +24,11 @@
       "label": "Foreign keys",
       "status": "pass",
       "details": "No foreign key violations"
+    },
+    "run_py_coverage": {
+      "label": "run.py coverage",
+      "status": "pass",
+      "details": "run.py covered_lines=19/19"
     }
   },
   "warnings": [
@@ -32,12 +37,12 @@
     "playwright: npm install -g playwright failed",
     "terraform: asdf not available",
     "helm: asdf not available",
-    "docker not available"
+    "Temporary PostgreSQL did not provide URI (see alembic.log)"
   ],
   "coverage": {
-    "covered_lines": 62,
+    "covered_lines": 81,
     "total_lines": 86,
-    "percent": 72.09,
+    "percent": 94.19,
     "modules": {
       "__init__.py": {
         "covered_lines": 9,
@@ -52,7 +57,7 @@
         "total_lines": 23
       },
       "run.py": {
-        "covered_lines": 0,
+        "covered_lines": 19,
         "total_lines": 19
       },
       "transform.py": {

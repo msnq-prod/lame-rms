@@ -1,6 +1,6 @@
-.                                                                                                                        [100%]
+..                                                                                                                       [100%]
 
 ---------- coverage: platform linux, python 3.12.10-final-0 ----------
 Coverage JSON written to file /workspace/lame-rms/automation/stage03/.coverage_raw.json
 
-1 passed in 1.93s
+2 passed in 6.18s

@@ -243,11 +243,11 @@ if etl_results_path.exists():
     etl_results = json.loads(etl_results_path.read_text(encoding="utf-8"))
 
 coverage_summary = {}
+modules = {}
 if coverage_raw_path.exists():
     raw = json.loads(coverage_raw_path.read_text(encoding="utf-8"))
     totals = raw.get("totals", {})
     files = raw.get("files", {})
-    modules = {}
     for path, info in files.items():
         summary_info = info.get("summary", {})
         modules[Path(path).name] = {
@@ -261,6 +261,18 @@ if coverage_raw_path.exists():
         "modules": modules,
     }
     coverage_path.write_text(json.dumps(coverage_summary, indent=2), encoding="utf-8")
+
+run_py_status = "fail"
+run_py_details = "Coverage summary unavailable"
+if coverage_summary:
+    run_module = modules.get("run.py")
+    if run_module is None:
+        run_py_details = "run.py missing from coverage report"
+    else:
+        covered = run_module.get("covered_lines", 0)
+        total = run_module.get("total_lines", 0)
+        run_py_details = f"run.py covered_lines={covered}/{total}"
+        run_py_status = "pass" if covered > 0 else "fail"
 
 tool_checks = tools_status.get("checks", [])
 if tool_checks:
@@ -316,12 +328,19 @@ checks = {
         "status": "pass" if fk_status == "pass" else "fail",
         "details": fk_details,
     },
+    "run_py_coverage": {
+        "label": "run.py coverage",
+        "status": "pass" if run_py_status == "pass" else "fail",
+        "details": run_py_details,
+    },
 }
 
 warnings = []
 warnings.extend(tool_warnings)
 if alembic_status != "pass":
     warnings.append(alembic_details)
+if run_py_status != "pass":
+    warnings.append(run_py_details)
 
 results_payload = {
     "checks": checks,
