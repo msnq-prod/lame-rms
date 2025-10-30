@@ -138,7 +138,8 @@
 **Самопроверка Codex5**
 - Выполняет `STATUS_FILE=automation/stage03/status.json automation/bin/ensure_tools.sh` и переводит отсутствующие зависимости в `warning`, корректно пропуская соответствующие проверки.
 - `pytest backend/tests/etl -q`.
-- `alembic upgrade head` против временной БД (использовать docker-compose service `postgres-test`).
+- `alembic upgrade head` против временной БД (использовать docker-compose service `postgres-test`; при отсутствии Docker задействовать `automation/bin/run_pg_tmp.py`, выполнить миграцию по возвращённому URI и завершить временный экземпляр).
+- Логи запуска миграции сохраняются в `automation/stage03/alembic.log`.
 - Проверка foreign keys и сравнение количества строк до/после ETL.
 - Генерация отчёта покрытия тестов для ETL.
 - Обновляет `automation/stage03/status.json` на базе схемы `automation/status.schema.json`, добавляя показатели покрытия
