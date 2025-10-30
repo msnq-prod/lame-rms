@@ -1,4 +1,22 @@
 {
-  "status": "skipped",
-  "message": "k6 executable is not available on this host"
+  "performance": {
+    "status": "fail",
+    "message": "k6 runner not available",
+    "runner": "missing",
+    "exit_code": 1,
+    "summary_path": null,
+    "log_path": null,
+    "p95_latency_ms": null,
+    "success_rate": null
+  },
+  "contract": {
+    "status": "fail",
+    "message": "schemathesis runner not available",
+    "runner": "missing",
+    "exit_code": 1,
+    "log_path": null,
+    "summary_path": "automation/stage05/schemathesis_summary.json",
+    "success_rate": 0.0,
+    "checks": null
+  }
 }
