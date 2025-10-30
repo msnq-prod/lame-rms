@@ -1,0 +1,3 @@
+integration_runs_total
+integration_duration_seconds
+integration_queue_depth

@@ -1,10 +1,73 @@
 {
   "$schema": "../status.schema.json",
-  "state": "pending",
-  "checks": [],
-  "artifacts": [],
-  "last_run": null,
-  "warnings": [],
-  "notes": [],
-  "extra": {}
+  "state": "completed",
+  "checks": [
+    {
+      "name": "pytest",
+      "status": "ok",
+      "message": "pytest backend/tests/integrations -q",
+      "path": "/workspace/lame-rms/automation/stage07/logs/pytest.log"
+    },
+    {
+      "name": "celery_worker",
+      "status": "warning",
+      "message": "celery command unavailable",
+      "path": null
+    },
+    {
+      "name": "celery_ping",
+      "status": "warning",
+      "message": "celery not run",
+      "path": "/workspace/lame-rms/automation/stage07/logs/celery_ping.log"
+    }
+  ],
+  "artifacts": [
+    "automation/stage07/report.md",
+    "automation/stage07/summary.json",
+    "/workspace/lame-rms/automation/stage07/logs/pytest.log",
+    "/workspace/lame-rms/automation/stage07/logs/celery_ping.log",
+    "/workspace/lame-rms/automation/stage07/metrics.txt"
+  ],
+  "last_run": "2025-10-30T03:25:50.194775+00:00",
+  "warnings": [
+    {
+      "tool": "act",
+      "message": "asdf not available"
+    },
+    {
+      "tool": "k6",
+      "message": "asdf not available"
+    },
+    {
+      "tool": "schemathesis",
+      "message": "pip install --user schemathesis failed"
+    },
+    {
+      "tool": "playwright",
+      "message": "npm install -g playwright failed"
+    },
+    {
+      "tool": "terraform",
+      "message": "asdf not available"
+    },
+    {
+      "tool": "helm",
+      "message": "asdf not available"
+    }
+  ],
+  "notes": [
+    "self_check.sh executed"
+  ],
+  "extra": {
+    "queue_health": {
+      "ping": {
+        "status": "warning",
+        "message": "celery not run",
+        "log": "/workspace/lame-rms/automation/stage07/logs/celery_ping.log"
+      }
+    },
+    "monitoring": {
+      "metrics_file": "/workspace/lame-rms/automation/stage07/metrics.txt"
+    }
+  }
 }
