@@ -5,6 +5,18 @@ set -euo pipefail
 ROOT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 REPO_ROOT=$(cd "$ROOT_DIR/.." && pwd)
 PYTHON_BIN=${PYTHON_BIN:-python3}
+TOOLS_DIR="$ROOT_DIR/bin/tools"
+
+mkdir -p "$TOOLS_DIR"
+
+if [[ -z "${ENSURE_TOOLS_ORIG_PATH:-}" ]]; then
+  export ENSURE_TOOLS_ORIG_PATH="$PATH"
+fi
+
+case ":$PATH:" in
+  *:"$TOOLS_DIR":*) ;;
+  *) export PATH="$TOOLS_DIR:$PATH" ;;
+esac
 
 STATUS_FILE="${STATUS_FILE:-$ROOT_DIR/status.json}"
 if [[ $# -gt 0 ]]; then
@@ -24,10 +36,131 @@ log() {
 check_command() {
   local cmd="$1"
   if command -v "$cmd" >/dev/null 2>&1; then
-    FOUND_PATH=$(command -v "$cmd")
-    return 0
+    if "$cmd" --version >/dev/null 2>&1; then
+      FOUND_PATH=$(command -v "$cmd")
+      return 0
+    fi
   fi
   return 1
+}
+
+ASDF_AVAILABLE=false
+NPM_AVAILABLE=false
+NPX_AVAILABLE=false
+
+SYSTEM_OS=$(uname -s | tr '[:upper:]' '[:lower:]')
+SYSTEM_ARCH=$(uname -m | tr '[:upper:]' '[:lower:]')
+
+normalize_arch() {
+  local arch="$1"
+  case "$arch" in
+    x86_64|amd64) printf 'amd64' ;;
+    arm64|aarch64) printf 'arm64' ;;
+    *) printf '%s' "$arch" ;;
+  esac
+}
+
+normalize_os() {
+  local os="$1"
+  case "$os" in
+    linux|darwin) printf '%s' "$os" ;;
+    *) printf '%s' "$os" ;;
+  esac
+}
+
+download_and_extract() {
+  local url="$1"
+  local archive_path="$2"
+  local extract_dir="$3"
+  if ! curl -fsSL "$url" -o "$archive_path"; then
+    INSTALL_RESULT_MESSAGE="failed to download $url"
+    return 1
+  fi
+
+  mkdir -p "$extract_dir"
+
+  case "$archive_path" in
+    *.tar.gz|*.tgz)
+      if ! tar -xzf "$archive_path" -C "$extract_dir"; then
+        INSTALL_RESULT_MESSAGE="failed to extract archive $archive_path"
+        return 1
+      fi
+      ;;
+    *.zip)
+      if ! unzip -qo "$archive_path" -d "$extract_dir"; then
+        INSTALL_RESULT_MESSAGE="failed to unzip archive $archive_path"
+        return 1
+      fi
+      ;;
+    *)
+      INSTALL_RESULT_MESSAGE="unsupported archive format for $archive_path"
+      return 1
+      ;;
+  esac
+
+  return 0
+}
+
+install_release_binary() {
+  local binary_name="$1"
+  local url="$2"
+  local extracted_path="$3"
+  local destination="$TOOLS_DIR/${binary_name}-bin"
+
+  local tmpdir
+  tmpdir=$(mktemp -d)
+  local archive_name
+  archive_name=$(basename "$url")
+  local archive="$tmpdir/$archive_name"
+
+  if ! download_and_extract "$url" "$archive" "$tmpdir/extracted"; then
+    rm -rf "$tmpdir"
+    return 1
+  fi
+
+  local source_path="$tmpdir/extracted/$extracted_path"
+  if [[ ! -f "$source_path" ]]; then
+    INSTALL_RESULT_MESSAGE="binary not found at $source_path"
+    rm -rf "$tmpdir"
+    return 1
+  fi
+
+  if ! mv -f "$source_path" "$destination"; then
+    INSTALL_RESULT_MESSAGE="failed to move binary to $destination"
+    rm -rf "$tmpdir"
+    return 1
+  fi
+
+  chmod +x "$destination"
+  rm -rf "$tmpdir"
+
+  INSTALL_METHOD="download"
+  INSTALL_RESULT_MESSAGE="downloaded release from $url"
+  return 0
+}
+
+ensure_dependency() {
+  local name="$1"
+  local flag_var="$2"
+  local binary_name="${3:-$1}"
+
+  local status="warning"
+  local message="$name not available"
+  local path=""
+
+  if command -v "$binary_name" >/dev/null 2>&1; then
+    status="ok"
+    message="found"
+    path=$(command -v "$binary_name")
+    printf -v "$flag_var" '%s' "true"
+    log "✔ $name available at $path"
+  else
+    printf -v "$flag_var" '%s' "false"
+    log "⚠ $name not found"
+  fi
+
+  local delim=$'\t'
+  RESULT_LINES+=("${name}${delim}${status}${delim}${message}${delim}${path}")
 }
 
 check_act() {
@@ -51,15 +184,7 @@ check_helm() {
 }
 
 check_playwright() {
-  FOUND_PATH=""
-  if check_command playwright; then
-    return 0
-  fi
-  if command -v npx >/dev/null 2>&1 && npx --yes playwright --version >/dev/null 2>&1; then
-    FOUND_PATH=$(command -v npx)
-    return 0
-  fi
-  return 1
+  check_command playwright
 }
 
 install_tool_via_asdf() {
@@ -95,17 +220,67 @@ install_tool_via_asdf() {
   return 0
 }
 
+install_act_release() {
+  local os_capitalized="${SYSTEM_OS^}"
+  local arch_suffix
+  case "$SYSTEM_ARCH" in
+    x86_64|amd64) arch_suffix="x86_64" ;;
+    arm64|aarch64) arch_suffix="arm64" ;;
+    *)
+      INSTALL_RESULT_MESSAGE="unsupported architecture $SYSTEM_ARCH"
+      return 1
+      ;;
+  esac
+  local version="${ACT_VERSION:-v0.2.59}"
+  local url="https://github.com/nektos/act/releases/download/${version}/act_${os_capitalized}_${arch_suffix}.tar.gz"
+  install_release_binary "act" "$url" "act"
+}
+
 install_act() {
-  install_tool_via_asdf act
+  if [[ "$ASDF_AVAILABLE" == "true" ]]; then
+    install_tool_via_asdf act
+  else
+    install_act_release
+  fi
 }
 
 install_k6() {
-  install_tool_via_asdf k6
+  if [[ "$ASDF_AVAILABLE" == "true" ]]; then
+    install_tool_via_asdf k6
+    return $?
+  fi
+
+  local os_normalized
+  os_normalized=$(normalize_os "$SYSTEM_OS")
+  local arch_normalized
+  arch_normalized=$(normalize_arch "$SYSTEM_ARCH")
+  case "$os_normalized" in
+    linux|darwin) ;;
+    *)
+      INSTALL_RESULT_MESSAGE="unsupported operating system $SYSTEM_OS"
+      return 1
+      ;;
+  esac
+
+  local version="${K6_VERSION:-v0.45.0}"
+  local archive_name="k6-${version}-${os_normalized}-${arch_normalized}.tar.gz"
+  local url="https://github.com/grafana/k6/releases/download/${version}/${archive_name}"
+  local extracted="k6-${version}-${os_normalized}-${arch_normalized}/k6"
+  install_release_binary "k6" "$url" "$extracted"
 }
 
 install_schemathesis() {
-  INSTALL_METHOD="pip"
   INSTALL_RESULT_MESSAGE=""
+
+  if command -v pipx >/dev/null 2>&1; then
+    INSTALL_METHOD="pipx"
+    if pipx install schemathesis >/dev/null 2>&1 || pipx upgrade schemathesis >/dev/null 2>&1; then
+      INSTALL_RESULT_MESSAGE="installed via pipx"
+      return 0
+    fi
+  fi
+
+  INSTALL_METHOD="pip"
 
   if ! command -v "$PYTHON_BIN" >/dev/null 2>&1; then
     INSTALL_RESULT_MESSAGE="python interpreter not available"
@@ -122,28 +297,89 @@ install_schemathesis() {
 }
 
 install_terraform() {
-  install_tool_via_asdf terraform
-}
+  if [[ "$ASDF_AVAILABLE" == "true" ]]; then
+    install_tool_via_asdf terraform
+    return $?
+  fi
 
-install_helm() {
-  install_tool_via_asdf helm
-}
+  local os_normalized
+  os_normalized=$(normalize_os "$SYSTEM_OS")
+  local arch_normalized
+  arch_normalized=$(normalize_arch "$SYSTEM_ARCH")
 
-install_playwright() {
-  INSTALL_METHOD="npm"
-  INSTALL_RESULT_MESSAGE=""
-
-  if ! command -v npm >/dev/null 2>&1; then
-    INSTALL_RESULT_MESSAGE="npm not available"
+  if [[ "$os_normalized" != "linux" && "$os_normalized" != "darwin" ]]; then
+    INSTALL_RESULT_MESSAGE="unsupported operating system $SYSTEM_OS"
     return 1
   fi
 
-  if npm install --global playwright >/dev/null 2>&1; then
-    INSTALL_RESULT_MESSAGE="installed via npm"
+  local version="${TERRAFORM_VERSION:-1.6.6}"
+  local url="https://releases.hashicorp.com/terraform/${version}/terraform_${version}_${os_normalized}_${arch_normalized}.zip"
+  install_release_binary "terraform" "$url" "terraform"
+}
+
+install_helm() {
+  if [[ "$ASDF_AVAILABLE" == "true" ]]; then
+    install_tool_via_asdf helm
+    return $?
+  fi
+
+  local os_normalized
+  os_normalized=$(normalize_os "$SYSTEM_OS")
+  local arch_normalized
+  arch_normalized=$(normalize_arch "$SYSTEM_ARCH")
+  if [[ "$os_normalized" != "linux" && "$os_normalized" != "darwin" ]]; then
+    INSTALL_RESULT_MESSAGE="unsupported operating system $SYSTEM_OS"
+    return 1
+  fi
+
+  local version="${HELM_VERSION:-v3.14.4}"
+  local url="https://get.helm.sh/helm-${version}-${os_normalized}-${arch_normalized}.tar.gz"
+  local extracted="${os_normalized}-${arch_normalized}/helm"
+  install_release_binary "helm" "$url" "$extracted"
+}
+
+install_playwright() {
+  INSTALL_METHOD="npx"
+  INSTALL_RESULT_MESSAGE=""
+
+  if [[ "$NPX_AVAILABLE" != "true" ]]; then
+    INSTALL_RESULT_MESSAGE="npx not available"
+    return 1
+  fi
+
+  if npx --yes playwright install >/dev/null 2>&1; then
+    INSTALL_RESULT_MESSAGE="installed via npx"
     return 0
   fi
 
-  INSTALL_RESULT_MESSAGE="npm install -g playwright failed"
+  INSTALL_RESULT_MESSAGE="npx playwright install failed"
+  return 1
+}
+
+install_bandit() {
+  INSTALL_RESULT_MESSAGE=""
+
+  if command -v pipx >/dev/null 2>&1; then
+    INSTALL_METHOD="pipx"
+    if pipx install bandit >/dev/null 2>&1 || pipx upgrade bandit >/dev/null 2>&1; then
+      INSTALL_RESULT_MESSAGE="installed via pipx"
+      return 0
+    fi
+  fi
+
+  INSTALL_METHOD="pip"
+
+  if ! command -v "$PYTHON_BIN" >/dev/null 2>&1; then
+    INSTALL_RESULT_MESSAGE="python interpreter not available"
+    return 1
+  fi
+
+  if "$PYTHON_BIN" -m pip install --user --quiet bandit >/dev/null 2>&1; then
+    INSTALL_RESULT_MESSAGE="installed via pip --user"
+    return 0
+  fi
+
+  INSTALL_RESULT_MESSAGE="pip install --user bandit failed"
   return 1
 }
 
@@ -192,9 +428,14 @@ ensure_tool() {
   RESULT_LINES+=("${name}${delim}${status}${delim}${message}${delim}${path}")
 }
 
+ensure_dependency "asdf" ASDF_AVAILABLE "asdf"
+ensure_dependency "npm" NPM_AVAILABLE "npm"
+ensure_dependency "npx" NPX_AVAILABLE "npx"
+
 ensure_tool "act" check_act install_act
 ensure_tool "k6" check_k6 install_k6
 ensure_tool "schemathesis" check_schemathesis install_schemathesis
+ensure_tool "bandit" check_command install_bandit
 ensure_tool "playwright" check_playwright install_playwright
 ensure_tool "terraform" check_terraform install_terraform
 ensure_tool "helm" check_helm install_helm

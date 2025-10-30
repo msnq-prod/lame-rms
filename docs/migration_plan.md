@@ -20,7 +20,12 @@
    принимает параметр `stage` и последовательно выполняет `make stage${stage}` и `make stage${stage}-verify`.
 4. Общий README раздел «Как запускать миграцию»: ссылка на таблицу этапов и команды.
 5. Шаблон `automation/templates/report.md` с блоками: *Summary*, *Artifacts*, *Checks*, *Next Gate*.
-6. Bootstrap-скрипт `automation/bin/ensure_tools.sh`, который проверяет наличие ключевых утилит (`act`, `k6`, Playwright, Terraform, Helm и др.), пытается установить их через `asdf`, `npm` или виртуальные окружения и фиксирует предупреждения в `status.json`, если автоматическая установка невозможна.
+6. Bootstrap-скрипт `automation/bin/ensure_tools.sh`, который сначала проверяет системные зависимости (`asdf`, `npm`/`npx`), затем ищет ключевые утилиты (`act`, `k6`, Playwright, Terraform, Helm, `bandit`, `schemathesis` и др.):
+   - при наличии `asdf` использует плагины и версии из `.tool-versions`,
+   - без `asdf` скачивает готовые релизы `act`, `k6`, `terraform`, `helm` в `automation/bin/tools/`,
+   - для Python-инструментов пробует `pipx`, затем `python -m pip --user`,
+   - для Playwright полагается на `npx playwright` и сохраняет статус установки браузеров,
+   - по итогам пишет сводку в `status.json`, оставляя `warning`, если автоматическая подготовка невозможна.
 7. Контракт статуса `automation/status.schema.json`, задающий структуру `status.json` и список обязательных ключей
    (`state`, `checks`, `artifacts`, `last_run`, `warnings`, `notes`, `extra`).
 
@@ -74,7 +79,7 @@
 - Скрипт обязан быть идемпотентным: при повторном запуске не ломать существующие файлы, а обновлять их.
 
 **Самопроверка Codex5 (`automation/stage01/self_check.sh`)**
-- Перед основными проверками запускает `STATUS_FILE=automation/stage01/status.json automation/bin/ensure_tools.sh`; если инструмент недоступен и не может быть установлен автоматически, записывает `warning` и пропускает соответствующий шаг без падения.
+- Первый шаг — `STATUS_FILE=automation/stage01/status.json automation/bin/ensure_tools.sh`, который подготавливает окружение (проверяет `asdf`/`npm`, скачивает бинарники в `automation/bin/tools/`, обновляет `PATH` на обёртки). Если инструмент недоступен и не может быть установлен автоматически, скрипт фиксирует `warning`, а самопроверка аккуратно пропускает соответствующий шаг без падения.
 - Проверяет структуру каталогов и наличие ключевых файлов (через `test`/`find`).
 - При наличии маркера (`--apply` флаг запуска или файл-подтверждение) убеждается, что перенос в `legacy/` выполнен.
 - Запускает `pre-commit run --all-files` и `make bootstrap-dev` из `scripts/bootstrap_dev.sh`.
