@@ -5,8 +5,20 @@
   "type": "module",
   "scripts": {
     "lint": "node ./scripts/lint.mjs",
+    "test": "vitest run",
     "test:auth": "npx --yes playwright test frontend/tests/auth.spec.ts"
   },
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.1.5",
+    "@testing-library/react": "^14.2.1",
+    "@testing-library/user-event": "^14.5.1",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
+  }
 }
