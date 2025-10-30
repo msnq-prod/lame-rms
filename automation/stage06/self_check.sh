@@ -53,8 +53,8 @@ if command -v bandit >/dev/null 2>&1; then
     BANDIT_MESSAGE="bandit exit code $BANDIT_EXIT"
   fi
 else
-  printf 'bandit executable not found; skipping static analysis\n' >"$BANDIT_LOG"
-  BANDIT_STATUS="warning"
+  printf 'bandit executable not found; cannot run static analysis\n' >"$BANDIT_LOG"
+  BANDIT_STATUS="fail"
   BANDIT_MESSAGE="bandit not installed"
 fi
 
@@ -78,9 +78,29 @@ else
   NPM_MESSAGE="npm not installed"
 fi
 
+log "Installing Playwright dependencies"
+PLAYWRIGHT_SETUP_LOG="$LOG_DIR/playwright_setup.log"
+if command -v node >/dev/null 2>&1; then
+  set +e
+  (cd "$REPO_ROOT/frontend" && node scripts/install_playwright.mjs) | tee "$PLAYWRIGHT_SETUP_LOG"
+  PLAYWRIGHT_SETUP_EXIT=${PIPESTATUS[0]}
+  set -e
+else
+  printf 'Node.js executable not found; cannot install Playwright dependencies\n' >"$PLAYWRIGHT_SETUP_LOG"
+  PLAYWRIGHT_SETUP_EXIT=127
+fi
+
 log "Executing Playwright e2e test"
 PLAYWRIGHT_LOG="$LOG_DIR/playwright_auth.log"
-if command -v npx >/dev/null 2>&1 && [ -d "$REPO_ROOT/frontend/node_modules/@playwright/test" ]; then
+if [[ ${PLAYWRIGHT_SETUP_EXIT:-1} -ne 0 ]]; then
+  PLAYWRIGHT_STATUS="fail"
+  PLAYWRIGHT_MESSAGE="Playwright dependency install exit code ${PLAYWRIGHT_SETUP_EXIT:-1}"
+  PLAYWRIGHT_LOG="$PLAYWRIGHT_SETUP_LOG"
+elif ! command -v npx >/dev/null 2>&1; then
+  printf 'npx executable not available; cannot execute Playwright tests\n' >"$PLAYWRIGHT_LOG"
+  PLAYWRIGHT_STATUS="fail"
+  PLAYWRIGHT_MESSAGE="npx not installed"
+else
   set +e
   (cd "$REPO_ROOT/frontend" && npx playwright test frontend/tests/auth.spec.ts --reporter=list) | tee "$PLAYWRIGHT_LOG"
   PLAYWRIGHT_EXIT=${PIPESTATUS[0]}
@@ -92,10 +112,6 @@ if command -v npx >/dev/null 2>&1 && [ -d "$REPO_ROOT/frontend/node_modules/@pla
     PLAYWRIGHT_STATUS="fail"
     PLAYWRIGHT_MESSAGE="Playwright exit code $PLAYWRIGHT_EXIT"
   fi
-else
-  printf 'Playwright dependencies missing; skipping e2e test\n' >"$PLAYWRIGHT_LOG"
-  PLAYWRIGHT_STATUS="skip"
-  PLAYWRIGHT_MESSAGE="Playwright dependencies missing"
 fi
 
 log "Emulating security alert"
@@ -104,6 +120,7 @@ PYTHONPATH="$REPO_ROOT/backend" "$PYTHON_BIN" - <<'PY' "$ALERT_LOG" "$ALERT_SUMM
 import json
 import sys
 from pathlib import Path
+from typing import Optional, Set
 from datetime import datetime, timezone
 
 from app.monitoring.security import SecurityMonitor
@@ -143,7 +160,7 @@ ALERT_STATUS="ok"
 ALERT_MESSAGE="Security alert emulated"
 
 log "Collecting results"
-PYTHONPATH="$REPO_ROOT/backend" "$PYTHON_BIN" - <<'PY' "$RESULTS_JSON" "$TOOLS_STATUS_JSON" "$PYTEST_STATUS" "$PYTEST_MESSAGE" "$PYTEST_LOG" "$BANDIT_STATUS" "$BANDIT_MESSAGE" "$BANDIT_LOG" "$NPM_STATUS" "$NPM_MESSAGE" "$NPM_LINT_LOG" "$PLAYWRIGHT_STATUS" "$PLAYWRIGHT_MESSAGE" "$PLAYWRIGHT_LOG" "$ALERT_STATUS" "$ALERT_MESSAGE" "$ALERT_SUMMARY_JSON"
+PYTHONPATH="$REPO_ROOT/backend" "$PYTHON_BIN" - <<'PY' "$RESULTS_JSON" "$TOOLS_STATUS_JSON" "$PYTEST_STATUS" "$PYTEST_MESSAGE" "$PYTEST_LOG" "$BANDIT_STATUS" "$BANDIT_MESSAGE" "$BANDIT_LOG" "$NPM_STATUS" "$NPM_MESSAGE" "$NPM_LINT_LOG" "$PLAYWRIGHT_STATUS" "$PLAYWRIGHT_MESSAGE" "$PLAYWRIGHT_LOG" "$PLAYWRIGHT_SETUP_LOG" "$ALERT_STATUS" "$ALERT_MESSAGE" "$ALERT_SUMMARY_JSON"
 import json
 import sys
 from pathlib import Path
@@ -162,16 +179,22 @@ npm_log = sys.argv[11]
 playwright_status = sys.argv[12]
 playwright_message = sys.argv[13]
 playwright_log = sys.argv[14]
-alert_status = sys.argv[15]
-alert_message = sys.argv[16]
-alert_summary_path = Path(sys.argv[17])
+playwright_setup_log = sys.argv[15]
+alert_status = sys.argv[16]
+alert_message = sys.argv[17]
+alert_summary_path = Path(sys.argv[18])
 
 results = {
     "checks": {
         "pytest": {"status": pytest_status, "message": pytest_message, "log": str(Path(pytest_log).resolve())},
         "bandit": {"status": bandit_status, "message": bandit_message, "log": str(Path(bandit_log).resolve())},
         "npm_lint": {"status": npm_status, "message": npm_message, "log": str(Path(npm_log).resolve())},
-        "playwright": {"status": playwright_status, "message": playwright_message, "log": str(Path(playwright_log).resolve())},
+        "playwright": {
+            "status": playwright_status,
+            "message": playwright_message,
+            "log": str(Path(playwright_log).resolve()),
+            "setup_log": str(Path(playwright_setup_log).resolve()),
+        },
         "alert_emulation": {"status": alert_status, "message": alert_message, "log": str(alert_summary_path.resolve())},
     },
     "tools": {},
@@ -221,6 +244,9 @@ artifacts.update({
     "automation/stage06/results.json",
     "automation/stage06/alert_summary.json",
 })
+playwright_setup_log = results["checks"]["playwright"].get("setup_log")
+if playwright_setup_log:
+    artifacts.add(playwright_setup_log)
 artifacts.add("automation/stage06/report.md")
 artifacts.add("automation/stage06/summary.json")
 
@@ -229,12 +255,21 @@ tools_payload = results.get("tools", {})
 for warning in tools_payload.get("warnings", []):
     if warning not in warnings:
         warnings.append(warning)
-if results["checks"]["npm_lint"]["status"] == "warning":
-    warnings.append({"tool": "npm", "message": results["checks"]["npm_lint"]["message"]})
-if results["checks"]["bandit"]["status"] == "warning":
-    warnings.append({"tool": "bandit", "message": results["checks"]["bandit"]["message"]})
-if results["checks"]["playwright"]["status"] == "skip":
-    warnings.append({"tool": "playwright", "message": results["checks"]["playwright"]["message"]})
+
+def append_tool_warning(tool: str, message: str) -> None:
+    candidate = {"tool": tool, "message": message}
+    if candidate not in warnings:
+        warnings.append(candidate)
+
+for tool_key, tool_name in [
+    ("npm_lint", "npm"),
+    ("bandit", "bandit"),
+    ("playwright", "playwright"),
+]:
+    status = results["checks"][tool_key]["status"]
+    if status in {"warning", "skip", "fail"}:
+        append_tool_warning(tool_name, results["checks"][tool_key]["message"])
+
 unique_warnings: list[dict] = []
 for warning in warnings:
     if warning not in unique_warnings:
@@ -305,6 +340,57 @@ def safe_relative(path: Path) -> str:
     except ValueError:
         return str(path.resolve())
 
+def read_log_lines(path: Path) -> list[str]:
+    if not path.exists():
+        return []
+    return [line.strip() for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+
+def summarise_bandit(status: str, message: str, log_path: Path) -> list[str]:
+    log_lines = read_log_lines(log_path)
+    if status == "ok":
+        issues = []
+        for line in log_lines:
+            if line.startswith(">> Issue:"):
+                issues.append(line.split(":", 1)[1].strip())
+        if issues:
+            entries = [f"- Bandit reported {len(issues)} issue(s)."]
+            for issue in issues[:5]:
+                entries.append(f"  - {issue}")
+            if len(issues) > 5:
+                entries.append("  - …")
+            return entries
+        return ["- Bandit completed with no findings."]
+
+    entries = [f"- Bandit status={status}: {message}"]
+    for line in log_lines[:5]:
+        entries.append(f"  - {line}")
+    if not log_lines:
+        entries.append("  - No additional log output captured.")
+    return entries
+
+def summarise_playwright(status: str, message: str, test_log: Path, setup_log: Optional[Path]) -> list[str]:
+    if status == "ok":
+        return [f"- Playwright tests passed: {message}"]
+
+    entries = [f"- Playwright status={status}: {message}"]
+    seen_paths: Set[Path] = set()
+    for path in [setup_log, test_log]:
+        if not path:
+            continue
+        resolved = path.resolve()
+        if resolved in seen_paths:
+            continue
+        seen_paths.add(resolved)
+        log_lines = read_log_lines(path)
+        label = "setup log" if setup_log and resolved == setup_log.resolve() else "test log"
+        if log_lines:
+            entries.append(f"  - {label} excerpt:")
+            for line in log_lines[:5]:
+                entries.append(f"    - {line}")
+        else:
+            entries.append(f"  - {label}: no additional output captured.")
+    return entries
+
 check_rows = []
 for name, data in results["checks"].items():
     check_rows.append((name, data["status"], f"{data['message']} ({data['log']})"))
@@ -331,6 +417,31 @@ lines.extend(
 )
 for name, status, message in check_rows:
     lines.append(f"| {name} | {status} | {message} |")
+lines.extend(
+    [
+        "",
+        "## Security Findings",
+        "",
+        "### Bandit",
+    ]
+)
+lines.extend(summarise_bandit(
+    results["checks"]["bandit"]["status"],
+    results["checks"]["bandit"]["message"],
+    Path(results["checks"]["bandit"]["log"]),
+))
+lines.extend(
+    [
+        "",
+        "### Playwright",
+    ]
+)
+lines.extend(summarise_playwright(
+    results["checks"]["playwright"]["status"],
+    results["checks"]["playwright"]["message"],
+    Path(results["checks"]["playwright"]["log"]),
+    Path(results["checks"]["playwright"].get("setup_log", results["checks"]["playwright"]["log"])),
+))
 lines.extend(
     [
         "",
