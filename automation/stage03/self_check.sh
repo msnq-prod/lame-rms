@@ -112,6 +112,57 @@ PY
     alembic_status="fail"
     alembic_details="Failed to start postgres-test (see alembic.log)"
   fi
+else
+  log "Docker not available; falling back to temporary PostgreSQL"
+  temp_dir=$(mktemp -d)
+  temp_uri_file="$temp_dir/pg_tmp_uri"
+  pg_tmp_pid=""
+  cleanup_pg_tmp() {
+    if [[ -n "$pg_tmp_pid" ]] && kill -0 "$pg_tmp_pid" >/dev/null 2>&1; then
+      kill "$pg_tmp_pid" >/dev/null 2>&1 || true
+      wait "$pg_tmp_pid" >/dev/null 2>&1 || true
+    fi
+    rm -rf "$temp_dir"
+  }
+  trap cleanup_pg_tmp EXIT
+  if "$PYTHON_BIN" "$REPO_ROOT/automation/bin/run_pg_tmp.py" >"$temp_uri_file" 2>>"$ALEMBIC_LOG" & then
+    pg_tmp_pid=$!
+    temp_database_url=""
+    for _ in $(seq 1 30); do
+      if [[ -s "$temp_uri_file" ]]; then
+        temp_database_url=$(head -n1 "$temp_uri_file")
+        break
+      fi
+      if ! kill -0 "$pg_tmp_pid" >/dev/null 2>&1; then
+        break
+      fi
+      sleep 1
+    done
+    if [[ -n "$temp_database_url" ]]; then
+      printf 'Temporary PostgreSQL URI: %s\n' "$temp_database_url" >>"$ALEMBIC_LOG"
+      if pushd "$REPO_ROOT/backend" >/dev/null; then
+        if DATABASE_URL="$temp_database_url" "$PYTHON_BIN" -m alembic upgrade head >>"$ALEMBIC_LOG" 2>&1; then
+          alembic_status="pass"
+          alembic_details="alembic upgrade head (pg_tmp)"
+        else
+          alembic_status="fail"
+          alembic_details="alembic upgrade head failed (pg_tmp, see alembic.log)"
+        fi
+        popd >/dev/null || true
+      else
+        alembic_status="fail"
+        alembic_details="Cannot access backend directory"
+      fi
+    else
+      alembic_status="fail"
+      alembic_details="Temporary PostgreSQL did not provide URI (see alembic.log)"
+    fi
+  else
+    alembic_status="fail"
+    alembic_details="Failed to launch run_pg_tmp.py (see alembic.log)"
+  fi
+  cleanup_pg_tmp
+  trap - EXIT
 fi
 
 log "Running ETL validation checks"
