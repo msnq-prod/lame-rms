@@ -1,19 +1,31 @@
 # Stage 06 Report
 
 ## Summary
-- Authentication module implemented with JWT, refresh, MFA, and audit trail.
-- Role definitions synchronised (4 roles).
-- Security policies documented in `docs/security/policies.md`.
+- `make stage06-verify` rerun on 2025-10-31T12:23:41.524556+00:00 (UTC).
+- Authentication module regression tests and Bandit scan remain green; frontend lint also passes.
+- Playwright dependency installation still fails with `npm 403 Forbidden` while trying to download `playwright`, so end-to-end auth checks are blocked and the stage remains marked `failed`.
+- Role definitions stay synchronised (4 roles) and security policies remain documented in `docs/security/policies.md`.
 
 ## Checks
 
 | Check | Status | Details |
 |---|---|---|
 | pytest | ok | pytest backend/tests/auth backend/tests/monitoring -q (/workspace/lame-rms/automation/stage06/logs/pytest_auth.log) |
-| bandit | warning | bandit not installed (/workspace/lame-rms/automation/stage06/logs/bandit.log) |
+| bandit | ok | bandit -q -r backend/app/auth backend/app/monitoring/security.py (/workspace/lame-rms/automation/stage06/logs/bandit.log) |
 | npm_lint | ok | npm run lint (/workspace/lame-rms/automation/stage06/logs/npm_lint.log) |
-| playwright | skip | Playwright dependencies missing (/workspace/lame-rms/automation/stage06/logs/playwright_auth.log) |
+| playwright | fail | Playwright dependency install exit code 1 (/workspace/lame-rms/automation/stage06/logs/playwright_setup.log) |
 | alert_emulation | ok | Security alert emulated (/workspace/lame-rms/automation/stage06/alert_summary.json) |
+
+## Security Findings
+
+### Bandit
+- Bandit completed with no findings.
+
+### Playwright
+- Playwright status=fail: Playwright dependency install exit code 1
+  - setup log excerpt:
+    - → Installing Playwright browser binaries
+    - npm error 403 403 Forbidden - GET https://registry.npmjs.org/playwright
 
 ## Security Policy Checklist
 - [x] JWT signing and expiration policies defined.

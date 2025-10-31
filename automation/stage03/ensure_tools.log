@@ -6,4 +6,10 @@ curl: (22) The requested URL returned error: 403
 curl: (22) The requested URL returned error: 403
 ⚠ k6 not installed
 ⚠ schemathesis not installed
-/workspace/lame-rms/automation/bin/ensure_tools.sh: line 37: $1: unbound variable
+✔ bandit available at /workspace/lame-rms/automation/bin/tools/bandit
+⚠ playwright not installed
+curl: (22) The requested URL returned error: 403
+⚠ terraform not installed
+curl: (22) The requested URL returned error: 403
+⚠ helm not installed
+Status written to /workspace/lame-rms/automation/stage03/tools_status.json

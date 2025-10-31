@@ -321,6 +321,7 @@ PYTHONPATH="$REPO_ROOT/backend" "$PYTHON_BIN" - <<'PY' "$SUMMARY_JSON" "$RESULTS
 import json
 import sys
 from pathlib import Path
+from typing import Optional, Set
 
 summary_path = Path(sys.argv[1])
 results_path = Path(sys.argv[2])

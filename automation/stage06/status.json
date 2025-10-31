@@ -1,6 +1,6 @@
 {
   "$schema": "../status.schema.json",
-  "state": "needs_attention",
+  "state": "failed",
   "checks": [
     {
       "name": "alembic",
@@ -21,8 +21,8 @@
     },
     {
       "name": "bandit",
-      "status": "warning",
-      "message": "bandit not installed",
+      "status": "ok",
+      "message": "bandit -q -r backend/app/auth backend/app/monitoring/security.py",
       "path": "/workspace/lame-rms/automation/stage06/logs/bandit.log"
     },
     {
@@ -33,9 +33,9 @@
     },
     {
       "name": "playwright-auth",
-      "status": "skip",
-      "message": "Playwright dependencies missing",
-      "path": "/workspace/lame-rms/automation/stage06/logs/playwright_auth.log"
+      "status": "fail",
+      "message": "Playwright dependency install exit code 1",
+      "path": "/workspace/lame-rms/automation/stage06/logs/playwright_setup.log"
     },
     {
       "name": "alert-emulation",
@@ -49,6 +49,7 @@
     "/workspace/lame-rms/automation/stage06/logs/bandit.log",
     "/workspace/lame-rms/automation/stage06/logs/npm_lint.log",
     "/workspace/lame-rms/automation/stage06/logs/playwright_auth.log",
+    "/workspace/lame-rms/automation/stage06/logs/playwright_setup.log",
     "/workspace/lame-rms/automation/stage06/logs/pytest_auth.log",
     "automation/stage06/alert_summary.json",
     "automation/stage06/report.md",
@@ -57,7 +58,7 @@
     "docs/security/policies.md",
     "docs/security/roles.md"
   ],
-  "last_run": "2025-10-28T03:26:49.912301+00:00",
+  "last_run": "2025-10-31T12:23:42.043945+00:00",
   "warnings": [
     {
       "tool": "act",
@@ -90,15 +91,43 @@
     {
       "tool": "playwright",
       "message": "Playwright dependencies missing"
+    },
+    {
+      "tool": "asdf",
+      "message": "asdf not available"
+    },
+    {
+      "tool": "act",
+      "message": "failed to download https://github.com/nektos/act/releases/download/v0.2.59/act_Linux_x86_64.tar.gz"
+    },
+    {
+      "tool": "k6",
+      "message": "failed to download https://github.com/grafana/k6/releases/download/v0.45.0/k6-v0.45.0-linux-amd64.tar.gz"
+    },
+    {
+      "tool": "playwright",
+      "message": "npx playwright install failed"
+    },
+    {
+      "tool": "terraform",
+      "message": "failed to download https://releases.hashicorp.com/terraform/1.6.6/terraform_1.6.6_linux_amd64.zip"
+    },
+    {
+      "tool": "helm",
+      "message": "failed to download https://get.helm.sh/helm-v3.14.4-linux-amd64.tar.gz"
+    },
+    {
+      "tool": "playwright",
+      "message": "Playwright dependency install exit code 1"
     }
   ],
   "notes": [
     "run.sh executed",
     "self_check.sh executed",
     "pytest status=ok",
-    "bandit status=warning",
+    "bandit status=ok",
     "npm status=ok",
-    "playwright status=skip"
+    "playwright status=fail"
   ],
   "extra": {
     "roles": [
@@ -136,7 +165,7 @@
       }
     ],
     "policy_doc": "docs/security/policies.md",
-    "security_findings": "bandit not installed",
+    "security_findings": "bandit -q -r backend/app/auth backend/app/monitoring/security.py",
     "alerts": {
       "alert": {
         "title": "Brute force detected",
@@ -145,7 +174,7 @@
           "source_ip": "203.0.113.10",
           "attempts": 12
         },
-        "created_at": "2025-10-28T03:26:47.985190+00:00",
+        "created_at": "2025-10-31T12:23:40.997290+00:00",
         "log": "/workspace/lame-rms/automation/stage06/security_alerts.jsonl"
       },
       "event": {
@@ -153,16 +182,16 @@
         "severity": "medium",
         "payload": {
           "ip": "203.0.113.10",
-          "blocked_at": "2025-10-28T03:26:47.985457+00:00"
+          "blocked_at": "2025-10-31T12:23:40.997410+00:00"
         },
-        "recorded_at": "2025-10-28T03:26:47.985471+00:00"
+        "recorded_at": "2025-10-31T12:23:40.997417+00:00"
       }
     },
     "tools_summary": {
-      "total": 6,
-      "ok": 0,
+      "total": 10,
+      "ok": 3,
       "installed": 0,
-      "warnings": 6
+      "warnings": 7
     }
   }
 }

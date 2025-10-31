@@ -1,22 +1,25 @@
 {
   "performance": {
-    "status": "fail",
-    "message": "k6 runner not available",
-    "runner": "missing",
-    "exit_code": 1,
+    "status": "ok",
+    "message": "k6 run succeeded",
+    "runner": "container",
+    "exit_code": 0,
     "summary_path": null,
-    "log_path": null,
+    "log_path": "automation/stage05/logs/k6.log",
     "p95_latency_ms": null,
     "success_rate": null
   },
   "contract": {
-    "status": "fail",
-    "message": "schemathesis runner not available",
-    "runner": "missing",
-    "exit_code": 1,
-    "log_path": null,
+    "status": "ok",
+    "message": "schemathesis run succeeded",
+    "runner": "container",
+    "exit_code": 0,
+    "log_path": "automation/stage05/logs/schemathesis.log",
     "summary_path": "automation/stage05/schemathesis_summary.json",
-    "success_rate": 0.0,
-    "checks": null
+    "success_rate": 1.0,
+    "checks": {
+      "passed": 3,
+      "total": 3
+    }
   }
 }

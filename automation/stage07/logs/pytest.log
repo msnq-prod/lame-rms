@@ -1,0 +1,8 @@
+....                                                                                                                     [100%]
+======================================================= warnings summary =======================================================
+tests/integrations/test_integrations.py::test_enqueue_integration_executes_task
+  /root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/celery/backends/base.py:577: RuntimeWarning: Results are not stored in backend and should not be retrieved when task_always_eager is enabled, unless task_store_eager_result is enabled.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+4 passed, 1 warning in 6.96s

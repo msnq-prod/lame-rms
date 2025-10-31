@@ -5,4 +5,4 @@
     from crypt import crypt as _crypt
 
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-15 passed, 1 warning in 1.86s
+15 passed, 1 warning in 1.54s

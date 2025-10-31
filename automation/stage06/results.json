@@ -6,8 +6,8 @@
       "log": "/workspace/lame-rms/automation/stage06/logs/pytest_auth.log"
     },
     "bandit": {
-      "status": "warning",
-      "message": "bandit not installed",
+      "status": "ok",
+      "message": "bandit -q -r backend/app/auth backend/app/monitoring/security.py",
       "log": "/workspace/lame-rms/automation/stage06/logs/bandit.log"
     },
     "npm_lint": {
@@ -16,9 +16,10 @@
       "log": "/workspace/lame-rms/automation/stage06/logs/npm_lint.log"
     },
     "playwright": {
-      "status": "skip",
-      "message": "Playwright dependencies missing",
-      "log": "/workspace/lame-rms/automation/stage06/logs/playwright_auth.log"
+      "status": "fail",
+      "message": "Playwright dependency install exit code 1",
+      "log": "/workspace/lame-rms/automation/stage06/logs/playwright_setup.log",
+      "setup_log": "/workspace/lame-rms/automation/stage06/logs/playwright_setup.log"
     },
     "alert_emulation": {
       "status": "ok",
@@ -30,15 +31,33 @@
     "state": "needs_attention",
     "checks": [
       {
-        "name": "act",
+        "name": "asdf",
         "status": "warning",
         "message": "asdf not available",
         "path": ""
       },
       {
+        "name": "npm",
+        "status": "ok",
+        "message": "found",
+        "path": "/root/.nvm/versions/node/v20.19.4/bin/npm"
+      },
+      {
+        "name": "npx",
+        "status": "ok",
+        "message": "found",
+        "path": "/root/.nvm/versions/node/v20.19.4/bin/npx"
+      },
+      {
+        "name": "act",
+        "status": "warning",
+        "message": "failed to download https://github.com/nektos/act/releases/download/v0.2.59/act_Linux_x86_64.tar.gz",
+        "path": ""
+      },
+      {
         "name": "k6",
         "status": "warning",
-        "message": "asdf not available",
+        "message": "failed to download https://github.com/grafana/k6/releases/download/v0.45.0/k6-v0.45.0-linux-amd64.tar.gz",
         "path": ""
       },
       {
@@ -48,34 +67,44 @@
         "path": ""
       },
       {
+        "name": "bandit",
+        "status": "ok",
+        "message": "found",
+        "path": "/workspace/lame-rms/automation/bin/tools/bandit"
+      },
+      {
         "name": "playwright",
         "status": "warning",
-        "message": "npm install -g playwright failed",
+        "message": "npx playwright install failed",
         "path": ""
       },
       {
         "name": "terraform",
         "status": "warning",
-        "message": "asdf not available",
+        "message": "failed to download https://releases.hashicorp.com/terraform/1.6.6/terraform_1.6.6_linux_amd64.zip",
         "path": ""
       },
       {
         "name": "helm",
         "status": "warning",
-        "message": "asdf not available",
+        "message": "failed to download https://get.helm.sh/helm-v3.14.4-linux-amd64.tar.gz",
         "path": ""
       }
     ],
     "artifacts": [],
-    "last_run": "2025-10-28T03:26:42.480983+00:00",
+    "last_run": "2025-10-31T12:23:35.590624+00:00",
     "warnings": [
       {
-        "tool": "act",
+        "tool": "asdf",
         "message": "asdf not available"
       },
       {
+        "tool": "act",
+        "message": "failed to download https://github.com/nektos/act/releases/download/v0.2.59/act_Linux_x86_64.tar.gz"
+      },
+      {
         "tool": "k6",
-        "message": "asdf not available"
+        "message": "failed to download https://github.com/grafana/k6/releases/download/v0.45.0/k6-v0.45.0-linux-amd64.tar.gz"
       },
       {
         "tool": "schemathesis",
@@ -83,24 +112,24 @@
       },
       {
         "tool": "playwright",
-        "message": "npm install -g playwright failed"
+        "message": "npx playwright install failed"
       },
       {
         "tool": "terraform",
-        "message": "asdf not available"
+        "message": "failed to download https://releases.hashicorp.com/terraform/1.6.6/terraform_1.6.6_linux_amd64.zip"
       },
       {
         "tool": "helm",
-        "message": "asdf not available"
+        "message": "failed to download https://get.helm.sh/helm-v3.14.4-linux-amd64.tar.gz"
       }
     ],
     "notes": [],
     "extra": {
       "tools_summary": {
-        "total": 6,
-        "ok": 0,
+        "total": 10,
+        "ok": 3,
         "installed": 0,
-        "warnings": 6
+        "warnings": 7
       }
     }
   },
@@ -112,7 +141,7 @@
         "source_ip": "203.0.113.10",
         "attempts": 12
       },
-      "created_at": "2025-10-28T03:26:47.985190+00:00",
+      "created_at": "2025-10-31T12:23:40.997290+00:00",
       "log": "/workspace/lame-rms/automation/stage06/security_alerts.jsonl"
     },
     "event": {
@@ -120,9 +149,9 @@
       "severity": "medium",
       "payload": {
         "ip": "203.0.113.10",
-        "blocked_at": "2025-10-28T03:26:47.985457+00:00"
+        "blocked_at": "2025-10-31T12:23:40.997410+00:00"
       },
-      "recorded_at": "2025-10-28T03:26:47.985471+00:00"
+      "recorded_at": "2025-10-31T12:23:40.997417+00:00"
     }
   }
 }

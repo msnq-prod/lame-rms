@@ -1,10 +1,10 @@
 # Stage 07 Report
 
 ## Summary
-- Integration adapters have been consolidated under `backend/app/integrations`.
-- Celery worker, beat scheduler, and Redis broker configured in docker-compose.
-- Prometheus metrics endpoint exposed at `/api/metrics`.
-- Added React UI module for monitoring integration tasks under `frontend/src/features/integration-progress`.
+- `make stage07-verify` rerun on 2025-10-31T12:24:26.089090+00:00 (UTC).
+- Backend integration pytest suite passed again, confirming adapters under `backend/app/integrations` still operate as expected.
+- Celery worker binary is available, but `celery inspect ping` continues to exit 69 against the ephemeral worker, so queue health is flagged for follow-up.
+- Prometheus metrics snapshot captured in `automation/stage07/metrics.txt`; React monitoring UI remains unchanged.
 
 ## Integrations
 - `crm_sync` → CRMIntegration

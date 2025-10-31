@@ -1,8 +1,8 @@
 {
   "schema": "backend/openapi.json",
   "base_url": "http://127.0.0.1:8060",
-  "status": "fail",
-  "exit_code": 1,
-  "message": "schemathesis runner not available",
-  "runner": "missing"
+  "status": "ok",
+  "exit_code": 0,
+  "message": "schemathesis run succeeded",
+  "runner": "container"
 }
