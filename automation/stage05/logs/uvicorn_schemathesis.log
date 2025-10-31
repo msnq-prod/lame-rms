@@ -1,0 +1,19 @@
+celery.broker.fallback {'error': 'Error -2 connecting to redis:6379. Name or service not known.'}
+INFO:     Started server process [5895]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8060 (Press CTRL+C to quit)
+INFO:     127.0.0.1:50164 - "GET /health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50170 - "GET /health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50184 - "GET /health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50200 - "GET /health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50202 - "GET /health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50216 - "GET /health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50224 - "GET /health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50240 - "GET /health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50254 - "GET /health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50268 - "GET /assets HTTP/1.1" 404 Not Found
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [5895]

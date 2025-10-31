@@ -1,8 +1,8 @@
 # Summary
 
-- Schema extracted on 2025-10-27T06:21:38.656851+00:00 containing 51 tables, 469 columns and 80 foreign keys.
-- Generated SQLAlchemy models and Pydantic schemas to mirror the legacy structure.
-- ETL pipeline validated via automated tests and Alembic migrations.
+- `make stage03-verify` rerun on 2025-10-31T12:21:31.917360+00:00 (UTC).
+- ETL pytest suite still passes against the generated fixtures and models.
+- Alembic migration step remains blocked because the temporary PostgreSQL helper did not expose a connection URI; manual DB setup is required before this check can succeed.
 
 ## Artifacts
 
@@ -22,15 +22,11 @@
 - automation/stage03/run.sh
 - automation/stage03/self_check.sh
 
-## Tests
-
-- Added a CLI smoke test that runs `app.etl.run` against a temporary SQLite database and asserts the resulting tables and row counts.
-
 ## Checks
 
 | Check | Result | Details |
 | --- | --- | --- |
-| Tooling | warn | act=warning, k6=warning, playwright=warning, terraform=warning, helm=warning |
+| Tooling | warn | asdf=warning, npm=ok, npx=ok, act=warning, k6=warning, schemathesis=warning, bandit=ok, playwright=warning, terraform=warning, helm=warning |
 | Pytest (ETL) | pass | backend/tests/etl (see pytest.log) |
 | Alembic upgrade | fail | Temporary PostgreSQL did not provide URI (see alembic.log) |
 | Row counts | pass | actionsCategories=1/1, actions=2/2 |

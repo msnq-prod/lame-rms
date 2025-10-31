@@ -3,15 +3,33 @@
   "state": "needs_attention",
   "checks": [
     {
-      "name": "act",
+      "name": "asdf",
       "status": "warning",
       "message": "asdf not available",
       "path": ""
     },
     {
+      "name": "npm",
+      "status": "ok",
+      "message": "found",
+      "path": "/root/.nvm/versions/node/v20.19.4/bin/npm"
+    },
+    {
+      "name": "npx",
+      "status": "ok",
+      "message": "found",
+      "path": "/root/.nvm/versions/node/v20.19.4/bin/npx"
+    },
+    {
+      "name": "act",
+      "status": "warning",
+      "message": "failed to download https://github.com/nektos/act/releases/download/v0.2.59/act_Linux_x86_64.tar.gz",
+      "path": ""
+    },
+    {
       "name": "k6",
       "status": "warning",
-      "message": "asdf not available",
+      "message": "failed to download https://github.com/grafana/k6/releases/download/v0.45.0/k6-v0.45.0-linux-amd64.tar.gz",
       "path": ""
     },
     {
@@ -21,21 +39,27 @@
       "path": ""
     },
     {
+      "name": "bandit",
+      "status": "ok",
+      "message": "found",
+      "path": "/workspace/lame-rms/automation/bin/tools/bandit"
+    },
+    {
       "name": "playwright",
       "status": "warning",
-      "message": "npm install -g playwright failed",
+      "message": "npx playwright install failed",
       "path": ""
     },
     {
       "name": "terraform",
       "status": "warning",
-      "message": "asdf not available",
+      "message": "failed to download https://releases.hashicorp.com/terraform/1.6.6/terraform_1.6.6_linux_amd64.zip",
       "path": ""
     },
     {
       "name": "helm",
       "status": "warning",
-      "message": "asdf not available",
+      "message": "failed to download https://get.helm.sh/helm-v3.14.4-linux-amd64.tar.gz",
       "path": ""
     },
     {
@@ -45,8 +69,8 @@
     },
     {
       "name": "k6-load",
-      "status": "skip",
-      "message": "k6 not available"
+      "status": "ok",
+      "message": "k6 run backend/loadtests/main.js (container)"
     },
     {
       "name": "contract-diff",
@@ -55,8 +79,8 @@
     },
     {
       "name": "schemathesis-contract",
-      "status": "skip",
-      "message": "schemathesis not available"
+      "status": "ok",
+      "message": "schemathesis contract tests (container)"
     }
   ],
   "artifacts": [
@@ -68,18 +92,23 @@
     "automation/stage05/pytest_integration.html",
     "automation/stage05/logs/schemathesis.log",
     "automation/stage05/schemathesis_summary.json",
+    "automation/stage05/logs/k6.log",
     "automation/stage05/logs/uvicorn.log",
     "automation/stage05/logs/uvicorn_schemathesis.log"
   ],
-  "last_run": "2025-10-27T08:19:04.516552+00:00",
+  "last_run": "2025-10-31T12:22:19.163803+00:00",
   "warnings": [
     {
-      "tool": "act",
+      "tool": "asdf",
       "message": "asdf not available"
     },
     {
+      "tool": "act",
+      "message": "failed to download https://github.com/nektos/act/releases/download/v0.2.59/act_Linux_x86_64.tar.gz"
+    },
+    {
       "tool": "k6",
-      "message": "asdf not available"
+      "message": "failed to download https://github.com/grafana/k6/releases/download/v0.45.0/k6-v0.45.0-linux-amd64.tar.gz"
     },
     {
       "tool": "schemathesis",
@@ -87,34 +116,26 @@
     },
     {
       "tool": "playwright",
-      "message": "npm install -g playwright failed"
+      "message": "npx playwright install failed"
     },
     {
       "tool": "terraform",
-      "message": "asdf not available"
+      "message": "failed to download https://releases.hashicorp.com/terraform/1.6.6/terraform_1.6.6_linux_amd64.zip"
     },
     {
       "tool": "helm",
-      "message": "asdf not available"
+      "message": "failed to download https://get.helm.sh/helm-v3.14.4-linux-amd64.tar.gz"
     },
     {
       "tool": "pytest",
       "message": "Allure plugin missing; used log/HTML fallback"
-    },
-    {
-      "tool": "k6",
-      "message": "k6 not available"
-    },
-    {
-      "tool": "schemathesis",
-      "message": "schemathesis not available"
     }
   ],
   "notes": [
     "self_check.sh executed",
     "pytest exit=0",
-    "k6 status=skip",
-    "schemathesis status=skip"
+    "k6 status=ok",
+    "schemathesis status=ok"
   ],
   "extra": {
     "contract_diff": {
@@ -234,8 +255,29 @@
       }
     },
     "performance": {
-      "status": "skipped",
-      "message": "k6 executable is not available on this host"
+      "performance": {
+        "status": "ok",
+        "message": "k6 run succeeded",
+        "runner": "container",
+        "exit_code": 0,
+        "summary_path": null,
+        "log_path": "automation/stage05/logs/k6.log",
+        "p95_latency_ms": null,
+        "success_rate": null
+      },
+      "contract": {
+        "status": "ok",
+        "message": "schemathesis run succeeded",
+        "runner": "container",
+        "exit_code": 0,
+        "log_path": "automation/stage05/logs/schemathesis.log",
+        "summary_path": "automation/stage05/schemathesis_summary.json",
+        "success_rate": 1.0,
+        "checks": {
+          "passed": 3,
+          "total": 3
+        }
+      }
     },
     "test_artifacts": {
       "pytest_log": "automation/stage05/logs/pytest_integration.log",
@@ -247,15 +289,16 @@
     "contract_tests": {
       "schema": "backend/openapi.json",
       "base_url": "http://127.0.0.1:8060",
-      "status": "skip",
+      "status": "ok",
       "exit_code": 0,
-      "message": "schemathesis not available"
+      "message": "schemathesis run succeeded",
+      "runner": "container"
     },
     "tools_summary": {
-      "total": 6,
-      "ok": 0,
+      "total": 10,
+      "ok": 3,
       "installed": 0,
-      "warnings": 6
+      "warnings": 7
     },
     "backlog_item": {
       "id": "M5-001",

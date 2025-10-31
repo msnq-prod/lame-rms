@@ -1,0 +1,47 @@
+celery.broker.fallback {'error': 'Error -2 connecting to redis:6379. Name or service not known.'}
+/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/celery/platforms.py:829: SecurityWarning: You're running the worker with superuser privileges: this is
+absolutely not recommended!
+
+Please specify a different user using the --uid option.
+
+User information: uid=0 euid=0 gid=0 egid=0
+
+  warnings.warn(SecurityWarning(ROOT_DISCOURAGED.format(
+[2025-10-31 12:24:18,121: WARNING/MainProcess] No hostname was supplied. Reverting to default 'localhost'
+ 
+ -------------- celery@e8618f65fe95 v5.4.0 (opalescent)
+--- ***** ----- 
+-- ******* ---- Linux-6.12.13-x86_64-with-glibc2.39 2025-10-31 12:24:18
+- *** --- * --- 
+- ** ---------- [config]
+- ** ---------- .> app:         app:0x7fdb4c02c6b0
+- ** ---------- .> transport:   memory://localhost//
+- ** ---------- .> results:     memory:///
+- *** --- * --- .> concurrency: 1 (solo)
+-- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+--- ***** ----- 
+ -------------- [queues]
+                .> integrations     exchange=integrations(direct) key=integrations
+                
+
+[tasks]
+  . app.integrations.tasks.archive_storage_snapshot
+  . app.integrations.tasks.deliver_notifications
+  . app.integrations.tasks.run_crm_sync
+  . app.integrations.tasks.run_integration
+
+[2025-10-31 12:24:18,135: WARNING/MainProcess] /root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/celery/worker/consumer/consumer.py:508: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+whether broker connection retries are made during startup in Celery 6.0 and above.
+If you wish to retain the existing behavior for retrying connections on startup,
+you should set broker_connection_retry_on_startup to True.
+  warnings.warn(
+
+[2025-10-31 12:24:18,135: WARNING/MainProcess] No hostname was supplied. Reverting to default 'localhost'
+[2025-10-31 12:24:18,135: INFO/MainProcess] Connected to memory://localhost//
+[2025-10-31 12:24:18,135: WARNING/MainProcess] /root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/celery/worker/consumer/consumer.py:508: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+whether broker connection retries are made during startup in Celery 6.0 and above.
+If you wish to retain the existing behavior for retrying connections on startup,
+you should set broker_connection_retry_on_startup to True.
+  warnings.warn(
+
+[2025-10-31 12:24:18,138: INFO/MainProcess] celery@e8618f65fe95 ready.

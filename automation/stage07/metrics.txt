@@ -1,3 +1,7 @@
-integration_runs_total
-integration_duration_seconds
-integration_queue_depth
+# HELP integration_runs_total Total number of integration executions
+# TYPE integration_runs_total counter
+# HELP integration_duration_seconds Duration of integration execution
+# TYPE integration_duration_seconds histogram
+# HELP integration_queue_depth Approximate depth of the integration queue
+# TYPE integration_queue_depth gauge
+integration_queue_depth 0.0

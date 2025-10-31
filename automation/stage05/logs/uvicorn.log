@@ -1,0 +1,2110 @@
+celery.broker.fallback {'error': 'Error -2 connecting to redis:6379. Name or service not known.'}
+INFO:     Started server process [6163]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8050 (Press CTRL+C to quit)
+INFO:     127.0.0.1:41060 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41062 - "GET /api/assets HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: assets
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 401, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 70, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/trustedhost.py", line 36, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 29, in __call__
+    await responder(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 46, in __call__
+    await self.app(scope, receive, self.send_with_compression)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/api/routes/assets.py", line 34, in list_assets
+    return service.list_assets(limit=limit, offset=offset, search=search)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/services/assets.py", line 29, in list_assets
+    records = self.repository.list_assets(limit=limit, offset=offset, search=search)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/repositories/assets.py", line 30, in list_assets
+    return list(self._session.execute(stmt).scalars())
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2249, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+           ^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: assets
+[SQL: SELECT assets.assets_id, assets.assets_tag, assets."assetTypes_id", assets.assets_notes, assets.instances_id, assets."asset_definableFields_1", assets."asset_definableFields_2", assets."asset_definableFields_3", assets."asset_definableFields_4", assets."asset_definableFields_5", assets."asset_definableFields_6", assets."asset_definableFields_7", assets."asset_definableFields_8", assets."asset_definableFields_9", assets."asset_definableFields_10", assets.assets_inserted, assets."assets_dayRate", assets."assets_linkedTo", assets."assets_weekRate", assets.assets_value, assets.assets_mass, assets.assets_deleted, assets."assets_endDate", assets.assets_archived, assets."assets_assetGroups", assets."assets_storageLocation", assets."assets_showPublic" 
+FROM assets ORDER BY assets.assets_id
+ LIMIT ? OFFSET ?]
+[parameters: (20, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+INFO:     127.0.0.1:41074 - "GET /api/assets HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: assets
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 401, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 70, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/trustedhost.py", line 36, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 29, in __call__
+    await responder(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 46, in __call__
+    await self.app(scope, receive, self.send_with_compression)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/api/routes/assets.py", line 34, in list_assets
+    return service.list_assets(limit=limit, offset=offset, search=search)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/services/assets.py", line 29, in list_assets
+    records = self.repository.list_assets(limit=limit, offset=offset, search=search)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/repositories/assets.py", line 30, in list_assets
+    return list(self._session.execute(stmt).scalars())
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2249, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+           ^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: assets
+[SQL: SELECT assets.assets_id, assets.assets_tag, assets."assetTypes_id", assets.assets_notes, assets.instances_id, assets."asset_definableFields_1", assets."asset_definableFields_2", assets."asset_definableFields_3", assets."asset_definableFields_4", assets."asset_definableFields_5", assets."asset_definableFields_6", assets."asset_definableFields_7", assets."asset_definableFields_8", assets."asset_definableFields_9", assets."asset_definableFields_10", assets.assets_inserted, assets."assets_dayRate", assets."assets_linkedTo", assets."assets_weekRate", assets.assets_value, assets.assets_mass, assets.assets_deleted, assets."assets_endDate", assets.assets_archived, assets."assets_assetGroups", assets."assets_storageLocation", assets."assets_showPublic" 
+FROM assets ORDER BY assets.assets_id
+ LIMIT ? OFFSET ?]
+[parameters: (20, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+INFO:     127.0.0.1:41084 - "GET /api/assets HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: assets
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 401, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 70, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/trustedhost.py", line 36, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 29, in __call__
+    await responder(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 46, in __call__
+    await self.app(scope, receive, self.send_with_compression)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/api/routes/assets.py", line 34, in list_assets
+    return service.list_assets(limit=limit, offset=offset, search=search)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/services/assets.py", line 29, in list_assets
+    records = self.repository.list_assets(limit=limit, offset=offset, search=search)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/repositories/assets.py", line 30, in list_assets
+    return list(self._session.execute(stmt).scalars())
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2249, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+           ^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: assets
+[SQL: SELECT assets.assets_id, assets.assets_tag, assets."assetTypes_id", assets.assets_notes, assets.instances_id, assets."asset_definableFields_1", assets."asset_definableFields_2", assets."asset_definableFields_3", assets."asset_definableFields_4", assets."asset_definableFields_5", assets."asset_definableFields_6", assets."asset_definableFields_7", assets."asset_definableFields_8", assets."asset_definableFields_9", assets."asset_definableFields_10", assets.assets_inserted, assets."assets_dayRate", assets."assets_linkedTo", assets."assets_weekRate", assets.assets_value, assets.assets_mass, assets.assets_deleted, assets."assets_endDate", assets.assets_archived, assets."assets_assetGroups", assets."assets_storageLocation", assets."assets_showPublic" 
+FROM assets ORDER BY assets.assets_id
+ LIMIT ? OFFSET ?]
+[parameters: (20, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+INFO:     127.0.0.1:41092 - "GET /api/assets HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: assets
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 401, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 70, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/trustedhost.py", line 36, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 29, in __call__
+    await responder(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 46, in __call__
+    await self.app(scope, receive, self.send_with_compression)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/api/routes/assets.py", line 34, in list_assets
+    return service.list_assets(limit=limit, offset=offset, search=search)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/services/assets.py", line 29, in list_assets
+    records = self.repository.list_assets(limit=limit, offset=offset, search=search)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/repositories/assets.py", line 30, in list_assets
+    return list(self._session.execute(stmt).scalars())
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2249, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+           ^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: assets
+[SQL: SELECT assets.assets_id, assets.assets_tag, assets."assetTypes_id", assets.assets_notes, assets.instances_id, assets."asset_definableFields_1", assets."asset_definableFields_2", assets."asset_definableFields_3", assets."asset_definableFields_4", assets."asset_definableFields_5", assets."asset_definableFields_6", assets."asset_definableFields_7", assets."asset_definableFields_8", assets."asset_definableFields_9", assets."asset_definableFields_10", assets.assets_inserted, assets."assets_dayRate", assets."assets_linkedTo", assets."assets_weekRate", assets.assets_value, assets.assets_mass, assets.assets_deleted, assets."assets_endDate", assets.assets_archived, assets."assets_assetGroups", assets."assets_storageLocation", assets."assets_showPublic" 
+FROM assets ORDER BY assets.assets_id
+ LIMIT ? OFFSET ?]
+[parameters: (20, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+INFO:     127.0.0.1:41104 - "GET /api/assets HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: assets
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 401, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 70, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/trustedhost.py", line 36, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 29, in __call__
+    await responder(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 46, in __call__
+    await self.app(scope, receive, self.send_with_compression)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/api/routes/assets.py", line 34, in list_assets
+    return service.list_assets(limit=limit, offset=offset, search=search)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/services/assets.py", line 29, in list_assets
+    records = self.repository.list_assets(limit=limit, offset=offset, search=search)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/repositories/assets.py", line 30, in list_assets
+    return list(self._session.execute(stmt).scalars())
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2249, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+           ^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: assets
+[SQL: SELECT assets.assets_id, assets.assets_tag, assets."assetTypes_id", assets.assets_notes, assets.instances_id, assets."asset_definableFields_1", assets."asset_definableFields_2", assets."asset_definableFields_3", assets."asset_definableFields_4", assets."asset_definableFields_5", assets."asset_definableFields_6", assets."asset_definableFields_7", assets."asset_definableFields_8", assets."asset_definableFields_9", assets."asset_definableFields_10", assets.assets_inserted, assets."assets_dayRate", assets."assets_linkedTo", assets."assets_weekRate", assets.assets_value, assets.assets_mass, assets.assets_deleted, assets."assets_endDate", assets.assets_archived, assets."assets_assetGroups", assets."assets_storageLocation", assets."assets_showPublic" 
+FROM assets ORDER BY assets.assets_id
+ LIMIT ? OFFSET ?]
+[parameters: (20, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+INFO:     127.0.0.1:41118 - "GET /api/assets HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: assets
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 401, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 70, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/trustedhost.py", line 36, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 29, in __call__
+    await responder(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 46, in __call__
+    await self.app(scope, receive, self.send_with_compression)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/api/routes/assets.py", line 34, in list_assets
+    return service.list_assets(limit=limit, offset=offset, search=search)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/services/assets.py", line 29, in list_assets
+    records = self.repository.list_assets(limit=limit, offset=offset, search=search)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/repositories/assets.py", line 30, in list_assets
+    return list(self._session.execute(stmt).scalars())
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2249, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+           ^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: assets
+[SQL: SELECT assets.assets_id, assets.assets_tag, assets."assetTypes_id", assets.assets_notes, assets.instances_id, assets."asset_definableFields_1", assets."asset_definableFields_2", assets."asset_definableFields_3", assets."asset_definableFields_4", assets."asset_definableFields_5", assets."asset_definableFields_6", assets."asset_definableFields_7", assets."asset_definableFields_8", assets."asset_definableFields_9", assets."asset_definableFields_10", assets.assets_inserted, assets."assets_dayRate", assets."assets_linkedTo", assets."assets_weekRate", assets.assets_value, assets.assets_mass, assets.assets_deleted, assets."assets_endDate", assets.assets_archived, assets."assets_assetGroups", assets."assets_storageLocation", assets."assets_showPublic" 
+FROM assets ORDER BY assets.assets_id
+ LIMIT ? OFFSET ?]
+[parameters: (20, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+INFO:     127.0.0.1:41124 - "GET /api/assets HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: assets
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 401, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 70, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/trustedhost.py", line 36, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 29, in __call__
+    await responder(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 46, in __call__
+    await self.app(scope, receive, self.send_with_compression)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/api/routes/assets.py", line 34, in list_assets
+    return service.list_assets(limit=limit, offset=offset, search=search)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/services/assets.py", line 29, in list_assets
+    records = self.repository.list_assets(limit=limit, offset=offset, search=search)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/repositories/assets.py", line 30, in list_assets
+    return list(self._session.execute(stmt).scalars())
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2249, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+           ^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: assets
+[SQL: SELECT assets.assets_id, assets.assets_tag, assets."assetTypes_id", assets.assets_notes, assets.instances_id, assets."asset_definableFields_1", assets."asset_definableFields_2", assets."asset_definableFields_3", assets."asset_definableFields_4", assets."asset_definableFields_5", assets."asset_definableFields_6", assets."asset_definableFields_7", assets."asset_definableFields_8", assets."asset_definableFields_9", assets."asset_definableFields_10", assets.assets_inserted, assets."assets_dayRate", assets."assets_linkedTo", assets."assets_weekRate", assets.assets_value, assets.assets_mass, assets.assets_deleted, assets."assets_endDate", assets.assets_archived, assets."assets_assetGroups", assets."assets_storageLocation", assets."assets_showPublic" 
+FROM assets ORDER BY assets.assets_id
+ LIMIT ? OFFSET ?]
+[parameters: (20, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+INFO:     127.0.0.1:41128 - "GET /api/assets HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: assets
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 401, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 70, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/trustedhost.py", line 36, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 29, in __call__
+    await responder(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 46, in __call__
+    await self.app(scope, receive, self.send_with_compression)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/api/routes/assets.py", line 34, in list_assets
+    return service.list_assets(limit=limit, offset=offset, search=search)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/services/assets.py", line 29, in list_assets
+    records = self.repository.list_assets(limit=limit, offset=offset, search=search)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/repositories/assets.py", line 30, in list_assets
+    return list(self._session.execute(stmt).scalars())
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2249, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+           ^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: assets
+[SQL: SELECT assets.assets_id, assets.assets_tag, assets."assetTypes_id", assets.assets_notes, assets.instances_id, assets."asset_definableFields_1", assets."asset_definableFields_2", assets."asset_definableFields_3", assets."asset_definableFields_4", assets."asset_definableFields_5", assets."asset_definableFields_6", assets."asset_definableFields_7", assets."asset_definableFields_8", assets."asset_definableFields_9", assets."asset_definableFields_10", assets.assets_inserted, assets."assets_dayRate", assets."assets_linkedTo", assets."assets_weekRate", assets.assets_value, assets.assets_mass, assets.assets_deleted, assets."assets_endDate", assets.assets_archived, assets."assets_assetGroups", assets."assets_storageLocation", assets."assets_showPublic" 
+FROM assets ORDER BY assets.assets_id
+ LIMIT ? OFFSET ?]
+[parameters: (20, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+INFO:     127.0.0.1:41132 - "GET /api/assets HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: assets
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 401, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 70, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/trustedhost.py", line 36, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 29, in __call__
+    await responder(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 46, in __call__
+    await self.app(scope, receive, self.send_with_compression)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/api/routes/assets.py", line 34, in list_assets
+    return service.list_assets(limit=limit, offset=offset, search=search)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/services/assets.py", line 29, in list_assets
+    records = self.repository.list_assets(limit=limit, offset=offset, search=search)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/repositories/assets.py", line 30, in list_assets
+    return list(self._session.execute(stmt).scalars())
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2249, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+           ^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: assets
+[SQL: SELECT assets.assets_id, assets.assets_tag, assets."assetTypes_id", assets.assets_notes, assets.instances_id, assets."asset_definableFields_1", assets."asset_definableFields_2", assets."asset_definableFields_3", assets."asset_definableFields_4", assets."asset_definableFields_5", assets."asset_definableFields_6", assets."asset_definableFields_7", assets."asset_definableFields_8", assets."asset_definableFields_9", assets."asset_definableFields_10", assets.assets_inserted, assets."assets_dayRate", assets."assets_linkedTo", assets."assets_weekRate", assets.assets_value, assets.assets_mass, assets.assets_deleted, assets."assets_endDate", assets.assets_archived, assets."assets_assetGroups", assets."assets_storageLocation", assets."assets_showPublic" 
+FROM assets ORDER BY assets.assets_id
+ LIMIT ? OFFSET ?]
+[parameters: (20, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+INFO:     127.0.0.1:41134 - "GET /api/assets HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: assets
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 401, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 70, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/trustedhost.py", line 36, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 29, in __call__
+    await responder(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 46, in __call__
+    await self.app(scope, receive, self.send_with_compression)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/api/routes/assets.py", line 34, in list_assets
+    return service.list_assets(limit=limit, offset=offset, search=search)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/services/assets.py", line 29, in list_assets
+    records = self.repository.list_assets(limit=limit, offset=offset, search=search)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/repositories/assets.py", line 30, in list_assets
+    return list(self._session.execute(stmt).scalars())
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2249, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+           ^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: assets
+[SQL: SELECT assets.assets_id, assets.assets_tag, assets."assetTypes_id", assets.assets_notes, assets.instances_id, assets."asset_definableFields_1", assets."asset_definableFields_2", assets."asset_definableFields_3", assets."asset_definableFields_4", assets."asset_definableFields_5", assets."asset_definableFields_6", assets."asset_definableFields_7", assets."asset_definableFields_8", assets."asset_definableFields_9", assets."asset_definableFields_10", assets.assets_inserted, assets."assets_dayRate", assets."assets_linkedTo", assets."assets_weekRate", assets.assets_value, assets.assets_mass, assets.assets_deleted, assets."assets_endDate", assets.assets_archived, assets."assets_assetGroups", assets."assets_storageLocation", assets."assets_showPublic" 
+FROM assets ORDER BY assets.assets_id
+ LIMIT ? OFFSET ?]
+[parameters: (20, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+INFO:     127.0.0.1:41148 - "GET /api/assets HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: assets
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 401, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 70, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/trustedhost.py", line 36, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 29, in __call__
+    await responder(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 46, in __call__
+    await self.app(scope, receive, self.send_with_compression)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/api/routes/assets.py", line 34, in list_assets
+    return service.list_assets(limit=limit, offset=offset, search=search)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/services/assets.py", line 29, in list_assets
+    records = self.repository.list_assets(limit=limit, offset=offset, search=search)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/repositories/assets.py", line 30, in list_assets
+    return list(self._session.execute(stmt).scalars())
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2249, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+           ^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: assets
+[SQL: SELECT assets.assets_id, assets.assets_tag, assets."assetTypes_id", assets.assets_notes, assets.instances_id, assets."asset_definableFields_1", assets."asset_definableFields_2", assets."asset_definableFields_3", assets."asset_definableFields_4", assets."asset_definableFields_5", assets."asset_definableFields_6", assets."asset_definableFields_7", assets."asset_definableFields_8", assets."asset_definableFields_9", assets."asset_definableFields_10", assets.assets_inserted, assets."assets_dayRate", assets."assets_linkedTo", assets."assets_weekRate", assets.assets_value, assets.assets_mass, assets.assets_deleted, assets."assets_endDate", assets.assets_archived, assets."assets_assetGroups", assets."assets_storageLocation", assets."assets_showPublic" 
+FROM assets ORDER BY assets.assets_id
+ LIMIT ? OFFSET ?]
+[parameters: (20, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+INFO:     127.0.0.1:41150 - "GET /api/assets HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: assets
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 401, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 70, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/trustedhost.py", line 36, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 29, in __call__
+    await responder(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 46, in __call__
+    await self.app(scope, receive, self.send_with_compression)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/api/routes/assets.py", line 34, in list_assets
+    return service.list_assets(limit=limit, offset=offset, search=search)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/services/assets.py", line 29, in list_assets
+    records = self.repository.list_assets(limit=limit, offset=offset, search=search)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/repositories/assets.py", line 30, in list_assets
+    return list(self._session.execute(stmt).scalars())
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2249, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+           ^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: assets
+[SQL: SELECT assets.assets_id, assets.assets_tag, assets."assetTypes_id", assets.assets_notes, assets.instances_id, assets."asset_definableFields_1", assets."asset_definableFields_2", assets."asset_definableFields_3", assets."asset_definableFields_4", assets."asset_definableFields_5", assets."asset_definableFields_6", assets."asset_definableFields_7", assets."asset_definableFields_8", assets."asset_definableFields_9", assets."asset_definableFields_10", assets.assets_inserted, assets."assets_dayRate", assets."assets_linkedTo", assets."assets_weekRate", assets.assets_value, assets.assets_mass, assets.assets_deleted, assets."assets_endDate", assets.assets_archived, assets."assets_assetGroups", assets."assets_storageLocation", assets."assets_showPublic" 
+FROM assets ORDER BY assets.assets_id
+ LIMIT ? OFFSET ?]
+[parameters: (20, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+INFO:     127.0.0.1:41166 - "GET /api/assets HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: assets
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 401, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 70, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/trustedhost.py", line 36, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 29, in __call__
+    await responder(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 46, in __call__
+    await self.app(scope, receive, self.send_with_compression)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/api/routes/assets.py", line 34, in list_assets
+    return service.list_assets(limit=limit, offset=offset, search=search)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/services/assets.py", line 29, in list_assets
+    records = self.repository.list_assets(limit=limit, offset=offset, search=search)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/repositories/assets.py", line 30, in list_assets
+    return list(self._session.execute(stmt).scalars())
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2249, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+           ^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: assets
+[SQL: SELECT assets.assets_id, assets.assets_tag, assets."assetTypes_id", assets.assets_notes, assets.instances_id, assets."asset_definableFields_1", assets."asset_definableFields_2", assets."asset_definableFields_3", assets."asset_definableFields_4", assets."asset_definableFields_5", assets."asset_definableFields_6", assets."asset_definableFields_7", assets."asset_definableFields_8", assets."asset_definableFields_9", assets."asset_definableFields_10", assets.assets_inserted, assets."assets_dayRate", assets."assets_linkedTo", assets."assets_weekRate", assets.assets_value, assets.assets_mass, assets.assets_deleted, assets."assets_endDate", assets.assets_archived, assets."assets_assetGroups", assets."assets_storageLocation", assets."assets_showPublic" 
+FROM assets ORDER BY assets.assets_id
+ LIMIT ? OFFSET ?]
+[parameters: (20, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+INFO:     127.0.0.1:41172 - "GET /api/assets HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: assets
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 401, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 70, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/trustedhost.py", line 36, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 29, in __call__
+    await responder(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 46, in __call__
+    await self.app(scope, receive, self.send_with_compression)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/api/routes/assets.py", line 34, in list_assets
+    return service.list_assets(limit=limit, offset=offset, search=search)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/services/assets.py", line 29, in list_assets
+    records = self.repository.list_assets(limit=limit, offset=offset, search=search)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/repositories/assets.py", line 30, in list_assets
+    return list(self._session.execute(stmt).scalars())
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2249, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+           ^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: assets
+[SQL: SELECT assets.assets_id, assets.assets_tag, assets."assetTypes_id", assets.assets_notes, assets.instances_id, assets."asset_definableFields_1", assets."asset_definableFields_2", assets."asset_definableFields_3", assets."asset_definableFields_4", assets."asset_definableFields_5", assets."asset_definableFields_6", assets."asset_definableFields_7", assets."asset_definableFields_8", assets."asset_definableFields_9", assets."asset_definableFields_10", assets.assets_inserted, assets."assets_dayRate", assets."assets_linkedTo", assets."assets_weekRate", assets.assets_value, assets.assets_mass, assets.assets_deleted, assets."assets_endDate", assets.assets_archived, assets."assets_assetGroups", assets."assets_storageLocation", assets."assets_showPublic" 
+FROM assets ORDER BY assets.assets_id
+ LIMIT ? OFFSET ?]
+[parameters: (20, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+INFO:     127.0.0.1:41174 - "GET /api/assets HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: assets
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 401, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 70, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/trustedhost.py", line 36, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 29, in __call__
+    await responder(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 46, in __call__
+    await self.app(scope, receive, self.send_with_compression)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/api/routes/assets.py", line 34, in list_assets
+    return service.list_assets(limit=limit, offset=offset, search=search)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/services/assets.py", line 29, in list_assets
+    records = self.repository.list_assets(limit=limit, offset=offset, search=search)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/repositories/assets.py", line 30, in list_assets
+    return list(self._session.execute(stmt).scalars())
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2249, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+           ^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: assets
+[SQL: SELECT assets.assets_id, assets.assets_tag, assets."assetTypes_id", assets.assets_notes, assets.instances_id, assets."asset_definableFields_1", assets."asset_definableFields_2", assets."asset_definableFields_3", assets."asset_definableFields_4", assets."asset_definableFields_5", assets."asset_definableFields_6", assets."asset_definableFields_7", assets."asset_definableFields_8", assets."asset_definableFields_9", assets."asset_definableFields_10", assets.assets_inserted, assets."assets_dayRate", assets."assets_linkedTo", assets."assets_weekRate", assets.assets_value, assets.assets_mass, assets.assets_deleted, assets."assets_endDate", assets.assets_archived, assets."assets_assetGroups", assets."assets_storageLocation", assets."assets_showPublic" 
+FROM assets ORDER BY assets.assets_id
+ LIMIT ? OFFSET ?]
+[parameters: (20, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+INFO:     127.0.0.1:41176 - "GET /api/assets HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: assets
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 401, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 70, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/trustedhost.py", line 36, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 29, in __call__
+    await responder(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 46, in __call__
+    await self.app(scope, receive, self.send_with_compression)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/api/routes/assets.py", line 34, in list_assets
+    return service.list_assets(limit=limit, offset=offset, search=search)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/services/assets.py", line 29, in list_assets
+    records = self.repository.list_assets(limit=limit, offset=offset, search=search)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/repositories/assets.py", line 30, in list_assets
+    return list(self._session.execute(stmt).scalars())
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2249, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+           ^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: assets
+[SQL: SELECT assets.assets_id, assets.assets_tag, assets."assetTypes_id", assets.assets_notes, assets.instances_id, assets."asset_definableFields_1", assets."asset_definableFields_2", assets."asset_definableFields_3", assets."asset_definableFields_4", assets."asset_definableFields_5", assets."asset_definableFields_6", assets."asset_definableFields_7", assets."asset_definableFields_8", assets."asset_definableFields_9", assets."asset_definableFields_10", assets.assets_inserted, assets."assets_dayRate", assets."assets_linkedTo", assets."assets_weekRate", assets.assets_value, assets.assets_mass, assets.assets_deleted, assets."assets_endDate", assets.assets_archived, assets."assets_assetGroups", assets."assets_storageLocation", assets."assets_showPublic" 
+FROM assets ORDER BY assets.assets_id
+ LIMIT ? OFFSET ?]
+[parameters: (20, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+INFO:     127.0.0.1:41184 - "GET /api/assets HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: assets
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 401, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 70, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/trustedhost.py", line 36, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 29, in __call__
+    await responder(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 46, in __call__
+    await self.app(scope, receive, self.send_with_compression)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/api/routes/assets.py", line 34, in list_assets
+    return service.list_assets(limit=limit, offset=offset, search=search)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/services/assets.py", line 29, in list_assets
+    records = self.repository.list_assets(limit=limit, offset=offset, search=search)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/repositories/assets.py", line 30, in list_assets
+    return list(self._session.execute(stmt).scalars())
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2249, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+           ^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: assets
+[SQL: SELECT assets.assets_id, assets.assets_tag, assets."assetTypes_id", assets.assets_notes, assets.instances_id, assets."asset_definableFields_1", assets."asset_definableFields_2", assets."asset_definableFields_3", assets."asset_definableFields_4", assets."asset_definableFields_5", assets."asset_definableFields_6", assets."asset_definableFields_7", assets."asset_definableFields_8", assets."asset_definableFields_9", assets."asset_definableFields_10", assets.assets_inserted, assets."assets_dayRate", assets."assets_linkedTo", assets."assets_weekRate", assets.assets_value, assets.assets_mass, assets.assets_deleted, assets."assets_endDate", assets.assets_archived, assets."assets_assetGroups", assets."assets_storageLocation", assets."assets_showPublic" 
+FROM assets ORDER BY assets.assets_id
+ LIMIT ? OFFSET ?]
+[parameters: (20, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+INFO:     127.0.0.1:41194 - "GET /api/assets HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: assets
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 401, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 70, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/trustedhost.py", line 36, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 29, in __call__
+    await responder(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 46, in __call__
+    await self.app(scope, receive, self.send_with_compression)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/api/routes/assets.py", line 34, in list_assets
+    return service.list_assets(limit=limit, offset=offset, search=search)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/services/assets.py", line 29, in list_assets
+    records = self.repository.list_assets(limit=limit, offset=offset, search=search)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/repositories/assets.py", line 30, in list_assets
+    return list(self._session.execute(stmt).scalars())
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2249, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+           ^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: assets
+[SQL: SELECT assets.assets_id, assets.assets_tag, assets."assetTypes_id", assets.assets_notes, assets.instances_id, assets."asset_definableFields_1", assets."asset_definableFields_2", assets."asset_definableFields_3", assets."asset_definableFields_4", assets."asset_definableFields_5", assets."asset_definableFields_6", assets."asset_definableFields_7", assets."asset_definableFields_8", assets."asset_definableFields_9", assets."asset_definableFields_10", assets.assets_inserted, assets."assets_dayRate", assets."assets_linkedTo", assets."assets_weekRate", assets.assets_value, assets.assets_mass, assets.assets_deleted, assets."assets_endDate", assets.assets_archived, assets."assets_assetGroups", assets."assets_storageLocation", assets."assets_showPublic" 
+FROM assets ORDER BY assets.assets_id
+ LIMIT ? OFFSET ?]
+[parameters: (20, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+INFO:     127.0.0.1:41204 - "GET /api/assets HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: assets
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 401, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 70, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/trustedhost.py", line 36, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 29, in __call__
+    await responder(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 46, in __call__
+    await self.app(scope, receive, self.send_with_compression)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/api/routes/assets.py", line 34, in list_assets
+    return service.list_assets(limit=limit, offset=offset, search=search)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/services/assets.py", line 29, in list_assets
+    records = self.repository.list_assets(limit=limit, offset=offset, search=search)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/repositories/assets.py", line 30, in list_assets
+    return list(self._session.execute(stmt).scalars())
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2249, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+           ^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: assets
+[SQL: SELECT assets.assets_id, assets.assets_tag, assets."assetTypes_id", assets.assets_notes, assets.instances_id, assets."asset_definableFields_1", assets."asset_definableFields_2", assets."asset_definableFields_3", assets."asset_definableFields_4", assets."asset_definableFields_5", assets."asset_definableFields_6", assets."asset_definableFields_7", assets."asset_definableFields_8", assets."asset_definableFields_9", assets."asset_definableFields_10", assets.assets_inserted, assets."assets_dayRate", assets."assets_linkedTo", assets."assets_weekRate", assets.assets_value, assets.assets_mass, assets.assets_deleted, assets."assets_endDate", assets.assets_archived, assets."assets_assetGroups", assets."assets_storageLocation", assets."assets_showPublic" 
+FROM assets ORDER BY assets.assets_id
+ LIMIT ? OFFSET ?]
+[parameters: (20, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+INFO:     127.0.0.1:41206 - "GET /api/assets HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: assets
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 401, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 70, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/trustedhost.py", line 36, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 29, in __call__
+    await responder(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/gzip.py", line 46, in __call__
+    await self.app(scope, receive, self.send_with_compression)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/api/routes/assets.py", line 34, in list_assets
+    return service.list_assets(limit=limit, offset=offset, search=search)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/services/assets.py", line 29, in list_assets
+    records = self.repository.list_assets(limit=limit, offset=offset, search=search)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/backend/app/repositories/assets.py", line 30, in list_assets
+    return list(self._session.execute(stmt).scalars())
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2249, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+           ^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: assets
+[SQL: SELECT assets.assets_id, assets.assets_tag, assets."assetTypes_id", assets.assets_notes, assets.instances_id, assets."asset_definableFields_1", assets."asset_definableFields_2", assets."asset_definableFields_3", assets."asset_definableFields_4", assets."asset_definableFields_5", assets."asset_definableFields_6", assets."asset_definableFields_7", assets."asset_definableFields_8", assets."asset_definableFields_9", assets."asset_definableFields_10", assets.assets_inserted, assets."assets_dayRate", assets."assets_linkedTo", assets."assets_weekRate", assets.assets_value, assets.assets_mass, assets.assets_deleted, assets."assets_endDate", assets.assets_archived, assets."assets_assetGroups", assets."assets_storageLocation", assets."assets_showPublic" 
+FROM assets ORDER BY assets.assets_id
+ LIMIT ? OFFSET ?]
+[parameters: (20, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [6163]

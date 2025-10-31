@@ -1,0 +1,2 @@
+celery.broker.fallback {'error': 'Error -2 connecting to redis:6379. Name or service not known.'}
+Error: No nodes replied within time constraint

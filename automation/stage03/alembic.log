@@ -1,4 +1,17 @@
 Traceback (most recent call last):
-  File "/workspace/lame-rms/automation/bin/run_pg_tmp.py", line 15, in <module>
-    from testing.postgresql import Postgresql
-ModuleNotFoundError: No module named 'testing'
+  File "/workspace/lame-rms/automation/bin/run_pg_tmp.py", line 96, in <module>
+    main()
+  File "/workspace/lame-rms/automation/bin/run_pg_tmp.py", line 68, in main
+    temp_db = start_temp_db()
+              ^^^^^^^^^^^^^^^
+  File "/workspace/lame-rms/automation/bin/run_pg_tmp.py", line 49, in start_temp_db
+    return TempDatabase(Postgresql())
+                        ^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/testing/common/database.py", line 92, in __init__
+    self.initialize()
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/testing/postgresql.py", line 50, in initialize
+    self.initdb = find_program('initdb', ['bin'])
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.12.10/lib/python3.12/site-packages/testing/postgresql.py", line 144, in find_program
+    raise RuntimeError("command not found: %s" % name)
+RuntimeError: command not found: initdb

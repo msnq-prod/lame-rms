@@ -1,0 +1,43 @@
+[podman-lite] Running k6-lite scenario (script=/workspace/lame-rms/automation/backend/loadtests/main.js, base_url=http://127.0.0.1:8050/api)
+[podman-lite] Waiting 1.0s for API warm-up
+[podman-lite] Iteration 1: GET /assets -> 500
+[podman-lite] Iteration 1: no assets returned; skipping detail check
+[podman-lite] Iteration 2: GET /assets -> 500
+[podman-lite] Iteration 2: no assets returned; skipping detail check
+[podman-lite] Iteration 3: GET /assets -> 500
+[podman-lite] Iteration 3: no assets returned; skipping detail check
+[podman-lite] Iteration 4: GET /assets -> 500
+[podman-lite] Iteration 4: no assets returned; skipping detail check
+[podman-lite] Iteration 5: GET /assets -> 500
+[podman-lite] Iteration 5: no assets returned; skipping detail check
+[podman-lite] Iteration 6: GET /assets -> 500
+[podman-lite] Iteration 6: no assets returned; skipping detail check
+[podman-lite] Iteration 7: GET /assets -> 500
+[podman-lite] Iteration 7: no assets returned; skipping detail check
+[podman-lite] Iteration 8: GET /assets -> 500
+[podman-lite] Iteration 8: no assets returned; skipping detail check
+[podman-lite] Iteration 9: GET /assets -> 500
+[podman-lite] Iteration 9: no assets returned; skipping detail check
+[podman-lite] Iteration 10: GET /assets -> 500
+[podman-lite] Iteration 10: no assets returned; skipping detail check
+[podman-lite] Iteration 11: GET /assets -> 500
+[podman-lite] Iteration 11: no assets returned; skipping detail check
+[podman-lite] Iteration 12: GET /assets -> 500
+[podman-lite] Iteration 12: no assets returned; skipping detail check
+[podman-lite] Iteration 13: GET /assets -> 500
+[podman-lite] Iteration 13: no assets returned; skipping detail check
+[podman-lite] Iteration 14: GET /assets -> 500
+[podman-lite] Iteration 14: no assets returned; skipping detail check
+[podman-lite] Iteration 15: GET /assets -> 500
+[podman-lite] Iteration 15: no assets returned; skipping detail check
+[podman-lite] Iteration 16: GET /assets -> 500
+[podman-lite] Iteration 16: no assets returned; skipping detail check
+[podman-lite] Iteration 17: GET /assets -> 500
+[podman-lite] Iteration 17: no assets returned; skipping detail check
+[podman-lite] Iteration 18: GET /assets -> 500
+[podman-lite] Iteration 18: no assets returned; skipping detail check
+[podman-lite] Iteration 19: GET /assets -> 500
+[podman-lite] Iteration 19: no assets returned; skipping detail check
+[podman-lite] Iteration 20: GET /assets -> 500
+[podman-lite] Iteration 20: no assets returned; skipping detail check
+[podman-lite] Summary: checks=20 passes=20 fails=0 p95_ms=13.16

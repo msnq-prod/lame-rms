@@ -3,7 +3,7 @@
     "tooling": {
       "label": "Tooling",
       "status": "warn",
-      "details": "act=warning, k6=warning, playwright=warning, terraform=warning, helm=warning"
+      "details": "asdf=warning, npm=ok, npx=ok, act=warning, k6=warning, schemathesis=warning, bandit=ok, playwright=warning, terraform=warning, helm=warning"
     },
     "pytest": {
       "label": "Pytest (ETL)",
@@ -32,11 +32,13 @@
     }
   },
   "warnings": [
-    "act: asdf not available",
-    "k6: asdf not available",
-    "playwright: npm install -g playwright failed",
-    "terraform: asdf not available",
-    "helm: asdf not available",
+    "asdf: asdf not available",
+    "act: failed to download https://github.com/nektos/act/releases/download/v0.2.59/act_Linux_x86_64.tar.gz",
+    "k6: failed to download https://github.com/grafana/k6/releases/download/v0.45.0/k6-v0.45.0-linux-amd64.tar.gz",
+    "schemathesis: pip install --user schemathesis failed",
+    "playwright: npx playwright install failed",
+    "terraform: failed to download https://releases.hashicorp.com/terraform/1.6.6/terraform_1.6.6_linux_amd64.zip",
+    "helm: failed to download https://get.helm.sh/helm-v3.14.4-linux-amd64.tar.gz",
     "Temporary PostgreSQL did not provide URI (see alembic.log)"
   ],
   "coverage": {
