@@ -26,6 +26,7 @@
    - для Python-инструментов пробует `pipx`, затем `python -m pip --user`,
    - для Playwright полагается на `npx playwright` и сохраняет статус установки браузеров,
    - по итогам пишет сводку в `status.json`, оставляя `warning`, если автоматическая подготовка невозможна.
+   - использует специализированные функции `check_*` (например, `check_bandit`, `check_playwright`), чтобы `ensure_tool` всегда получал корректные аргументы и фиксировал путь к найденным бинарникам.
 7. Контракт статуса `automation/status.schema.json`, задающий структуру `status.json` и список обязательных ключей
    (`state`, `checks`, `artifacts`, `last_run`, `warnings`, `notes`, `extra`).
 

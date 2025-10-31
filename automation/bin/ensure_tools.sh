@@ -187,6 +187,10 @@ check_playwright() {
   check_command playwright
 }
 
+check_bandit() {
+  check_command bandit
+}
+
 install_tool_via_asdf() {
   local plugin="$1"
   INSTALL_METHOD="asdf"
@@ -442,7 +446,7 @@ ensure_dependency "npx" NPX_AVAILABLE "npx"
 ensure_tool "act" check_act install_act
 ensure_tool "k6" check_k6 install_k6
 ensure_tool "schemathesis" check_schemathesis install_schemathesis
-ensure_tool "bandit" check_command install_bandit
+ensure_tool "bandit" check_bandit install_bandit
 ensure_tool "playwright" check_playwright install_playwright
 ensure_tool "terraform" check_terraform install_terraform
 ensure_tool "helm" check_helm install_helm
