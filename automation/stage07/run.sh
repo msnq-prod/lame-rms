@@ -10,6 +10,10 @@ SUMMARY_JSON="$SCRIPT_DIR/summary.json"
 REPORT_MD="$SCRIPT_DIR/report.md"
 QUEUE_JSON="$SCRIPT_DIR/queue.json"
 
+export APP_CELERY_BROKER_URL="${APP_CELERY_BROKER_URL:-memory://}"
+export APP_CELERY_RESULT_BACKEND="${APP_CELERY_RESULT_BACKEND:-cache+memory://}"
+export APP_QUEUE_FALLBACK_ENABLED="${APP_QUEUE_FALLBACK_ENABLED:-true}"
+
 log() {
   printf '[stage07] %s\n' "$1"
 }
@@ -73,7 +77,7 @@ lines = [
     "",
     "## Summary",
     "- Integration adapters have been consolidated under `backend/app/integrations`.",
-    "- Celery worker, beat scheduler, and Redis broker configured in docker-compose.",
+    "- Celery worker, beat scheduler, and in-memory broker configured for local runs (Redis optional).",
     "- Prometheus metrics endpoint exposed at `/api/metrics`.",
     "",
     "## Integrations",
